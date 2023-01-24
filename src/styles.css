@@ -3,35 +3,42 @@
     margin: 0;
     box-sizing: border-box;
 }
-
-header{
-    position: relative;
+.mainLabel{
+    background-image: url("img/fondoDefinitivo.jpeg");
+    width: 100vw;
+    height: 100vh;
+    background-position: center center;
+    background-size:cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content:right;
+    align-items: center;
 }
-#image-header{
-   background-image: url(./img/bread.jpg);
-  background-size: cover;
-  height: 710px;
+.principalMain{
+    display: flex;
+    flex-direction: column;
+}
+.SignLogButtons{
+    display: flex;
 }
 .SignUp, .LogIn{
     font-family: 'Inter';
     font-style: italic;
     font-weight: 300;
-    font-size: 40px;
-    line-height: 48px;
-    position: absolute;
-    width: 200px;
-    height: 72px;
-    top: 200px;
+    font-size: 55px;
+    line-height: 24px;
     border-color: #10701a;
     background: rgba(186, 236, 188, 0.33);
     border: none;
+    padding: 8px;
+    width: 201px;
+    height: 70px;
 }
+
 .SignUp{
-    right: 288px; 
     border-radius: 10px 0px 0px 0px;  
 }
 .LogIn{
-    right: 88px;
     border-radius: 0px 10px 0px 0px;
 }
 .LogIn:hover,  .SignUp:hover{
@@ -39,73 +46,64 @@ header{
     border: #10701aa0;
 }
 .btnSelected{
-    background-color: rgba(98, 133, 99, 0.73);
+    background-color: rgba(98, 133, 99, 0.73) !important;
     border: #10701aa0;
 }
 .mainSignUp, .mainLogIn{
-    position: absolute;
-    width: 401px;
-    height: 380px;
-    right: 88px;
-    top: 272px;
     background: rgba(169, 219, 171, 0.59);
     border-radius: 0px 0px 10px 10px;
     display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    width: 50%;
+    gap: 10px;
+    min-width: fit-content;
+    padding: 9px;
+    align-items: flex-start;
     flex-direction:column;
 }
 input{
-    width: 308px;
-    height: 66px;
-    top: 634px;
     background: rgba(254, 253, 253, 0.44);
     border: 3px solid #76C67E;
     border-radius: 70px;
-    margin: 0px 0px 15px 40px;
     text-align: center;
     font-family: 'Inter';
     font-style: italic;
     font-weight: 300;
-    font-size: 25px;
+    font-size: 40px;
     line-height: 30px;
+    height: 60px;
 }
-.e-mail, .user{
-    margin-top: 40px;
-}
-.createAccount, .LogInBtn{
-    width: 208px;
-    height: 50px;
-    right: 184px;
-    top: 760px;
-    margin-left: 100px;
-    margin-top: 30px;
+.LogInBtn, .createAccount{
     background: rgba(103, 177, 110, 0.65);
     border: 3px solid #67B16E;
     border-radius: 10px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
-    font-size: 25px;
-    line-height: 30px;
+    font-size: 45px;
+    line-height: 12px;
     align-items: center;
+    align-self: center;
     text-align: center;
     color: #FFFCFC;
+    height: 65px;
+    width: 350px;
+    margin-top: 30px;
 }
 .forgotUsernameOption{
     display: flex;
     justify-content: center;
-}
-
-a{
+    align-self: center;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
-    font-size: 17px;
+    font-size: 25px;
     line-height: 21px;
-    align-items: center;
     text-align: center;
     color: black;
-    margin-top: 30px;
 }
+
 footer{
     position: absolute;
     font-family: 'Inter';
@@ -115,8 +113,54 @@ footer{
     line-height: 24px;
     left: 25%;
 }
+/*tablet*/
+@media (max-width: 916px){
+    .mainLabel{
+        justify-content:right;
+        align-items: center;
+    }
+    .SignUp, .LogIn{
+        font-size: 55px;
+        width: 245.5px;
+        height: 55px;
+    }
+
+    input{
+        height: 50px;
+        font-size: 50px;
+    }
+    .LogInBtn, .createAccount{
+        font-size: 40px;
+        height: 50px;
+        width: 300px;
+        margin-top: 20px;
+    }
+}
+/*Celulares*/
+@media (max-width: 414px){
+    .mainLabel{
+        justify-content:center;
+        align-items:center;
+    }
+    .SignUp, .LogIn{
+        font-size: 30px;
+        width: 134px;
+        height: 55px;
+    }
+
+    input{
+        height: 40px;
+        font-size: 25px;
+    }
+    .LogInBtn, .createAccount{
+        font-size: 25px;
+        height: 40px;
+        width: 200px;
+        margin-top: 20px;
+    }
+}
 .showMain{
-    display: block;
+    display: flex;
 }
 .hideMain{
     display: none;

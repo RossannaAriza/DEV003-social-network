@@ -17,6 +17,7 @@ function SignUp(){
     signUpSelected.classList.add("btnSelected");
     const logInSelected=document.getElementById("LogInButtonOption");
     logInSelected.classList.remove("btnSelected");
+    console.log("Si funciona SignUp");
 }
 
 document.getElementById("LogInButtonOption").addEventListener("click", LogIn);
