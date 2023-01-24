@@ -8,19 +8,21 @@
   <title>Social Network</title>
 </head>
 <body>
-  <img src="./img/fondoDefinitivo.jpeg" alt="FondoPantalla" class="fondo">
+  <header>
+    <div id="image-header"></div>
+  </header>
   <button class="SignUp btnSelected" id="SignInButtonOption">Sign Up</button>
   <button class="LogIn" id="LogInButtonOption">Log In</button>
   <div class="mainSignUp showMain" id="mainSignUp">
-    <input type="text" placeholder="Your e-mail address" class="e-mail">
-    <input type="text" placeholder="Username" class="username">
-    <input type="text" placeholder="Password" class="password">
-    <button class="createAccount">Create Account</button>
+    <input type="text" placeholder="Your e-mail address" class="e-mail" id="email">
+    <input type="text" placeholder="Username" class="username" id="username">
+    <input type="password" placeholder="Password" class="password" id="password">
+    <button class="createAccount" id="CreateAcount">Create Account</button>
   </div>
   <div class="mainLogIn hideMain" id="mainLogIn">
-    <input type="text" placeholder="E-mail or Username" class="user">
-    <input type="text" placeholder="Password">
-    <button class="LogInBtn">Log In</button>
+    <input type="text" placeholder="E-mail or Username" class="user" id="EmailLogin">
+    <input type="password" placeholder="Password" id="PasswordLogin">
+    <button class="LogInBtn" id="LogInAcount">Log In</button>
     <div class="forgotUsernameOption">
     <a href="#">I forgot my username or password</a>
     </div>
