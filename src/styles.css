@@ -13,6 +13,7 @@
     display: flex;
     justify-content:right;
     align-items: center;
+    padding-right: 25px;
 }
 .principalMain{
     display: flex;
@@ -117,21 +118,21 @@ footer{
 @media (max-width: 916px){
     .mainLabel{
         justify-content:right;
-        align-items: center;
+        padding-right: 25px;
     }
     .SignUp, .LogIn{
-        font-size: 55px;
+        font-size: 50px;
         width: 245.5px;
-        height: 55px;
+        height: 100px;
     }
 
     input{
-        height: 50px;
+        height: 80px;
         font-size: 50px;
     }
     .LogInBtn, .createAccount{
         font-size: 40px;
-        height: 50px;
+        height: 70px;
         width: 300px;
         margin-top: 20px;
     }
@@ -141,6 +142,7 @@ footer{
     .mainLabel{
         justify-content:center;
         align-items:center;
+        padding-right:0;
     }
     .SignUp, .LogIn{
         font-size: 30px;
@@ -157,6 +159,9 @@ footer{
         height: 40px;
         width: 200px;
         margin-top: 20px;
+    }
+    .forgotUsernameOption{
+        font-size: 15px;
     }
 }
 .showMain{
