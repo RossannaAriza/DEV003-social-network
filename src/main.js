@@ -64,7 +64,7 @@ function LogIn() {
   const auth = getAuth()
   //const analytics = getAnalytics(app);
 
-  CreateAcount.addEventListener('click', (e) =>{
+  CreateAccount.addEventListener('click', (e) =>{
 
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
@@ -92,7 +92,7 @@ function LogIn() {
 
   });
 
-  LogInAcount.addEventListener('click',(e)=>{
+  LogInAccount.addEventListener('click',(e)=>{
     var EmailLogin = document.getElementById('EmailLogin').value;
     var PasswordLogin = document.getElementById('PasswordLogin').value;
  
