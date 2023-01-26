@@ -1,3 +1,5 @@
+/*import { onNavigate } from "../main";*/
+
 export const Home = () => {
   const mainLabel = document.createElement('main'); // main contiene todo, hasta background img
   mainLabel.classList.add('mainLabel');
@@ -72,6 +74,7 @@ export const Home = () => {
   googleBtn.classList.add('googleBtn');
   googleBtn.setAttribute('id','googleButton')
   googleBtn.textContent = "Google";
+  /*googleBtn.addEventListener('click', () => onNavigate('/mainPage'));*/
   const forgotUsernameOption = document.createElement('div');
   const a = document.createElement('a');
   a.href = "#";
