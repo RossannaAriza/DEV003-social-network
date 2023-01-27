@@ -1,7 +1,7 @@
 // Este es el punto de entrada de tu aplicacion
 import { Home } from './component/home.js';
 import { MainPage } from './component/mainPage.js';
-import { createAccountFunction, loginAccountFunction } from './firebase.js';
+import { createAccountFunction, loginAccountFunction, loginWithGoogle } from './firebase.js';
 
 const rootDiv = document.getElementById('root');
 
@@ -17,17 +17,26 @@ export const onNavigate = (pathname) => {
     window.location.origin + pathname,
   );
 
-  while (rootDiv.firstChild) {
-    rootDiv.removeChild(rootDiv.firstChild);
-  }
-
+while (rootDiv.firstChild) {
+  rootDiv.removeChild(rootDiv.firstChild);
+}
   rootDiv.appendChild(routes[pathname]());
 };
 
 const component = routes[window.location.pathname];
-
 rootDiv.appendChild(component());
+const googleBtn = document.getElementById('googleButton');
+googleBtn.onclick = loginWithGoogle;
+
+
+/*logout.addEventListener('click',(e)=>{
+
+const component = routes[window.location.pathname];
+
+rootDiv.appendChild(component());*/
 
 // firebase
-createAccount.addEventListener('click', createAccountFunction);
-LogInAccount.addEventListener('click', loginAccountFunction);
+document.getElementById('createAccount')?.addEventListener('click', createAccountFunction);
+// createAccountFunction.addEventListener('click', createAccountFunction);
+// loginAccountFunction.addEventListener('click', loginAccountFunction);
+document.getElementById('LogInAccount')?.addEventListener('click', loginAccountFunction);

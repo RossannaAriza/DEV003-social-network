@@ -1,13 +1,9 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js';
+import { getAuth, createUserWithEmailAndPassword , signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
+import { initializeApp } from 'firebase/app';
 //  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-analytics.js";
-import {
-  getDatabase, set, ref, update,
-} from 'https://www.gstatic.com/firebasejs/9.16.0/firebase-database.js';
-import {
-  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js';
-/* signOut, onAuthStateChanged, */
-
+import { getDatabase, set, ref, update } from 'firebase/database';
+import { signInWithPopup, GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -79,6 +75,24 @@ export function loginAccountFunction() {
 
       alert(errorMessage);
     });
+    const user = auth.currentUser;
+    onAuthStateChanged(auth, (user) => {
+     if (user) {
+       // User is signed in, see docs for a list of available properties
+       // https://firebase.google.com/docs/reference/js/firebase.User
+       const uid = user.uid;
+       //bla bla bla
+       // ...
+     } else {
+       // User is signed out
+       // ...
+       //bla bla bla
+     }
+    });
+}
+export function loginWithGoogle() {
+  const provider = new GoogleAuthProvider();
+  return signInWithRedirect(auth, provider);
 }
 
 // const user = auth.currentUser;
