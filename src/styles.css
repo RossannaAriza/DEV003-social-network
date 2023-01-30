@@ -274,6 +274,36 @@ footer{
     background-size:cover;
     background-repeat: no-repeat;
 }
+/**/
+#menuImg{
+    background-image: url(./img/menu.png);
+}
+#check{
+    display: none;
+}
+@media (max-width: 800px){
+
+.headerPrincipalPage{
+    background: rgba(119, 186, 125, 0.8);
+    display: flex;
+    justify-content: flex-start;
+    transition: all 0.5s;
+    flex-direction: column;
+    padding-left: 1em;
+    
+}
+#check:checked ~ .headerPrincipalPage{ /*despues del input check seleccionara toda la clase menu*/
+    margin: 0; /*checked: El usuario puede activar este estado marcando/seleccionando un elemento, o desactivarlo desmarcando/deseleccionando el elemento*/
+
+}
+#check{
+    display: block;
+}
+#logoImg{
+    height: 8em;
+}
+}
+/**/
 
 /* #searchIconBtn{
     width: 49px;

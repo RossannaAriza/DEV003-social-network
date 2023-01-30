@@ -15,6 +15,20 @@ export const MainPage = () => {
   headerPrincPage.appendChild(inputSearchProfile);
   headerPrincPage.appendChild(searchButton);
   headerPrincPage.appendChild(profileButton);
+  //
+  const checkBox = document.createElement('input');
+  const labelCheck = document.createElement('label');
+  const menuHambur = document.createElement('img');
+  checkBox.setAttribute('id', 'check');
+  checkBox.setAttribute('type', 'checkbox');
+  labelCheck.classList.add('btnMenu');
+  labelCheck.setAttribute('for', 'check');
+  menuHambur.setAttribute('id', 'menuImg');
+
+  headerPrincPage.appendChild(checkBox);
+  headerPrincPage.appendChild(labelCheck);
+  headerPrincPage.appendChild(menuHambur);
+//
 
   principalPage.appendChild(headerPrincPage); // Header dentro de principalPage
 
