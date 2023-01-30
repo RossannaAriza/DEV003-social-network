@@ -92,6 +92,15 @@ input{
     width: 350px;
     margin-top: 30px;
 }
+.googleBtn{
+    border-radius: 100%;
+    background-image: url(./img/googleIcon.png);
+    background-position: center center;
+    background-size:cover;
+    background-repeat: no-repeat;
+    width: 80px;
+    height: 80px;
+}
 .forgotUsernameOpt{
     display: flex;
     justify-content: center;
@@ -136,6 +145,15 @@ footer{
         width: 300px;
         margin-top: 20px;
     }
+    .googleBtn{
+        border-radius: 100%;
+        background-image: url(./img/googleIcon.png);
+        background-position: center center;
+        background-size:cover;
+        background-repeat: no-repeat;
+        width: 80px;
+        height: 80px;
+    }
 }
 /*Celulares*/
 @media (max-width: 414px){
@@ -163,6 +181,15 @@ footer{
     .forgotUsernameOption{
         font-size: 15px;
     }
+    .googleBtn{
+        border-radius: 100%;
+        background-image: url(./img/googleIcon.png);
+        background-position: center center;
+        background-size:cover;
+        background-repeat: no-repeat;
+        width: 80px;
+        height: 80px;
+    }
 }
 .showMain{
     display: flex;
@@ -170,6 +197,7 @@ footer{
 .hideMain{
     display: none;
 }
+/* Estilos mainPage */
 /* menu de navegacion */
 .menu{
     width: 100%; /*ocupar el ancho de la pagina*/
@@ -178,22 +206,91 @@ footer{
     top: 115px;
     background: rgba(118, 198, 126, 0.32);
 }
-#searchIconBtn{
+.headerPrincipalPage{
+    height: 115px;
+    left: 0px;
+    top: 0px;
+    background: rgba(119, 186, 125, 0.8);
+    font-size: 100px;
+    display: flex;
+    justify-content: flex-end;
+}
+.inputSearchProfile{
+    background-color: white;
+    border:solid #10701a 1px;
+    border-radius: 70px 0px 0px 70px;
+    text-align: center;
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 20px;
+    height: 40px;
+    margin: 10px 0px 0px 0px;
+}
+.searchButton, .profileButton{
+    width: 50px;
+    height: 40px;
+    background-position: center center;
+    background-size:cover;
+    background-repeat: no-repeat;
+    border: solid #10701a 1px;
+}
+.searchButton{
+    background-image: url(./img/search.png);
+    background-color: white;
+    margin: 10px 0px 10px 0px;
+}
+.profileButton{
+    background-image: url(./img/profileIcon.png);
+    border-radius:0px 10px 10px 0px;
+    margin: 10px 10px 0px 0px;  
+}
+.usersPost{
+    height: 100%;
+    width: 50%;
+    margin-left: 25%;
+    background: rgba(82, 163, 90, 0.2);
+    border: 1px solid #000000;
+    border-radius: 5px;
+}
+.publishPostButton{
+    background-image: url(./img/post.png);
+    width: 50px;
+    height: 40px;
+    border: none;
+    background-color: white;
+    background-position: center center;
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+.likeButton{
+    background-image: url(./img/like.png);
+    width: 50px;
+    height: 40px;
+    border: none;
+    background-color: white;
+    background-position: center center;
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+
+/* #searchIconBtn{
     width: 49px;
     height: 47px;
-}
-#searchIcon{
+} */
+/* #searchIcon{
     width: 42px;
     height: 47px;
     left: 1182px;
     top: 143px;
-}
-#profile{
+} */
+/* #profile{
     width: 49px;
     height: 47px;
     left: 1280px;
-}
-#searchProfile{
+} */
+/* #searchProfile{
     width: 5em;
     height: 1em;
     left: 827px;
@@ -201,16 +298,16 @@ footer{
     background: rgba(118, 198, 126, 0.26);
     border-radius: 60px;
     margin-left: 78%;
-}
-.wallPost{
+} */
+/*.wallPost{ /* Fondo para el post del usuario 
     height: 100%;
     width: 50%;
     margin-left: 25%;
     background: rgba(82, 163, 90, 0.2);
     border: 1px solid #000000;
 
-}
-.imagenPost{
+}*/
+/* .imagenPost{
     box-sizing: border-box;
     width: 537px;
     height: 324px;
@@ -248,7 +345,7 @@ footer{
     color: #000000;
     margin-left: 10%;
     display: inline;
-}
+} */
 .recipeText{
     font-family: 'Inter';
     font-style: normal;
@@ -268,7 +365,7 @@ footer{
     margin-left: 5%;
 }
 
-header{
+/* header{
     width: 100%;
     height: 115px;
     left: 0px;
@@ -276,4 +373,4 @@ header{
     background: rgba(119, 186, 125, 0.8);
     text-align: center;
     font-size: 100px;
-}
+} */

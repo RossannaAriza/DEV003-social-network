@@ -99,7 +99,6 @@ export const Home = () => {
   const googleBtn = document.createElement('button');
   googleBtn.classList.add('googleBtn');
   googleBtn.setAttribute('id', 'googleButton');
-  googleBtn.textContent = 'Google';
   /* googleBtn.addEventListener('click', () => onNavigate('/mainPage')); */
   const forgotUsernameOption = document.createElement('div');
   const a = document.createElement('a');
@@ -115,7 +114,7 @@ export const Home = () => {
   mainLogIn.appendChild(a);
 
   principalMain.appendChild(mainLogIn);
-  mainLabel.appendChild(principalMain);
+  // mainLabel.appendChild(principalMain);
 
   mainLabel.appendChild(principalMain); // principalMain dentro de mainLabel
   return mainLabel;

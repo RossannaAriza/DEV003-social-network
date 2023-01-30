@@ -10,21 +10,8 @@ const routes = {
   '/mainPage': MainPage,
 };
 
-export const onNavigate = (pathname) => {
-  window.history.pushState(
-    {},
-    pathname,
-    window.location.origin + pathname,
-  );
-
-while (rootDiv.firstChild) {
-  rootDiv.removeChild(rootDiv.firstChild);
-}
-  rootDiv.appendChild(routes[pathname]());
-};
-
 const component = routes[window.location.pathname];
-rootDiv.appendChild(component());
+rootDiv.appendChild(component()); // carga la sig ruta
 const googleBtn = document.getElementById('googleButton');
 googleBtn.onclick = loginWithGoogle;
 

@@ -4,6 +4,7 @@ import { initializeApp } from 'firebase/app';
 //  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-analytics.js";
 import { getDatabase, set, ref, update } from 'firebase/database';
 import { signInWithPopup, GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
+import { onNavigate } from "./lib/index";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -42,6 +43,7 @@ export function createAccountFunction() {
         email,
       });
       alert('user created');
+      onNavigate('/mainPage')
       // ..
     })
     .catch((error) => {
@@ -67,6 +69,7 @@ export function loginAccountFunction() {
       });
 
       alert('User loged in!');
+      onNavigate('/mainPage')
       // ...
     })
     .catch((error) => {
@@ -92,8 +95,29 @@ export function loginAccountFunction() {
 }
 export function loginWithGoogle() {
   const provider = new GoogleAuthProvider();
-  return signInWithRedirect(auth, provider);
-}
+  return signInWithPopup(auth, provider).then((result) => {
+    // alert("Funciona");
+    onNavigate('/mainPage')
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const user = result.user;
+    // ...
+    console.log("Usuario se loggeo correctamente");
+    console.log(result);
+  }).catch((error) => {
+    alert(errorMessage);
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.customData.email;
+    // The AuthCredential type that was used.
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    // ...
+  });
+} 
 
 // const user = auth.currentUser;
 // onAuthStateChanged(auth, (user) => {
