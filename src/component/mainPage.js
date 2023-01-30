@@ -1,60 +1,89 @@
 export const MainPage = () => {
-  const mainLabel = document.createElement('main'); // main contiene todo, hasta background img
-  mainLabel.classList.add('mainLabel');
+  const principalPage = document.createElement('div'); // contiene toda la segunda vista
+  principalPage.classList.add('principalPage');
+  const headerPrincPage = document.createElement('div');
+  headerPrincPage.classList.add('headerPrincipalPage');
+  // Todo esto dentro de headerPrincipalPage
+  const inputSearchProfile = document.createElement('input');
+  inputSearchProfile.classList.add('inputSearchProfile');
+  inputSearchProfile.placeholder = 'Search User';
+  const searchButton = document.createElement('button');
+  searchButton.classList.add('searchButton');
+  const profileButton = document.createElement('button');
+  profileButton.classList.add('profileButton');
 
-  const postMain = document.createElement('div'); // contiene nav y div donde se ven los post
-  postMain.classList.add('postMain');
+  headerPrincPage.appendChild(inputSearchProfile);
+  headerPrincPage.appendChild(searchButton);
+  headerPrincPage.appendChild(profileButton);
 
-  const menuNav = document.createElement('div');
-  menuNav.classList.add('menu');
-  const searchProfile = document.createElement('input');
-  searchProfile.setAttribute('id', 'searchProfile');
-  searchProfile.placeholder = 'search user';
-  const searchIconBtn = document.createElement('button');
-  searchIconBtn.setAttribute('id', 'searchIconBtn');
+  principalPage.appendChild(headerPrincPage); // Header dentro de principalPage
+
+  const postMain = document.createElement('div'); // Contiene input del post, btn publicar y btn like
+  postMain.classList.add('postMain'); // postMain dentro de principalPage
+  // Todo dentro de postMain
+  const post = document.createElement('input');
+  post.classList.add('usersPost');
+  const publish = document.createElement('button');
+  publish.classList.add('publishPostButton');
+  const likes = document.createElement('button');
+  likes.classList.add('likeButton');
+
+  postMain.appendChild(post);
+  postMain.appendChild(publish);
+  postMain.appendChild(likes);
+
+  principalPage.appendChild(postMain);
+
+  // const mainNav = document.createElement('div'); // Contiene botones e input de búsqueda
+  // mainNav.classList.add('mainNav');
+  // const searchProfile = document.createElement('input'); // Dentro de mainNav
+  // searchProfile.setAttribute('id', 'searchProfile');
+  // searchProfile.placeholder = 'search user';
+  // const searchIconBtn = document.createElement('button');
+  // searchIconBtn.setAttribute('id', 'searchIconBtn');
   /* searchIconBtn.onclick = showUserFind; agregar funcion */
-  searchIconBtn.textContent = ''; // buscar como agregar imagen
-  const profileBtn = document.createElement('button');
-  profileBtn.setAttribute('id', 'profile');
+  // searchIconBtn.textContent = ''; // buscar como agregar imagen
+  // const profileBtn = document.createElement('button'); // Dentro de mainNav
+  // profileBtn.setAttribute('id', 'profile');
   /* profileBtn.onclick = showProfile; agregar funcion */
-  profileBtn.textContent = ''; // buscar como agregar imagen
+  // profileBtn.textContent = ''; // buscar como agregar imagen
 
-  postMain.appendChild(menuNav);
+  // postMain.appendChild(mainNav);
 
-  menuNav.appendChild(searchProfile);
-  menuNav.appendChild(searchIconBtn);
-  menuNav.appendChild(profileBtn);
+  // mainNav.appendChild(searchProfile);
+  // mainNav.appendChild(searchButton);
+  // mainNav.appendChild(profileBtn);
 
-  const wallPost = document.createElement('div');
-  wallPost.classList.add('wallPost');
-  const imagenPost = document.createElement('div');
-  imagenPost.classList.add('imagenPost');
-  const usernamePost = document.createElement('h2');
-  usernamePost.classList.add('usernamePost');
-  const recipeName = document.createElement('h3');
-  recipeName.classList.add('recipeName');
-  const recipeText = document.createElement('p');
-  recipeText.classList.add('recipeText');
-  const likeBtn = document.createElement('button');
-  likeBtn.classList.add('like');
+  // const wallPost = document.createElement('div');
+  // wallPost.classList.add('wallPost');
+  // const imagenPost = document.createElement('div');
+  // imagenPost.classList.add('imagenPost');
+  // const usernamePost = document.createElement('h2');
+  // usernamePost.classList.add('usernamePost');
+  // const recipeName = document.createElement('h3');
+  // recipeName.classList.add('recipeName');
+  // const recipeText = document.createElement('p');
+  // recipeText.classList.add('recipeText');
+  // const likeBtn = document.createElement('button');
+  // likeBtn.classList.add('like');
   /* likeBtn.onclick = showLike; agregar funcion */
-  likeBtn.textContent = 'Like';
-  const commentBtn = document.createElement('button');
-  commentBtn.classList.add('comment');
+  // likeBtn.textContent = 'Like';
+  // const commentBtn = document.createElement('button');
+  // commentBtn.classList.add('comment');
   /* commentBtn.onclick = createComment; agregar funcion */
-  commentBtn.textContent = 'Comment';
+  // commentBtn.textContent = 'Comment';
 
-  postMain.appendChild(wallPost);
+  // postMain.appendChild(wallPost);
 
-  wallPost.appendChild(imagenPost);
-  wallPost.appendChild(usernamePost);
-  wallPost.appendChild(recipeName);
-  wallPost.appendChild(recipeText);
-  wallPost.appendChild(likeBtn);
-  wallPost.appendChild(commentBtn);
+  // wallPost.appendChild(imagenPost);
+  // wallPost.appendChild(usernamePost);
+  // wallPost.appendChild(recipeName);
+  // wallPost.appendChild(recipeText);
+  // wallPost.appendChild(likeBtn);
+  // wallPost.appendChild(commentBtn);
 
-  mainLabel.appendChild(postMain);
-  return mainLabel;
+  // principalPage.appendChild(postMain);
+  return principalPage;
 };
 /* export  function showUserFind(){
     const signUpMain = document.getElementById("mainSignUp");
