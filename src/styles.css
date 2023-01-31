@@ -113,90 +113,6 @@ input{
     text-align: center;
     color: black;
 }
-
-footer{
-    position: absolute;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    left: 25%;
-}
-/*tablet*/
-@media (max-width: 916px){
-    .mainLabel{
-        justify-content:right;
-        padding-right: 25px;
-    }
-    .SignUp, .LogIn{
-        font-size: 50px;
-        width: 50%;
-        height: 100px;
-    }
-
-    input{
-        height: 80px;
-        font-size: 50px;
-    }
-    .LogInBtn, .createAccount, .googleBtn{
-        font-size: 40px;
-        height: 70px;
-        width: 300px;
-        margin-top: 20px;
-    }
-    .googleBtn{
-        border-radius: 100%;
-        background-image: url(./img/googleIcon.png);
-        background-position: center center;
-        background-size:cover;
-        background-repeat: no-repeat;
-        width: 80px;
-        height: 80px;
-    }
-}
-/*Celulares*/
-@media (max-width: 414px){
-    .mainLabel{
-        justify-content:center;
-        align-items:center;
-        padding-right:0;
-    }
-    .SignUp, .LogIn{
-        font-size: 30px;
-        width: 50%;
-        height: 55px;
-    }
-
-    input{
-        height: 40px;
-        font-size: 25px;
-    }
-    .LogInBtn, .createAccount, .googleBtn{
-        font-size: 25px;
-        height: 40px;
-        width: 200px;
-        margin-top: 20px;
-    }
-    .forgotUsernameOption{
-        font-size: 15px;
-    }
-    .googleBtn{
-        border-radius: 100%;
-        background-image: url(./img/googleIcon.png);
-        background-position: center center;
-        background-size:cover;
-        background-repeat: no-repeat;
-        width: 80px;
-        height: 80px;
-    }
-    .headerPrincipalPage{
-        display: flex;
-        justify-content: center;
-        align-content: center;
-        flex-wrap: wrap;
-    }
-}
 .showMain{
     display: flex;
 }
@@ -305,40 +221,15 @@ footer{
     background-size:cover;
     background-repeat: no-repeat;
 }
-/* Celulares */
-@media (max-width: 414px){
-    .headerPrincipalPage{
-        height: 50px;
-        /* display: flex; */
-        justify-content: right;
-        align-content: center;
-        /* flex-wrap: wrap; */
-    }
-    .inputSearchProfile{
-        
-        height: 22px;
-    }
-    .searchButton, .profileButton, .logOutButton{
-        width: 20px;
-        height: 24px;
-        border: solid  rgba(119, 186, 125, 0.8) 1px;
-    }
-    .inputSearchProfile{
-        border: none;
-    }
-    .searchButton{
-        margin: 9px 0px 0px 0px
-    }
-    .profileButton{
-        margin: 9px 5px 0px -1px;
-    }
-    .logOutButton{
-        margin: 20px 0px 10px 5px;
-    }
-    .publishPostButton, .likeButton{
-        width: 25px;
-        height: 20px;
-    }
+
+footer{
+    position: absolute;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    left: 25%;
 }
 /*cambios menu hamburguesa */
 #check{
@@ -366,13 +257,43 @@ header label:hover{
 .menu li:hover{
     background-color: rgba(82, 163, 90, 0.2);
 }
-/*media queries*/
-@media (max-width: 800px){
+
+/*tablet*/
+@media (max-width: 916px){
+    .mainLabel{
+        justify-content:right;
+        padding-right: 25px;
+    }
+    .SignUp, .LogIn{
+        font-size: 50px;
+        width: 50%;
+        height: 100px;
+    }
+
+    input{
+        height: 80px;
+        font-size: 50px;
+    }
+    .LogInBtn, .createAccount, .googleBtn{
+        font-size: 40px;
+        height: 70px;
+        width: 300px;
+        margin-top: 20px;
+    }
+    .googleBtn{
+        border-radius: 100%;
+        background-image: url(./img/googleIcon.png);
+        background-position: center center;
+        background-size:cover;
+        background-repeat: no-repeat;
+        width: 80px;
+        height: 80px;
+    }
     #menuImg{
         width: 20%;
         display: block;
     }
-    div.headerPrincPage label{ 
+    div.headerPrincipalPage label{ 
         display: block; 
     }
     .menuNav{  /*menu de opciones*/
@@ -406,6 +327,66 @@ header label:hover{
 
     }
 }
+/*Celulares*/
+@media (max-width: 414px){
+    .mainLabel{
+        justify-content:center;
+        align-items:center;
+        padding-right:0;
+    }
+    .SignUp, .LogIn{
+        font-size: 30px;
+        width: 50%;
+        height: 55px;
+    }
+    input{
+        height: 40px;
+        font-size: 25px;
+    }
+    .LogInBtn, .createAccount, .googleBtn{
+        font-size: 25px;
+        height: 40px;
+        width: 200px;
+        margin-top: 20px;
+    }
+    .forgotUsernameOption{
+        font-size: 15px;
+    }
+    .googleBtn{
+        border-radius: 100%;
+        background-image: url(./img/googleIcon.png);
+        background-position: center center;
+        background-size:cover;
+        background-repeat: no-repeat;
+        width: 80px;
+        height: 80px;
+    }
+    .inputSearchProfile{
+        height: 22px;
+    }
+    .searchButton, .profileButton, .logOutButton{
+        width: 20px;
+        height: 24px;
+        border: solid  rgba(119, 186, 125, 0.8) 1px;
+    }
+    .inputSearchProfile{
+        border: none;
+    }
+    .searchButton{
+        margin: 9px 0px 0px 0px
+    }
+    .profileButton{
+        margin: 9px 5px 0px -1px;
+    }
+    .logOutButton{
+        margin: 20px 0px 10px 5px;
+    }
+    .publishPostButton, .likeButton{
+        width: 25px;
+        height: 20px;
+    }
+}
+
 /*fin cambios menu hamburguesa*/
 
 /* #searchIconBtn{
