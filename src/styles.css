@@ -206,15 +206,8 @@ footer{
 /* Estilos mainPage */
 /* menu de navegacion */
 .headerPrincipalPage{
-    height: 100px;
-    left: 0px;
-    top: 0px;
+    width: 100%; /*ocupar el ancho de la pagina*/
     background: rgba(119, 186, 125, 0.8);
-    font-size: 100px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    align-items: center;
 }
 .publishPostBtnContainer{
     display: flex;
@@ -234,6 +227,9 @@ footer{
     line-height: 20px;
     height: 40px;
     margin: 10px 0px 0px 0px;
+    flex-direction: row-reverse;
+    display: block;
+    text-decoration: none;
 }
 .searchButton, .profileButton, .logOutButton{
     width: 50px;
@@ -242,6 +238,8 @@ footer{
     background-size:cover;
     background-repeat: no-repeat;
     border: solid #10701a 1px;
+    display: block;
+    text-decoration: none;
 }
 .searchButton:hover, .profileButton:hover, .likeButton:hover, .publishPostButton:hover{
     background-color: rgba(140, 188, 142, 0.73);
@@ -342,6 +340,74 @@ footer{
         height: 20px;
     }
 }
+/*cambios menu hamburguesa */
+#check{
+    display: none; /*ocultar input check*/
+}
+#menuImg{
+    width: 5%;
+    display: none;
+}
+div.headerPrincPage label{ 
+    display: none; /*ocultar icono menu*/
+}
+header label:hover{
+    cursor: pointer;
+    background-color: rgba(82, 163, 90, 0.2);
+}
+/*menu - letras - diseño de la lista*/
+.menuNav ul{
+    margin: 0;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end; /*alineará todos los elementos flexibles con el extremo derecho del contenedor */
+}
+.menu li:hover{
+    background-color: rgba(82, 163, 90, 0.2);
+}
+/*media queries*/
+@media (max-width: 800px){
+    #menuImg{
+        width: 20%;
+        display: block;
+    }
+    div.headerPrincPage label{ 
+        display: block; 
+    }
+    .menuNav{  /*menu de opciones*/
+        position: absolute;
+        background-color: rgba(119, 186, 125, 0.8);
+        width: 40%;
+        margin-left: -75%;
+        transition: all 0.5s;
+    }
+    .menuNav ul{ 
+        flex-direction: column;
+        padding-left: 1em;
+    }
+    .inputSearchProfile{
+        flex-direction: row-reverse;
+        border-radius:0px 10px 10px 0px;
+        width:95%;
+    }
+    .searchButton, .profileButton{
+        width: 50px;
+        height: 40px;
+        background-position: center;
+        background-size:cover;
+        background-repeat: no-repeat;
+        border: solid #10701a 1px;
+        margin: 10px 0px 10px 0px;
+        border-radius:0px 10px 10px 0px;
+    }
+    #check:checked ~ .menuNav{ /*despues del input check seleccionara toda la clase menu*/
+        margin: 0; /*checked: El usuario puede activar este estado marcando/seleccionando un elemento, o desactivarlo desmarcando/deseleccionando el elemento*/
+
+    }
+}
+/*fin cambios menu hamburguesa*/
+
 /* #searchIconBtn{
     width: 49px;
     height: 47px;
