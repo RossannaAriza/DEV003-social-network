@@ -23,7 +23,7 @@ export const MainPage = () => {
   labelCheck.setAttribute('for', 'check');
   const iconMenu = document.createElement('img');
   iconMenu.setAttribute('id', 'menuImg');
-  iconMenu.src = 'https://assets.stickpng.com/thumbs/588a64e0d06f6719692a2d10.png';
+  iconMenu.src = './img/menu.png';
   const menuNav = document.createElement('nav');
   menuNav.classList.add('menuNav');
   const cuadroMenu = document.createElement('ul');
