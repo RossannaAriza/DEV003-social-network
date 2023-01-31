@@ -1,3 +1,5 @@
+import { onNavigate } from "../lib";
+import { logOut } from "../firebase";
 export const MainPage = () => {
   const principalPage = document.createElement('div'); // contiene toda la segunda vista
   principalPage.classList.add('principalPage');
@@ -11,26 +13,41 @@ export const MainPage = () => {
   searchButton.classList.add('searchButton');
   const profileButton = document.createElement('button');
   profileButton.classList.add('profileButton');
+  const logOutContainer = document.createElement('div');
+  logOutContainer.classList.add('logOutContainer')
+  const logOutButton = document.createElement('button');
+  logOutButton.classList.add('logOutButton');
+  logOutButton.onclick = logOut;
 
+  logOutContainer.appendChild(logOutButton);
   headerPrincPage.appendChild(inputSearchProfile);
   headerPrincPage.appendChild(searchButton);
   headerPrincPage.appendChild(profileButton);
+  headerPrincPage.appendChild(logOutContainer);
 
   principalPage.appendChild(headerPrincPage); // Header dentro de principalPage
 
   const postMain = document.createElement('div'); // Contiene input del post, btn publicar y btn like
   postMain.classList.add('postMain'); // postMain dentro de principalPage
   // Todo dentro de postMain
-  const post = document.createElement('input');
+  const publishPostBtnContainer = document.createElement('div'); // Contiene input y publishBtn
+  publishPostBtnContainer.classList.add('publishPostBtnContainer');
+  const post = document.createElement('textarea');
   post.classList.add('usersPost');
+  post.setAttribute('rows', '4');
+  post.setAttribute('cols', '50');
   const publish = document.createElement('button');
   publish.classList.add('publishPostButton');
+  const likeButtonContainer = document.createElement('div');
+  likeButtonContainer.classList.add('likeButtonContainer');
   const likes = document.createElement('button');
   likes.classList.add('likeButton');
 
-  postMain.appendChild(post);
-  postMain.appendChild(publish);
-  postMain.appendChild(likes);
+  publishPostBtnContainer.appendChild(post);
+  publishPostBtnContainer.appendChild(publish);
+  likeButtonContainer.appendChild(likes);
+  postMain.appendChild(publishPostBtnContainer);
+  postMain.appendChild(likeButtonContainer);
 
   principalPage.appendChild(postMain);
 

@@ -1,5 +1,3 @@
-// import { onNavigate } from '../main.js';
-
 export function showSignUp() {
   const signUpMain = document.getElementById('mainSignUp');
   signUpMain.classList.add('showMain');
