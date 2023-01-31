@@ -134,11 +134,12 @@ export function loginWithGoogle() {
 // }
 // });
 
-/* logout.addEventListener('click',(e)=>{
-
+/* logout.addEventListener('click',(e)=>{*/
+export function logOut(){
    signOut(auth).then(() => {
      // Sign-out successful.
-     alert('user loged out');
+     alert('You are loggin out');
+     onNavigate ('/')
    }).catch((error) => {
      // An error happened.
      const errorCode = error.code;
@@ -147,4 +148,4 @@ export function loginWithGoogle() {
         alert(errorMessage);
    });
 
-}); */
+}

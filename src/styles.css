@@ -190,6 +190,12 @@ footer{
         width: 80px;
         height: 80px;
     }
+    .headerPrincipalPage{
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-wrap: wrap;
+    }
 }
 .showMain{
     display: flex;
@@ -199,21 +205,22 @@ footer{
 }
 /* Estilos mainPage */
 /* menu de navegacion */
-.menu{
-    width: 100%; /*ocupar el ancho de la pagina*/
-    height: 70%;
-    left: 0px;
-    top: 115px;
-    background: rgba(118, 198, 126, 0.32);
-}
 .headerPrincipalPage{
-    height: 115px;
+    height: 100px;
     left: 0px;
     top: 0px;
     background: rgba(119, 186, 125, 0.8);
     font-size: 100px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: flex-end;
+    align-items: center;
+}
+.publishPostBtnContainer{
+    display: flex;
+    width: 60%;
+    justify-content: center;
+    align-content: center;
 }
 .inputSearchProfile{
     background-color: white;
@@ -228,7 +235,7 @@ footer{
     height: 40px;
     margin: 10px 0px 0px 0px;
 }
-.searchButton, .profileButton{
+.searchButton, .profileButton, .logOutButton{
     width: 50px;
     height: 40px;
     background-position: center center;
@@ -236,45 +243,105 @@ footer{
     background-repeat: no-repeat;
     border: solid #10701a 1px;
 }
+.searchButton:hover, .profileButton:hover, .likeButton:hover, .publishPostButton:hover{
+    background-color: rgba(140, 188, 142, 0.73);
+}
+.logOutContainer{
+    display: flex;
+    max-height: 55px;
+}
+/* .logOutContainer:hover{
+    background-color: rgba(14, 169, 19, 0.73);
+} */
+.logOutButton:hover{
+    background-color: rgba(14, 169, 19, 0.73);
+}
 .searchButton{
     background-image: url(./img/search.png);
     background-color: white;
-    margin: 10px 0px 10px 0px;
+    margin: 10px 0px 0px 0px;
 }
 .profileButton{
-    background-image: url(./img/profileIcon.png);
+    background-image: url(./img/profile.png);
     border-radius:0px 10px 10px 0px;
-    margin: 10px 10px 0px 0px;  
+    margin: 10px 10px 0px -1px;  
+}
+.logOutButton{
+    background-image: url(./img/out.png);
+    border: none;
+    background-color: transparent;
+    margin: 10px 10px 10px 5px;
+}
+.postMain{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .usersPost{
-    height: 100%;
-    width: 50%;
-    margin-left: 25%;
+    resize: none;
+    width: 100%;
+    height: 45px;
     background: rgba(82, 163, 90, 0.2);
     border: 1px solid #000000;
     border-radius: 5px;
 }
 .publishPostButton{
     background-image: url(./img/post.png);
-    width: 50px;
-    height: 40px;
-    border: none;
-    background-color: white;
-    background-position: center center;
-    background-size:cover;
-    background-repeat: no-repeat;
+    background-color: #c9fbc070;
+}
+.likeButtonContainer{
+    display: flex;
+    flex-wrap: wrap;
+    width: 60.5%;
 }
 .likeButton{
     background-image: url(./img/like.png);
-    width: 50px;
+    background-color: white;
+}
+.publishPostButton, .likeButton{
+    width: 45px;
     height: 40px;
     border: none;
-    background-color: white;
     background-position: center center;
     background-size:cover;
     background-repeat: no-repeat;
 }
-
+/* Celulares */
+@media (max-width: 414px){
+    .headerPrincipalPage{
+        height: 50px;
+        /* display: flex; */
+        justify-content: right;
+        align-content: center;
+        /* flex-wrap: wrap; */
+    }
+    .inputSearchProfile{
+        
+        height: 22px;
+    }
+    .searchButton, .profileButton, .logOutButton{
+        width: 20px;
+        height: 24px;
+        border: solid  rgba(119, 186, 125, 0.8) 1px;
+    }
+    .inputSearchProfile{
+        border: none;
+    }
+    .searchButton{
+        margin: 9px 0px 0px 0px
+    }
+    .profileButton{
+        margin: 9px 5px 0px -1px;
+    }
+    .logOutButton{
+        margin: 20px 0px 10px 5px;
+    }
+    .publishPostButton, .likeButton{
+        width: 25px;
+        height: 20px;
+    }
+}
 /* #searchIconBtn{
     width: 49px;
     height: 47px;
