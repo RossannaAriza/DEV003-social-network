@@ -12,25 +12,37 @@ export const MainPage = () => {
   const profileButton = document.createElement('button');
   profileButton.classList.add('profileButton');
 
-  headerPrincPage.appendChild(inputSearchProfile);
-  headerPrincPage.appendChild(searchButton);
-  headerPrincPage.appendChild(profileButton);
-  //
+  principalPage.appendChild(headerPrincPage); // Header dentro de principalPage
+
+  // se crea menu para diseño responsive, menu hamburguesa
   const checkBox = document.createElement('input');
-  const labelCheck = document.createElement('label');
-  const menuHambur = document.createElement('img');
   checkBox.setAttribute('id', 'check');
   checkBox.setAttribute('type', 'checkbox');
+  const labelCheck = document.createElement('label');
   labelCheck.classList.add('btnMenu');
   labelCheck.setAttribute('for', 'check');
-  menuHambur.setAttribute('id', 'menuImg');
+  const iconMenu = document.createElement('img');
+  iconMenu.setAttribute('id', 'menuImg');
+  iconMenu.src = 'https://assets.stickpng.com/thumbs/588a64e0d06f6719692a2d10.png';
+  const menuNav = document.createElement('nav');
+  menuNav.classList.add('menuNav');
+  const cuadroMenu = document.createElement('ul');
+  const lineMenuSearch = document.createElement('li');
+  const lineMenuBtnSearch = document.createElement('li');
+  const lineMenuProfile = document.createElement('li');
 
   headerPrincPage.appendChild(checkBox);
   headerPrincPage.appendChild(labelCheck);
-  headerPrincPage.appendChild(menuHambur);
-//
-
-  principalPage.appendChild(headerPrincPage); // Header dentro de principalPage
+  labelCheck.appendChild(iconMenu);
+  headerPrincPage.appendChild(menuNav);
+  menuNav.appendChild(cuadroMenu);
+  cuadroMenu.appendChild(lineMenuSearch);
+  cuadroMenu.appendChild(lineMenuBtnSearch);
+  cuadroMenu.appendChild(lineMenuProfile);
+  lineMenuSearch.appendChild(inputSearchProfile);
+  lineMenuBtnSearch.appendChild(searchButton);
+  lineMenuProfile.appendChild(profileButton);
+  // fin de cambios
 
   const postMain = document.createElement('div'); // Contiene input del post, btn publicar y btn like
   postMain.classList.add('postMain'); // postMain dentro de principalPage
