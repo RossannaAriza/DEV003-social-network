@@ -289,24 +289,7 @@ header label:hover{
         width: 80px;
         height: 80px;
     }
-    #menuImg{
-        width: 20%;
-        display: block;
-    }
-    div.headerPrincipalPage label{ 
-        display: block; 
-    }
-    .menuNav{  /*menu de opciones*/
-        position: absolute;
-        background-color: rgba(119, 186, 125, 0.8);
-        width: 40%;
-        margin-left: -75%;
-        transition: all 0.5s;
-    }
-    .menuNav ul{ 
-        flex-direction: column;
-        padding-left: 1em;
-    }
+
     .inputSearchProfile{
         flex-direction: row-reverse;
         border-radius:0px 10px 10px 0px;
@@ -322,13 +305,10 @@ header label:hover{
         margin: 10px 0px 10px 0px;
         border-radius:0px 10px 10px 0px;
     }
-    #check:checked ~ .menuNav{ /*despues del input check seleccionara toda la clase menu*/
-        margin: 0; /*checked: El usuario puede activar este estado marcando/seleccionando un elemento, o desactivarlo desmarcando/deseleccionando el elemento*/
 
-    }
 }
 /*Celulares*/
-@media (max-width: 414px){
+@media (max-width: 415px){
     .mainLabel{
         justify-content:center;
         align-items:center;
@@ -384,6 +364,27 @@ header label:hover{
     .publishPostButton, .likeButton{
         width: 25px;
         height: 20px;
+    }
+    #menuImg{
+        width: 20%;
+        display: block;
+    }
+    div.headerPrincipalPage label{ 
+        display: block; 
+    }
+    .menuNav{  /*menu de opciones*/
+        position: absolute;
+        background-color: rgba(119, 186, 125, 0.8);
+        width: 40%;
+        margin-left: -75%;
+        transition: all 0.5s;
+    }
+    .menuNav ul{ 
+        flex-direction: column;
+        padding-left: 1em;
+    }
+    #check:checked ~ .menuNav{ 
+        margin: 0; 
     }
 }
 
