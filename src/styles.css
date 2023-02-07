@@ -82,14 +82,14 @@ input{
     font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
-    font-size: 45px;
+    font-size: 35px;
     line-height: 12px;
     align-items: center;
     align-self: center;
     text-align: center;
     color: #FFFCFC;
     height: 65px;
-    width: 350px;
+    width: 242px;
     margin-top: 30px;
 }
 .googleBtn{
@@ -289,21 +289,42 @@ header label:hover{
         width: 80px;
         height: 80px;
     }
-
+    #menuImg{
+        width: 10%;
+        display: block;
+        height: 70px;
+    }
+    div.headerPrincipalPage label{ 
+        display: block; 
+        height: 70px;
+    }
+    .menuNav{  /*menu de opciones*/
+        position: absolute;
+        background-color: rgba(119, 186, 125, 0.8);
+        width: 40%;
+        margin-left: -75%;
+        transition: all 0.5s;
+        width: 200px;
+    }
+    .menuNav ul{ 
+        flex-direction: column;
+        padding-left: 1em;
+        width: 200px;
+    }
     .inputSearchProfile{
         flex-direction: row-reverse;
-        border-radius:0px 10px 10px 0px;
+        border-radius:10px;
         width:95%;
     }
     .searchButton, .profileButton{
         width: 50px;
-        height: 40px;
+        height: 45px;
         background-position: center;
         background-size:cover;
         background-repeat: no-repeat;
         border: solid #10701a 1px;
         margin: 10px 0px 10px 0px;
-        border-radius:0px 10px 10px 0px;
+        border-radius: 6px;
     }
 
 }
@@ -324,10 +345,10 @@ header label:hover{
         font-size: 25px;
     }
     .LogInBtn, .createAccount, .googleBtn{
-        font-size: 25px;
+        font-size: 20px;
         height: 40px;
-        width: 200px;
-        margin-top: 20px;
+        width: 154px;
+        margin-top: 10px;
     }
     .forgotUsernameOption{
         font-size: 15px;
@@ -338,19 +359,17 @@ header label:hover{
         background-position: center center;
         background-size:cover;
         background-repeat: no-repeat;
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 50px;
     }
     .inputSearchProfile{
         height: 22px;
     }
     .searchButton, .profileButton, .logOutButton{
-        width: 20px;
+        border-radius: 5px;
+        width: 24px;
         height: 24px;
         border: solid  rgba(119, 186, 125, 0.8) 1px;
-    }
-    .inputSearchProfile{
-        border: none;
     }
     .searchButton{
         margin: 9px 0px 0px 0px
@@ -359,7 +378,7 @@ header label:hover{
         margin: 9px 5px 0px -1px;
     }
     .logOutButton{
-        margin: 20px 0px 10px 5px;
+        margin: 12px 0px 0px 0px;
     }
     .publishPostButton, .likeButton{
         width: 25px;
@@ -389,103 +408,3 @@ header label:hover{
 }
 
 /*fin cambios menu hamburguesa*/
-
-/* #searchIconBtn{
-    width: 49px;
-    height: 47px;
-} */
-/* #searchIcon{
-    width: 42px;
-    height: 47px;
-    left: 1182px;
-    top: 143px;
-} */
-/* #profile{
-    width: 49px;
-    height: 47px;
-    left: 1280px;
-} */
-/* #searchProfile{
-    width: 5em;
-    height: 1em;
-    left: 827px;
-    margin-bottom: 1%;
-    background: rgba(118, 198, 126, 0.26);
-    border-radius: 60px;
-    margin-left: 78%;
-} */
-/*.wallPost{ /* Fondo para el post del usuario 
-    height: 100%;
-    width: 50%;
-    margin-left: 25%;
-    background: rgba(82, 163, 90, 0.2);
-    border: 1px solid #000000;
-
-}*/
-/* .imagenPost{
-    box-sizing: border-box;
-    width: 537px;
-    height: 324px;
-    left: 471px;
-    top: 329px;
-    margin-left: 15%;
-    margin-top: 10%;
-    border: 4px solid #000000;
-    border-radius: 20px;
-}
-.usernamePost{
-    width: 312px;
-    height: 52px;
-    left: 375px;
-    top: 653px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: #000000;
-    margin-left: 15%;
-}
-.recipeName{
-    width: 533px;
-    height: 159px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-size: 20px;
-    line-height: 24px;
-    align-items: center;
-    color: #000000;
-    margin-left: 10%;
-    display: inline;
-} */
-.recipeText{
-    font-family: 'Inter';
-    font-style: normal;
-    font-size: 20px;
-    line-height: 24px;
-    align-items: center;
-    color: #000000;
-    margin-left: 2%;
-    margin-right: 2%;
-}
-.like, .comment{
-    width: 9%;
-    height: 2%;
-    background: rgba(103, 177, 110, 0.65);
-    border: 1px solid rgb(2, 2, 2);
-    border-radius: 10px;
-    margin-left: 5%;
-}
-
-/* header{
-    width: 100%;
-    height: 115px;
-    left: 0px;
-    top: 0px;
-    background: rgba(119, 186, 125, 0.8);
-    text-align: center;
-    font-size: 100px;
-} */

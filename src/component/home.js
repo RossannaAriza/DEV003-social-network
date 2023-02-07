@@ -70,11 +70,15 @@ export const Home = () => {
   createAccount.classList.add('createAccount');
   createAccount.setAttribute('id', 'createAccount');
   createAccount.textContent = 'CreateAccount';
+  const googleBtnn = document.createElement('button');
+  googleBtnn.classList.add('googleBtn');
+  googleBtnn.setAttribute('id', 'googleButtonn');
 
   mainSignUp.appendChild(email);
   mainSignUp.appendChild(username);
   mainSignUp.appendChild(password);
   mainSignUp.appendChild(createAccount);
+  mainSignUp.appendChild(googleBtnn);
   principalMain.appendChild(mainSignUp); // mainSignUp dentro de principalMain
 
   const mainLogIn = document.createElement('div'); // debe ir dentro de principalMain

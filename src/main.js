@@ -12,8 +12,10 @@ const routes = {
 
 const component = routes[window.location.pathname];
 rootDiv.appendChild(component()); // carga la sig ruta
-const googleBtn = document.getElementById('googleButton');
+const googleBtn = document.getElementById('googleButton'); // Para menú log in
 googleBtn.onclick = loginWithGoogle;
+const googleBtnn = document.getElementById('googleButtonn'); // Para menú sign up
+googleBtnn.onclick = loginWithGoogle;
 
 
 /*logout.addEventListener('click',(e)=>{
@@ -24,6 +26,4 @@ rootDiv.appendChild(component());*/
 
 // firebase
 document.getElementById('createAccount')?.addEventListener('click', createAccountFunction);
-// createAccountFunction.addEventListener('click', createAccountFunction);
-// loginAccountFunction.addEventListener('click', loginAccountFunction);
 document.getElementById('LogInAccount')?.addEventListener('click', loginAccountFunction);

@@ -43,6 +43,15 @@ export function createAccountFunction() {
         email,
       });
       alert('user created');
+      
+      const getUsername = document.getElementById('username').value;
+      console.log(getUsername);
+      localStorage.setItem('username', getUsername);
+      
+      // const getUserMail = document.getElementById('email').value;
+      // console.log(getUserMail);
+      // localStorage.setItem('username', getUserMail);
+
       onNavigate('/mainPage')
       // ..
     })
@@ -67,6 +76,9 @@ export function loginAccountFunction() {
       update(ref(database, `users/${user.uid}`), {
         last_login: dt,
       });
+      const getUserMail = document.getElementById('EmailLogin').value;
+      console.log(getUserMail);
+      localStorage.setItem('username', getUserMail);
 
       alert('User loged in!');
       onNavigate('/mainPage')
@@ -97,15 +109,15 @@ export function loginWithGoogle() {
   const provider = new GoogleAuthProvider();
   return signInWithPopup(auth, provider).then((result) => {
     // alert("Funciona");
-    onNavigate('/mainPage')
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
-    // The signed-in user info.
     const user = result.user;
-    // ...
+    console.log(user);
+    localStorage.setItem('username', user.email);
+    
+    onNavigate('/mainPage')
     console.log("Usuario se loggeo correctamente");
     console.log(result);
+
+    // ...
   }).catch((error) => {
     alert(errorMessage);
     // Handle Errors here.
@@ -139,6 +151,9 @@ export function logOut(){
    signOut(auth).then(() => {
      // Sign-out successful.
      alert('You are loggin out');
+     
+     localStorage.removeItem('username', 'name');
+
      onNavigate ('/')
    }).catch((error) => {
      // An error happened.
