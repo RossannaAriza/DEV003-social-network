@@ -60,9 +60,11 @@ export const MainPage = () => {
   publishPostBtnContainer.classList.add('publishPostBtnContainer');
   const post = document.createElement('textarea');
   post.classList.add('usersPost');
+  post.setAttribute('id', 'postTextArea');
   post.setAttribute('rows', '4');
   post.setAttribute('cols', '50');
   const publish = document.createElement('button');
+  publish.onclick = handleCreatePost;
   publish.classList.add('publishPostButton');
   const likeButtonContainer = document.createElement('div');
   likeButtonContainer.classList.add('likeButtonContainer');
@@ -76,70 +78,24 @@ export const MainPage = () => {
   postMain.appendChild(likeButtonContainer);
 
   principalPage.appendChild(postMain);
-
-  // const mainNav = document.createElement('div'); // Contiene botones e input de búsqueda
-  // mainNav.classList.add('mainNav');
-  // const searchProfile = document.createElement('input'); // Dentro de mainNav
-  // searchProfile.setAttribute('id', 'searchProfile');
-  // searchProfile.placeholder = 'search user';
-  // const searchIconBtn = document.createElement('button');
-  // searchIconBtn.setAttribute('id', 'searchIconBtn');
-  /* searchIconBtn.onclick = showUserFind; agregar funcion */
-  // searchIconBtn.textContent = ''; // buscar como agregar imagen
-  // const profileBtn = document.createElement('button'); // Dentro de mainNav
-  // profileBtn.setAttribute('id', 'profile');
-  /* profileBtn.onclick = showProfile; agregar funcion */
-  // profileBtn.textContent = ''; // buscar como agregar imagen
-
-  // postMain.appendChild(mainNav);
-
-  // mainNav.appendChild(searchProfile);
-  // mainNav.appendChild(searchButton);
-  // mainNav.appendChild(profileBtn);
-
-  // const wallPost = document.createElement('div');
-  // wallPost.classList.add('wallPost');
-  // const imagenPost = document.createElement('div');
-  // imagenPost.classList.add('imagenPost');
-  // const usernamePost = document.createElement('h2');
-  // usernamePost.classList.add('usernamePost');
-  // const recipeName = document.createElement('h3');
-  // recipeName.classList.add('recipeName');
-  // const recipeText = document.createElement('p');
-  // recipeText.classList.add('recipeText');
-  // const likeBtn = document.createElement('button');
-  // likeBtn.classList.add('like');
-  /* likeBtn.onclick = showLike; agregar funcion */
-  // likeBtn.textContent = 'Like';
-  // const commentBtn = document.createElement('button');
-  // commentBtn.classList.add('comment');
-  /* commentBtn.onclick = createComment; agregar funcion */
-  // commentBtn.textContent = 'Comment';
-
-  // postMain.appendChild(wallPost);
-
-  // wallPost.appendChild(imagenPost);
-  // wallPost.appendChild(usernamePost);
-  // wallPost.appendChild(recipeName);
-  // wallPost.appendChild(recipeText);
-  // wallPost.appendChild(likeBtn);
-  // wallPost.appendChild(commentBtn);
-
-  // principalPage.appendChild(postMain);
   return principalPage;
 };
-/* export  function showUserFind(){
-    const signUpMain = document.getElementById("mainSignUp");
-    signUpMain.classList.add("showMain");
-    signUpMain.classList.remove("hideMain");
-    const logInMain = document.getElementById("mainLogIn");
-    logInMain.classList.add("hideMain");
-    logInMain.classList.remove("showMain"); Para dar sombreado al seleccionar sign up
-    const signUpSelected = document.getElementById("SignInButtonOption");
-    signUpSelected.classList.add("btnSelected");
-    const logInSelected = document.getElementById("LogInButtonOption");
-    logInSelected.classList.remove("btnSelected");
+
+function handleCreatePost() {
+  const postContent = document.getElementById('postTextArea').value;
+  const getUsername = localStorage.getItem('username');
+  createPost(getUsername, postContent);
+  // mandar llamar textarea con id
+  // guardar en var localStorage.getitem
+  // llamar createPost(y pasar parámetros)
+  // ligar handleCP al boton
 }
-export function showProfile() {}
-export function showLike() {}
-export function createComment() {} */
+function createPost (username, text){
+  const postData = {
+    dateTime: new Date(),
+    likes: 0,
+    username, // cuando key y value tengan el mismo valor puedes poner el nombre y ,
+    text,
+  }
+  console.log(postData);
+}
