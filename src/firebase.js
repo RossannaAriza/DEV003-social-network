@@ -172,7 +172,7 @@ sendEmailVerification(auth.currentUser)
     // ...
   });
 }
-/*export function passwordResetEmail(){
+export function passwordResetEmail(){
   const auth = getAuth();
 sendPasswordResetEmail(auth, email)
   .then(() => {
@@ -184,4 +184,4 @@ sendPasswordResetEmail(auth, email)
     const errorMessage = error.message;
     // ..
   });
-}*/
+}
