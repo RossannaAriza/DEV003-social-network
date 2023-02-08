@@ -43,14 +43,10 @@ export function createAccountFunction() {
         email,
       });
       alert('user created');
-      
-      const getUsername = document.getElementById('username').value;
-      console.log(getUsername);
-      localStorage.setItem('username', getUsername);
-      
-      // const getUserMail = document.getElementById('email').value;
-      // console.log(getUserMail);
-      // localStorage.setItem('username', getUserMail);
+  
+      const emailIsUsername = document.getElementById('email').value;
+      console.log(emailIsUsername);
+      localStorage.setItem('username', emailIsUsername);
 
       onNavigate('/mainPage');
       emailVerification();
@@ -90,9 +86,10 @@ export function loginAccountFunction() {
       update(ref(database, `users/${user.uid}`), {
         last_login: dt,
       });
-      const username = document.getElementById('username').value;
-      console.log(username);
-      localStorage.setItem('username', username);
+      // 
+      const emailIsUsername = document.getElementById('EmailLogin').value;
+      console.log(emailIsUsername);
+      localStorage.setItem('username', emailIsUsername);
 
       alert('User loged in!');
       onNavigate('/mainPage')
@@ -156,28 +153,13 @@ export function loginWithGoogle() {
   });
 } 
 
-// const user = auth.currentUser;
-// onAuthStateChanged(auth, (user) => {
-// if (user) {
-// User is signed in, see docs for a list of available properties
-// https://firebase.google.com/docs/reference/js/firebase.User
-// const uid = user.uid;
-// bla bla bla
-// ...
-// } else {
-// User is signed out
-// ...
-// bla bla bla
-// }
-// });
-
-/* logout.addEventListener('click',(e)=>{*/
 export function logOut(){
    signOut(auth).then(() => {
      // Sign-out successful.
      alert('You are loggin out');
+     // Modificar para que username sea el correo del usuario
+     localStorage.removeItem('username');
      
-     localStorage.removeItem('username', name);
 
      onNavigate ('/')
    }).catch((error) => {
