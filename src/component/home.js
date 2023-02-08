@@ -69,7 +69,7 @@ export const Home = () => {
   const createAccount = document.createElement('button');
   createAccount.classList.add('createAccount');
   createAccount.setAttribute('id', 'createAccount');
-  createAccount.textContent = 'CreateAccount';
+  createAccount.textContent = 'Create Account';
   const googleBtnn = document.createElement('button');
   googleBtnn.classList.add('googleBtn');
   googleBtnn.setAttribute('id', 'googleButtonn');
@@ -106,7 +106,8 @@ export const Home = () => {
   const a = document.createElement('a');
   a.href = '#';
   a.classList.add('forgotUsernameOpt');
-  a.textContent = 'I forgot my username or password';
+  a.textContent = 'I forgot my password';
+  a.setAttribute('id', 'forgotPassword');
   forgotUsernameOption.appendChild(a);
   mainLogIn.appendChild(user);
   mainLogIn.appendChild(passwordLogIn);
