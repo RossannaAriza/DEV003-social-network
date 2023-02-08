@@ -26,6 +26,8 @@ rootDiv.appendChild(component());*/
 
 // firebase
 document.getElementById('createAccount')?.addEventListener('click', createAccountFunction);
+// document.getElementById('createAccount').addEventListener('click', validateForm);
+
 document.getElementById('LogInAccount')?.addEventListener('click', loginAccountFunction);
 /*const linkForgotPassword = document.getElementById('forgotPassword');
 linkForgotPassword.onclick = passwordResetEmail;*/

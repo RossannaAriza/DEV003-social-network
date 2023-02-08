@@ -32,7 +32,7 @@ export function createAccountFunction() {
   const password = document.getElementById('password').value;
   const username = document.getElementById('username').value;
 
-  createUserWithEmailAndPassword(auth, email, password)
+  createUserWithEmailAndPassword(auth, email, password, username)
     .then((userCredential) => {
       //   signed in
       const user = userCredential.user;
@@ -54,20 +54,34 @@ export function createAccountFunction() {
 
       onNavigate('/mainPage');
       emailVerification();
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          // User is signed in, see docs for a list of available properties
+          // https://firebase.google.com/docs/reference/js/firebase.User
+          const uid = user.uid;
+          console.log('Validación de log in: ' + uid);
+          // ...
+        } else {
+          // User is signed out
+          // ...
+        }
+      })
+      // ..
     })
     .catch((error) => {
       // const errorCode = error.code;
       const errorMessage = error.message;
 
-      alert(errorMessage);
+      alert('Something went wrong with your e-mail or password');
     });
 }
 
 export function loginAccountFunction() {
   const EmailLogin = document.getElementById('EmailLogin').value;
   const PasswordLogin = document.getElementById('PasswordLogIn').value;
+  const username = document.getElementById('username').value;
 
-  signInWithEmailAndPassword(auth, EmailLogin, PasswordLogin)
+  signInWithEmailAndPassword(auth, EmailLogin, PasswordLogin, username)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
@@ -76,12 +90,25 @@ export function loginAccountFunction() {
       update(ref(database, `users/${user.uid}`), {
         last_login: dt,
       });
-      const getUserMail = document.getElementById('EmailLogin').value;
-      console.log(getUserMail);
-      localStorage.setItem('username', getUserMail);
+      const username = document.getElementById('username').value;
+      console.log(username);
+      localStorage.setItem('username', username);
 
       alert('User loged in!');
       onNavigate('/mainPage')
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          // User is signed in, see docs for a list of available properties
+          // https://firebase.google.com/docs/reference/js/firebase.User
+          console.log(user);
+          const uid = user.uid;
+          console.log('Validación de log in: ' + uid);
+          // ...
+        } else {
+          // User is signed out
+          // ...
+        }
+      })
       // ...
     })
     .catch((error) => {
@@ -90,32 +117,30 @@ export function loginAccountFunction() {
 
       alert(errorMessage);
     });
-    const user = auth.currentUser;
-    onAuthStateChanged(auth, (user) => {
-     if (user) {
-       // User is signed in, see docs for a list of available properties
-       // https://firebase.google.com/docs/reference/js/firebase.User
-       const uid = user.uid;
-       //bla bla bla
-       // ...
-     } else {
-       // User is signed out
-       // ...
-       //bla bla bla
-     }
-    });
 }
 export function loginWithGoogle() {
   const provider = new GoogleAuthProvider();
   return signInWithPopup(auth, provider).then((result) => {
     // alert("Funciona");
-    const user = result.user;
+    const user = result.user.displayName;
     console.log(user);
-    localStorage.setItem('username', user.email);
+    localStorage.setItem('username', user);
     
     onNavigate('/mainPage')
     console.log("Usuario se loggeo correctamente");
     console.log(result);
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        const uid = user.uid;
+        console.log('Validación Log in with google: ' + uid);
+        // ...
+      } else {
+        // User is signed out
+        // ...
+      }
+    })
 
     // ...
   }).catch((error) => {
@@ -152,7 +177,7 @@ export function logOut(){
      // Sign-out successful.
      alert('You are loggin out');
      
-     localStorage.removeItem('username', 'name');
+     localStorage.removeItem('username', name);
 
      onNavigate ('/')
    }).catch((error) => {
