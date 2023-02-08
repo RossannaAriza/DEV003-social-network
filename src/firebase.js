@@ -3,7 +3,7 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, si
 import { initializeApp } from 'firebase/app';
 //  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-analytics.js";
 import { getDatabase, set, ref, update } from 'firebase/database';
-import { signInWithPopup, GoogleAuthProvider, signInWithRedirect, sendEmailVerification } from "firebase/auth";
+import { signInWithPopup, GoogleAuthProvider, signInWithRedirect, sendEmailVerification, sendPasswordResetEmail } from "firebase/auth";
 import { onNavigate } from "./lib/index";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -172,3 +172,16 @@ sendEmailVerification(auth.currentUser)
     // ...
   });
 }
+/*export function passwordResetEmail(){
+  const auth = getAuth();
+sendPasswordResetEmail(auth, email)
+  .then(() => {
+    // Password reset email sent!
+    // ..
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+  });
+}*/

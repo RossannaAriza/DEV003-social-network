@@ -336,16 +336,16 @@ header label:hover{
         background-position: center center;
         background-size:cover;
         background-repeat: no-repeat;
-        width: 60px;
-        height: 50px;
+        width: 80px;
+        height: 80px;
     }
     .inputSearchProfile{
-        height: 22px;
+        height: 40px;
     }
     .searchButton, .profileButton, .logOutButton{
         border-radius: 5px;
-        width: 24px;
-        height: 24px;
+        width: 40px;
+        height: 40px;
         border: solid  rgba(119, 186, 125, 0.8) 1px;
     }
     .searchButton{
@@ -358,8 +358,12 @@ header label:hover{
         margin: 12px 0px 0px 0px;
     }
     .publishPostButton, .likeButton{
-        width: 25px;
-        height: 20px;
+        width: 30%;
+        height: 40px;
+        border: none;
+        background-position: center center;
+        background-size:cover;
+        background-repeat: no-repeat;
     }
     #menuImg{
         width: 20%;
@@ -372,6 +376,7 @@ header label:hover{
         position: absolute;
         background-color: rgba(119, 186, 125, 0.8);
         width: 40%;
+        height: 33%;
         margin-left: -75%;
         transition: all 0.5s;
     }
