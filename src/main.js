@@ -1,7 +1,7 @@
 // Este es el punto de entrada de tu aplicacion
 import { Home } from './component/home.js';
 import { MainPage } from './component/mainPage.js';
-import { createAccountFunction, loginAccountFunction, loginWithGoogle, passwordResetEmail } from './firebase.js';
+import { createAccountFunction, loginAccountFunction, loginWithGoogle/*, passwordResetEmail*/ } from './firebase.js';
 
 const rootDiv = document.getElementById('root');
 

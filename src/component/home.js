@@ -101,7 +101,6 @@ export const Home = () => {
   const googleBtn = document.createElement('button');
   googleBtn.classList.add('googleBtn');
   googleBtn.setAttribute('id', 'googleButton');
-  /* googleBtn.addEventListener('click', () => onNavigate('/mainPage')); */
   const forgotUsernameOption = document.createElement('div');
   const a = document.createElement('a');
   a.href = '#';

@@ -1,5 +1,4 @@
-import { onNavigate } from '../lib';
-import { logOut } from '../firebase';
+import { logOut, createPost } from '../firebase';
 
 export const MainPage = () => {
   const principalPage = document.createElement('div'); // contiene toda la segunda vista
@@ -66,16 +65,31 @@ export const MainPage = () => {
   const publish = document.createElement('button');
   publish.onclick = handleCreatePost;
   publish.classList.add('publishPostButton');
-  const likeButtonContainer = document.createElement('div');
-  likeButtonContainer.classList.add('likeButtonContainer');
-  const likes = document.createElement('button');
-  likes.classList.add('likeButton');
+   // muro donde se visualizaran las publicaciones
+   const publishPostWallContainer = document.createElement('div');// donde se visualizaran los post los post
+   publishPostWallContainer.classList.add('publishPostWallContainer');
+   const postPublish = document.createElement('div');
+   const buttonContainer = document.createElement('div');
+   buttonContainer.classList.add('buttonContainer');
+ 
+   const deleteBtn = document.createElement('button');
+   deleteBtn.classList.add('deleteButton');
+   deleteBtn.textContent = 'Delete';
+   const editBtn = document.createElement('button');
+   editBtn.classList.add('editButton');
+   editBtn.textContent = 'Edit';
+   const likesBtn = document.createElement('button');
+   likesBtn.classList.add('likeButton');
 
   publishPostBtnContainer.appendChild(post);
   publishPostBtnContainer.appendChild(publish);
-  likeButtonContainer.appendChild(likes);
+  publishPostWallContainer.appendChild(postPublish);
+  publishPostWallContainer.appendChild(buttonContainer);
+  buttonContainer.appendChild(editBtn);
+  buttonContainer.appendChild(deleteBtn);
+  buttonContainer.appendChild(likesBtn);
   postMain.appendChild(publishPostBtnContainer);
-  postMain.appendChild(likeButtonContainer);
+  postMain.appendChild(publishPostWallContainer);
 
   principalPage.appendChild(postMain);
   return principalPage;
@@ -89,13 +103,4 @@ function handleCreatePost() {
   // guardar en var localStorage.getitem
   // llamar createPost(y pasar parámetros)
   // ligar handleCP al boton
-}
-function createPost (username, text){
-  const postData = {
-    dateTime: new Date(),
-    likes: 0,
-    username, // cuando key y value tengan el mismo valor puedes poner el nombre y ,
-    text,
-  }
-  console.log(postData);
 }
