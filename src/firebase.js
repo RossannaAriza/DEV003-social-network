@@ -5,6 +5,7 @@ import { initializeApp } from 'firebase/app';
 import { getDatabase, set, ref, update } from 'firebase/database';
 import { signInWithPopup, GoogleAuthProvider, signInWithRedirect, sendEmailVerification, sendPasswordResetEmail } from "firebase/auth";
 import { onNavigate } from "./lib/index";
+import { getFirestore } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -26,6 +27,9 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth();
 //  const analytics = getAnalytics(app);
+
+// Initialize Cloud Firestore and get a reference to the service
+const db = getFirestore(app);
 
 export function createAccountFunction() {
   const email = document.getElementById('email').value;
