@@ -59,9 +59,12 @@ export function createAccountFunction() {
       });
       alert('user created');
 
-      const emailIsUsername = document.getElementById('email').value;
-      console.log(emailIsUsername);
-      localStorage.setItem('username', emailIsUsername);
+      const gettingemail = document.getElementById('email').value;
+      const separatingEmail = gettingemail.split("@");
+      console.log(separatingEmail);
+      const settingUsername = separatingEmail[0];
+      console.log(settingUsername);
+      localStorage.setItem('username', settingUsername);
 
       onNavigate('/mainPage');
       emailVerification();
@@ -102,9 +105,12 @@ export function loginAccountFunction() {
         last_login: dt,
       });
       //
-      const emailIsUsername = document.getElementById('EmailLogin').value;
-      console.log(emailIsUsername);
-      localStorage.setItem('username', emailIsUsername);
+      const gettingemail = document.getElementById('EmailLogin').value;
+      const separatingEmail = gettingemail.split("@");
+      console.log(separatingEmail);
+      const settingUsername = separatingEmail[0];
+      console.log(settingUsername);
+      localStorage.setItem('username', settingUsername);
 
       alert('User loged in!');
       onNavigate('/mainPage');
@@ -134,10 +140,13 @@ export function loginAccountFunction() {
 export function loginWithGoogle() {
   const provider = new GoogleAuthProvider();
   return signInWithPopup(auth, provider).then((result) => {
-    // alert("Funciona");
-    const user = result.user.displayName;
-    console.log(user);
-    localStorage.setItem('username', user);
+
+    const user = result.user.email;
+    const separatingEmail = user.split("@");
+    console.log(separatingEmail);
+    const settingUsername = separatingEmail[0];
+    console.log(settingUsername);
+    localStorage.setItem('username', settingUsername);
 
     onNavigate('/mainPage');
     console.log('Usuario se loggeo correctamente');
