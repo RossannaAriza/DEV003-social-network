@@ -8,9 +8,7 @@ import {
 import {
   getDatabase, set, ref, update,
 } from 'firebase/database';
-import {
-  getFirestore, collection, addDoc, updateDoc,
-} from 'firebase/firestore';
+import { getFirestore, collection, addDoc, updateDoc } from 'firebase/firestore';
 // eslint-disable-next-line import/no-cycle
 import { onNavigate } from './lib/index';
 
@@ -213,14 +211,38 @@ export async function createPost(username, text) {
   const postFirestore = await addDoc(publicationsAll, postData);
   console.log('This value has been written to the database');
   console.log(postData);
-  console.log(postFirestore.id);
 }
+
 // funcion editar texto publicacion
 /* export function editPost(docPublish,text) {
   const postData = {
     dateTime: new Date(),
+    likes: 0,
+    username, // cuando key y value tengan el mismo valor puedes poner el nombre y ,
     text,
   };
-  await updateDoc(docPublish,postData);
+  setDoc(publicationsAll, postData, { merge: true });
+  .then(() => {
+    console.log('This value has been written to the database');
+  })
+  .catch((error) => {
+    console.log(`I got an error! ${error}`);
+  });
+  console.log(postData);
+} */
+
+/* export async function createPost(username, text) {
+  const postData = {
+    dateTime: new Date(),
+    likes: 0,
+    username, // cuando key y value tengan el mismo valor puedes poner el nombre y ,
+    text,
+  };
+  try{ await setDoc(publicationsAll, postData, { merge: true });
+  console.log('This value has been written to the database');
+  } catch (error){
+    console.log(`I got an error! ${error}`);
+  }
+    await updateDoc(docPublish,postData);
 } */
 // funcion eliminar texto publicacion
