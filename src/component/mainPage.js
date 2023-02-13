@@ -63,7 +63,7 @@ export const MainPage = () => {
   post.setAttribute('rows', '4');
   post.setAttribute('cols', '50');
   const publish = document.createElement('button');
-  publish.onclick = handleCreatePost;
+  publish.addEventListener('click', handleCreatePost);
   publish.classList.add('publishPostButton');
    // muro donde se visualizaran las publicaciones
    const publishPostWallContainer = document.createElement('div');// donde se visualizaran los post los post
@@ -96,9 +96,10 @@ export const MainPage = () => {
 };
 
 function handleCreatePost() {
-  const postContent = document.getElementById('postTextArea').value;
+  const postContent = document.getElementById('postTextArea');
   const getUsername = localStorage.getItem('username');
-  createPost(getUsername, postContent);
+  createPost(getUsername, postContent.value);
+  postContent.value = '';
   // mandar llamar textarea con id
   // guardar en var localStorage.getitem
   // llamar createPost(y pasar parámetros)

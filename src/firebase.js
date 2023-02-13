@@ -8,7 +8,9 @@ import {
 import {
   getDatabase, set, ref, update,
 } from 'firebase/database';
-import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import {
+  getFirestore, collection, addDoc, updateDoc,
+} from 'firebase/firestore';
 // eslint-disable-next-line import/no-cycle
 import { onNavigate } from './lib/index';
 
@@ -200,7 +202,7 @@ export function passwordResetEmail() {
     });
 } */
 // funcion agregar datos en firestore
-const publicationsAll = doc(dataBaseFirestore, 'publications/publication');
+const publicationsAll = collection(dataBaseFirestore, 'publications');
 export async function createPost(username, text) {
   const postData = {
     dateTime: new Date(),
@@ -208,38 +210,17 @@ export async function createPost(username, text) {
     username, // cuando key y value tengan el mismo valor puedes poner el nombre y ,
     text,
   };
-  await setDoc(publicationsAll, postData, { merge: true });
+  const postFirestore = await addDoc(publicationsAll, postData);
   console.log('This value has been written to the database');
   console.log(postData);
+  console.log(postFirestore.id);
 }
-
-/* export async function createPost(username, text) {
+// funcion editar texto publicacion
+/* export function editPost(docPublish,text) {
   const postData = {
     dateTime: new Date(),
-    likes: 0,
-    username, // cuando key y value tengan el mismo valor puedes poner el nombre y ,
     text,
   };
-  setDoc(publicationsAll, postData, { merge: true });
-  .then(() => {
-    console.log('This value has been written to the database');
-  })
-  .catch((error) => {
-    console.log(`I got an error! ${error}`);
-  });
-  console.log(postData);
+  await updateDoc(docPublish,postData);
 } */
-
-/* export async function createPost(username, text) {
-  const postData = {
-    dateTime: new Date(),
-    likes: 0,
-    username, // cuando key y value tengan el mismo valor puedes poner el nombre y ,
-    text,
-  };
-  try{ await setDoc(publicationsAll, postData, { merge: true });
-  console.log('This value has been written to the database');
-  } catch (error){
-    console.log(`I got an error! ${error}`);
-  }
-} */
+// funcion eliminar texto publicacion
