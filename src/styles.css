@@ -207,14 +207,11 @@ input{
     background-image: url(./img/post.png);
     background-color: #c9fbc070;
 }
-.buttonContainer{
-    display: flex;
-    flex-wrap: wrap;
-    width: 60.5%;
-}
+
 .likeButton{
     background-image: url(./img/like.png);
     background-color: white;
+    background-size: cover;
 }
 .publishPostButton, .likeButton{
     width: 45px;
@@ -274,11 +271,12 @@ header label:hover{
     height: 70%;
     width: 100%;
     margin-top: 5%;
+    margin-right: 10px;
 }
-.publishPostWallContainer{
-    display: inline;
+.postButtonsContainer{
+    display: flex;
+    justify-content: space-between;
 }
-
 /*tablet*/
 @media (max-width: 916px){
     .mainLabel{

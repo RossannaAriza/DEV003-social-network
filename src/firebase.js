@@ -8,7 +8,7 @@ import {
 import {
   getDatabase, set, ref, update,
 } from 'firebase/database';
-import { getFirestore, collection, addDoc, updateDoc } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, getDocs, updateDoc } from 'firebase/firestore';
 // eslint-disable-next-line import/no-cycle
 import { onNavigate } from './lib/index';
 
@@ -221,6 +221,12 @@ export async function createPost(username, text) {
   console.log('This value has been written to the database');
   console.log(postData);
 }
+// función regresar las publicaciones de firestore
+const querySnapshot = await getDocs(collection(dataBaseFirestore, 'publications'));
+querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  console.log(doc.id, " => ", doc.data());
+});
 
 // funcion editar texto publicacion
 /* export function editPost(docPublish,text) {
