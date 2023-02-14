@@ -55,7 +55,7 @@ export const MainPage = () => {
   const postMain = document.createElement('div'); // Contiene input del post, btn publicar y btn like
   postMain.classList.add('postMain'); // postMain dentro de principalPage
   // Todo dentro de postMain
-  const publishPostBtnContainer = document.createElement('div'); // Contiene input y publishBtn
+  const publishPostBtnContainer = document.createElement('div'); // Contiene input, 
   publishPostBtnContainer.classList.add('publishPostBtnContainer');
   const post = document.createElement('textarea');
   post.classList.add('usersPost');
@@ -65,31 +65,29 @@ export const MainPage = () => {
   const publish = document.createElement('button');
   publish.addEventListener('click', handleCreatePost);
   publish.classList.add('publishPostButton');
-   // muro donde se visualizaran las publicaciones
-   const publishPostWallContainer = document.createElement('div');// donde se visualizaran los post los post
-   publishPostWallContainer.classList.add('publishPostWallContainer');
-   const postPublish = document.createElement('div');
-   const buttonContainer = document.createElement('div');
-   buttonContainer.classList.add('buttonContainer');
- 
-   const deleteBtn = document.createElement('button');
-   deleteBtn.classList.add('deleteButton');
-   deleteBtn.textContent = 'Delete';
+  const likeBtnContainer = document.createElement('div');
+  likeBtnContainer.classList.add('likeBtnContainer');
+   const likesBtn = document.createElement('button');
+   likesBtn.classList.add('likeButton');
    const editBtn = document.createElement('button');
    editBtn.classList.add('editButton');
    editBtn.textContent = 'Edit';
-   const likesBtn = document.createElement('button');
-   likesBtn.classList.add('likeButton');
+   const deleteBtn = document.createElement('button');
+   deleteBtn.classList.add('deleteButton');
+   deleteBtn.textContent = 'Delete';
+
+   const postButtonsContainer= document.createElement('div');// donde se visualizaran los post los post
+   postButtonsContainer.classList.add('postButtonsContainer');
+
 
   publishPostBtnContainer.appendChild(post);
   publishPostBtnContainer.appendChild(publish);
-  publishPostWallContainer.appendChild(postPublish);
-  publishPostWallContainer.appendChild(buttonContainer);
-  buttonContainer.appendChild(editBtn);
-  buttonContainer.appendChild(deleteBtn);
-  buttonContainer.appendChild(likesBtn);
+  likeBtnContainer.appendChild(likesBtn);
+  postButtonsContainer.appendChild(likeBtnContainer);
+  postButtonsContainer.appendChild(editBtn);
+  postButtonsContainer.appendChild(deleteBtn);
   postMain.appendChild(publishPostBtnContainer);
-  postMain.appendChild(publishPostWallContainer);
+  postMain.appendChild(postButtonsContainer);
 
   principalPage.appendChild(postMain);
   return principalPage;
