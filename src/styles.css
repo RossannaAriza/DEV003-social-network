@@ -195,13 +195,17 @@ input{
     flex-direction: column;
     align-items: center;
 }
-.usersPost{
+.usersPost, .postMold {
     resize: none;
     width: 100%;
     height: 45px;
     background: rgba(82, 163, 90, 0.2);
     border: 1px solid #000000;
     border-radius: 5px;
+    font-family:math;
+}
+.usersPost{
+    font-size: 25px;
 }
 .publishPostButton{
     background-image: url(./img/post.png);
@@ -277,6 +281,17 @@ header label:hover{
     display: flex;
     justify-content: space-between;
 }
+.postMold{
+    width: 860px;
+    height: fit-content;
+    padding: 5px;
+    align-self: center;
+    margin: 10px;
+}
+.postTextContent{
+    margin: 6px;
+}
+
 /*tablet*/
 @media (max-width: 916px){
     .mainLabel{
@@ -318,6 +333,9 @@ header label:hover{
         border: solid #10701a 1px;
         margin: 10px 0px 10px 0px;
         border-radius:0px 10px 10px 0px;
+    }
+    .postMold{
+        width: 400px;
     }
 
 }
@@ -407,6 +425,23 @@ header label:hover{
     }
     #check:checked ~ .menuNav{ 
         margin: 0; 
+    }
+    .publishPostButton, .likeButton{
+        width: 36px;
+        height: 40px;
+    }
+    .deleteButton, .editButton{
+        width: 60px;
+        height: 30px;
+        font-size: 16px;
+
+    }
+    .likeButton{
+        margin: 6px 10px 10px 10px;
+    }
+
+    .postMold{
+        width: 230px;
     }
 }
 

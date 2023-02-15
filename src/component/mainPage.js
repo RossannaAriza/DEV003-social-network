@@ -1,5 +1,6 @@
-import { logOut, createPost } from '../firebase';
-
+import { doc } from 'firebase/firestore';
+import { logOut, createPost, recoverData} from '../firebase';
+// import { recoverData } from './firebase.js';
 export const MainPage = () => {
   const principalPage = document.createElement('div'); // contiene toda la segunda vista
   principalPage.classList.add('principalPage');
@@ -64,6 +65,8 @@ export const MainPage = () => {
   post.setAttribute('cols', '50');
   const publish = document.createElement('button');
   publish.addEventListener('click', handleCreatePost);
+  publish.addEventListener('click', recoverData);
+
   publish.classList.add('publishPostButton');
   const likeBtnContainer = document.createElement('div');
   likeBtnContainer.classList.add('likeBtnContainer');
@@ -88,6 +91,7 @@ export const MainPage = () => {
   postButtonsContainer.appendChild(deleteBtn);
   postMain.appendChild(publishPostBtnContainer);
   postMain.appendChild(postButtonsContainer);
+  postMain.appendChild(postsContainer);
 
   principalPage.appendChild(postMain);
   return principalPage;
@@ -103,3 +107,41 @@ function handleCreatePost() {
   // llamar createPost(y pasar parámetros)
   // ligar handleCP al boton
 }
+
+const postsContainer = document.createElement('div');
+postsContainer.classList.add('postsContainer');
+postsContainer.setAttribute('id','postsContainer');
+
+// export function showPreviousPosts() {
+//   const postObjects = doc.data();
+//   const postUsername = postObjects.username;
+//   const postTxt = postObjects.text;
+//   const postLikes = postObjects.likes;
+
+//   const postMold = document.createElement('div'); // Contenedor del post
+//   postMold.classList.add('postMold');
+//   const usernameContainer = document.createElement("div"); // Contenedor username
+//   usernameContainer.classList.add('usernameContainer'); // user's name
+//   const username = document.createElement ('h3');
+//   username.classList.add('username');
+//   username.innerHTML = postUsername;
+//   const postContentContainer = document.createElement("div");
+//   postContentContainer.classList.add('postContentContainer');
+//   const postTextContent = document.createElement('h4');
+//   postTextContent.classList.add('postTextContent');
+//   postTextContent.innerHTML = postTxt;
+//   const previousPostsLikes = document.createElement('div');
+//   previousPostsLikes.classList.add('previousPostsLikes');
+//   const postCountedLikes = document.createElement('h4');
+//   postCountedLikes.classList.add('postCountedLikes');
+//   postCountedLikes.innerHTML = postLikes;
+  
+//   usernameContainer.appendChild(username);
+//   postContentContainer.appendChild(postTextContent);
+//   previousPostsLikes.appendChild(postCountedLikes);
+
+//   postMold.appendChild(usernameContainer);
+//   postMold.appendChild(postContentContainer);
+//   postMold.appendChild(previousPostsLikes);
+
+// }
