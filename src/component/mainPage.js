@@ -1,6 +1,22 @@
-import { doc } from 'firebase/firestore';
-import { logOut, createPost, recoverData} from '../firebase';
+// import { doc } from 'firebase/firestore';
+import { logOut, createPost, recoverData } from '../firebase';
 // import { recoverData } from './firebase.js';
+
+function handleCreatePost() {
+  const postContent = document.getElementById('postTextArea');
+  const getUsername = localStorage.getItem('username');
+  createPost(getUsername, postContent.value);
+  postContent.value = '';
+  // mandar llamar textarea con id
+  // guardar en var localStorage.getitem
+  // llamar createPost(y pasar parámetros)
+  // ligar handleCP al boton
+}
+
+const postsContainer = document.createElement('div');
+postsContainer.classList.add('postsContainer');
+postsContainer.setAttribute('id', 'postsContainer');
+
 export const MainPage = () => {
   const principalPage = document.createElement('div'); // contiene toda la segunda vista
   principalPage.classList.add('principalPage');
@@ -56,7 +72,7 @@ export const MainPage = () => {
   const postMain = document.createElement('div'); // Contiene input del post, btn publicar y btn like
   postMain.classList.add('postMain'); // postMain dentro de principalPage
   // Todo dentro de postMain
-  const publishPostBtnContainer = document.createElement('div'); // Contiene input, 
+  const publishPostBtnContainer = document.createElement('div'); // Contiene input,
   publishPostBtnContainer.classList.add('publishPostBtnContainer');
   const post = document.createElement('textarea');
   post.classList.add('usersPost');
@@ -65,53 +81,17 @@ export const MainPage = () => {
   post.setAttribute('cols', '50');
   const publish = document.createElement('button');
   publish.addEventListener('click', handleCreatePost);
-  publish.addEventListener('click', recoverData);
-
+  // publish.addEventListener('click', recoverData);
+  recoverData();
   publish.classList.add('publishPostButton');
-  const likeBtnContainer = document.createElement('div');
-  likeBtnContainer.classList.add('likeBtnContainer');
-   const likesBtn = document.createElement('button');
-   likesBtn.classList.add('likeButton');
-   const editBtn = document.createElement('button');
-   editBtn.classList.add('editButton');
-   editBtn.textContent = 'Edit';
-   const deleteBtn = document.createElement('button');
-   deleteBtn.classList.add('deleteButton');
-   deleteBtn.textContent = 'Delete';
-
-   const postButtonsContainer= document.createElement('div');// donde se visualizaran los post los post
-   postButtonsContainer.classList.add('postButtonsContainer');
-
-
   publishPostBtnContainer.appendChild(post);
   publishPostBtnContainer.appendChild(publish);
-  likeBtnContainer.appendChild(likesBtn);
-  postButtonsContainer.appendChild(likeBtnContainer);
-  postButtonsContainer.appendChild(editBtn);
-  postButtonsContainer.appendChild(deleteBtn);
   postMain.appendChild(publishPostBtnContainer);
-  postMain.appendChild(postButtonsContainer);
   postMain.appendChild(postsContainer);
 
   principalPage.appendChild(postMain);
   return principalPage;
 };
-
-function handleCreatePost() {
-  const postContent = document.getElementById('postTextArea');
-  const getUsername = localStorage.getItem('username');
-  createPost(getUsername, postContent.value);
-  postContent.value = '';
-  // mandar llamar textarea con id
-  // guardar en var localStorage.getitem
-  // llamar createPost(y pasar parámetros)
-  // ligar handleCP al boton
-}
-
-const postsContainer = document.createElement('div');
-postsContainer.classList.add('postsContainer');
-postsContainer.setAttribute('id','postsContainer');
-
 // export function showPreviousPosts() {
 //   const postObjects = doc.data();
 //   const postUsername = postObjects.username;
@@ -135,7 +115,7 @@ postsContainer.setAttribute('id','postsContainer');
 //   const postCountedLikes = document.createElement('h4');
 //   postCountedLikes.classList.add('postCountedLikes');
 //   postCountedLikes.innerHTML = postLikes;
-  
+
 //   usernameContainer.appendChild(username);
 //   postContentContainer.appendChild(postTextContent);
 //   previousPostsLikes.appendChild(postCountedLikes);
