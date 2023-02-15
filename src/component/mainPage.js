@@ -1,5 +1,7 @@
 // import { doc } from 'firebase/firestore';
-import { logOut, createPost, recoverData } from '../firebase';
+import {
+  logOut, createPost, recoverData, editPost,
+} from '../firebase';
 // import { recoverData } from './firebase.js';
 
 function handleCreatePost() {
@@ -92,6 +94,38 @@ export const MainPage = () => {
   principalPage.appendChild(postMain);
   return principalPage;
 };
+
+export function modalEdit(oldText, idDocOrigin) {
+  const modalEditText = document.createElement('div');
+  modalEditText.setAttribute('id', 'divModalEdit');
+  const modalEditContent = document.createElement('div');
+  modalEditContent.setAttribute('id', 'divModalEditContent');
+  const closeModal = document.createElement('span');
+  closeModal.setAttribute('id', 'spanCloseModal');
+  const detail = document.createElement('h2');
+  detail.setAttribute('id', 'h2Detail');
+  detail.textContent = 'Edit the recipe';
+  const newPost = document.createElement('textarea');
+  newPost.classList.add('usersPost');
+  newPost.setAttribute('id', 'newPostTextArea');
+  newPost.setAttribute('rows', '4');
+  newPost.setAttribute('cols', '50');
+  newPost.placeholder = oldText;
+  const modalEditBtn = document.createElement('button');
+  modalEditBtn.setAttribute('id', 'modalEditBtn');
+  modalEditBtn.textContent = 'Edit';
+
+  modalEditText.appendChild(modalEditContent);
+  modalEditContent.appendChild(closeModal);
+  modalEditContent.appendChild(detail);
+  modalEditContent.appendChild(newPost);
+  modalEditContent.appendChild(modalEditBtn);
+
+  document.getElementById('postsContainer').appendChild(modalEditText);
+
+  const newPostContent = document.getElementById('newPostTextArea');
+  editPost(idDocOrigin, newPostContent.value);
+}
 // export function showPreviousPosts() {
 //   const postObjects = doc.data();
 //   const postUsername = postObjects.username;

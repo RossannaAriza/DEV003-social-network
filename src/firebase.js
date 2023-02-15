@@ -13,6 +13,7 @@ import {
 import { async } from 'regenerator-runtime';
 // eslint-disable-next-line import/no-cycle
 import { onNavigate } from './lib/index';
+import { modalEdit } from './component/mainPage';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -231,6 +232,7 @@ export async function recoverData() {
     const postUsername = postObjects.username;
     const postTxt = postObjects.text;
     const postLikes = postObjects.likes;
+    const idPostObject = doc.id;
 
     const postMold = document.createElement('div'); // Contenedor del post
     postMold.classList.add('postMold');
@@ -258,6 +260,9 @@ export async function recoverData() {
     const editBtn = document.createElement('button');
     editBtn.classList.add('editButton');
     editBtn.textContent = 'Edit';
+    //
+    editBtn.addEventListener('click', modalEdit(postTxt, idPostObject));
+    //
     const deleteBtn = document.createElement('button');
     deleteBtn.classList.add('deleteButton');
     deleteBtn.textContent = 'Delete';
@@ -275,28 +280,18 @@ export async function recoverData() {
     postMold.appendChild(previousPostsLikes);
     postMold.appendChild(postButtonsContainer);
     document.getElementById('postsContainer').appendChild(postMold);
+
     // doc.data() is never undefined for query doc snapshots
     console.log(doc.id, ' => ', doc.data());
   });
 }
 
 // funcion editar texto publicacion
-/* export function editPost(docPublish,text) {
-  const postData = {
-    dateTime: new Date(),
-    likes: 0,
-    username, // cuando key y value tengan el mismo valor puedes poner el nombre y ,
-    text,
-  };
-  setDoc(publicationsAll, postData, { merge: true });
-  .then(() => {
-    console.log('This value has been written to the database');
-  })
-  .catch((error) => {
-    console.log(`I got an error! ${error}`);
+export async function editPost(idDoc, newText) {
+  await updateDoc(idDoc, {
+    text: newText,
   });
-  console.log(postData);
-} */
+}
 
 /* export async function createPost(username, text) {
   const postData = {
