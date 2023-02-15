@@ -4,13 +4,12 @@ import {
   getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged,
   signInWithPopup, GoogleAuthProvider, /* signInWithRedirect, */ sendEmailVerification, /* sendPasswordResetEmail, */
 } from 'firebase/auth';
-//  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-analytics.js";
-import {
-  getDatabase, set, ref, update,
-} from 'firebase/database';
+import { getDatabase, set, ref, update } from 'firebase/database';
 import { getFirestore, collection, addDoc, getDocs, updateDoc } from 'firebase/firestore';
+import { async } from 'regenerator-runtime';
 // eslint-disable-next-line import/no-cycle
 import { onNavigate } from './lib/index';
+
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -221,12 +220,47 @@ export async function createPost(username, text) {
   console.log('This value has been written to the database');
   console.log(postData);
 }
+
 // función regresar las publicaciones de firestore
+export async function recoverData (){
 const querySnapshot = await getDocs(collection(dataBaseFirestore, 'publications'));
 querySnapshot.forEach((doc) => {
+  
+  const postObjects = doc.data();
+  const postUsername = postObjects.username;
+  const postTxt = postObjects.text;
+  const postLikes = postObjects.likes;
+
+  const postMold = document.createElement('div'); // Contenedor del post
+  postMold.classList.add('postMold');
+  const usernameContainer = document.createElement("div"); // Contenedor username
+  usernameContainer.classList.add('usernameContainer'); // user's name
+  const username = document.createElement ('h4');
+  username.classList.add('username');
+  username.innerHTML = postUsername;
+  const postContentContainer = document.createElement("div");
+  postContentContainer.classList.add('postContentContainer');
+  const postTextContent = document.createElement('h3');
+  postTextContent.classList.add('postTextContent');
+  postTextContent.innerHTML = postTxt;
+  const previousPostsLikes = document.createElement('div');
+  previousPostsLikes.classList.add('previousPostsLikes');
+  const postCountedLikes = document.createElement('h4');
+  postCountedLikes.classList.add('postCountedLikes');
+  postCountedLikes.innerHTML = "Likes: " + postLikes;
+  
+  usernameContainer.appendChild(username);
+  postContentContainer.appendChild(postTextContent);
+  previousPostsLikes.appendChild(postCountedLikes);
+
+  postMold.appendChild(usernameContainer);
+  postMold.appendChild(postContentContainer);
+  postMold.appendChild(previousPostsLikes);
+  document.getElementById("postsContainer").appendChild(postMold);
   // doc.data() is never undefined for query doc snapshots
   console.log(doc.id, " => ", doc.data());
-});
+}) 
+}
 
 // funcion editar texto publicacion
 /* export function editPost(docPublish,text) {
