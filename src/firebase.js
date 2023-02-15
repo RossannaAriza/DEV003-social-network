@@ -4,12 +4,15 @@ import {
   getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged,
   signInWithPopup, GoogleAuthProvider, /* signInWithRedirect, */ sendEmailVerification, /* sendPasswordResetEmail, */
 } from 'firebase/auth';
-import { getDatabase, set, ref, update } from 'firebase/database';
-import { getFirestore, collection, addDoc, getDocs, updateDoc } from 'firebase/firestore';
+import {
+  getDatabase, set, ref, update,
+} from 'firebase/database';
+import {
+  getFirestore, collection, addDoc, getDocs, updateDoc,
+} from 'firebase/firestore';
 import { async } from 'regenerator-runtime';
 // eslint-disable-next-line import/no-cycle
 import { onNavigate } from './lib/index';
-
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -59,7 +62,7 @@ export function createAccountFunction() {
       alert('user created');
 
       const gettingemail = document.getElementById('email').value;
-      const separatingEmail = gettingemail.split("@");
+      const separatingEmail = gettingemail.split('@');
       console.log(separatingEmail);
       const settingUsername = separatingEmail[0];
       console.log(settingUsername);
@@ -105,7 +108,7 @@ export function loginAccountFunction() {
       });
       //
       const gettingemail = document.getElementById('EmailLogin').value;
-      const separatingEmail = gettingemail.split("@");
+      const separatingEmail = gettingemail.split('@');
       console.log(separatingEmail);
       const settingUsername = separatingEmail[0];
       console.log(settingUsername);
@@ -139,9 +142,8 @@ export function loginAccountFunction() {
 export function loginWithGoogle() {
   const provider = new GoogleAuthProvider();
   return signInWithPopup(auth, provider).then((result) => {
-
     const user = result.user.email;
-    const separatingEmail = user.split("@");
+    const separatingEmail = user.split('@');
     console.log(separatingEmail);
     const settingUsername = separatingEmail[0];
     console.log(settingUsername);
@@ -216,50 +218,66 @@ export async function createPost(username, text) {
     username, // cuando key y value tengan el mismo valor puedes poner el nombre y ,
     text,
   };
-  const postFirestore = await addDoc(publicationsAll, postData);
+  await addDoc(publicationsAll, postData);
   console.log('This value has been written to the database');
   console.log(postData);
 }
 
 // función regresar las publicaciones de firestore
-export async function recoverData (){
-const querySnapshot = await getDocs(collection(dataBaseFirestore, 'publications'));
-querySnapshot.forEach((doc) => {
-  
-  const postObjects = doc.data();
-  const postUsername = postObjects.username;
-  const postTxt = postObjects.text;
-  const postLikes = postObjects.likes;
+export async function recoverData() {
+  const querySnapshot = await getDocs(collection(dataBaseFirestore, 'publications'));
+  querySnapshot.forEach((doc) => {
+    const postObjects = doc.data();
+    const postUsername = postObjects.username;
+    const postTxt = postObjects.text;
+    const postLikes = postObjects.likes;
 
-  const postMold = document.createElement('div'); // Contenedor del post
-  postMold.classList.add('postMold');
-  const usernameContainer = document.createElement("div"); // Contenedor username
-  usernameContainer.classList.add('usernameContainer'); // user's name
-  const username = document.createElement ('h4');
-  username.classList.add('username');
-  username.innerHTML = postUsername;
-  const postContentContainer = document.createElement("div");
-  postContentContainer.classList.add('postContentContainer');
-  const postTextContent = document.createElement('h3');
-  postTextContent.classList.add('postTextContent');
-  postTextContent.innerHTML = postTxt;
-  const previousPostsLikes = document.createElement('div');
-  previousPostsLikes.classList.add('previousPostsLikes');
-  const postCountedLikes = document.createElement('h4');
-  postCountedLikes.classList.add('postCountedLikes');
-  postCountedLikes.innerHTML = "Likes: " + postLikes;
-  
-  usernameContainer.appendChild(username);
-  postContentContainer.appendChild(postTextContent);
-  previousPostsLikes.appendChild(postCountedLikes);
+    const postMold = document.createElement('div'); // Contenedor del post
+    postMold.classList.add('postMold');
+    const usernameContainer = document.createElement('div'); // Contenedor username
+    usernameContainer.classList.add('usernameContainer'); // user's name
+    const username = document.createElement('h4');
+    username.classList.add('username');
+    username.innerHTML = postUsername;
+    const postContentContainer = document.createElement('div');
+    postContentContainer.classList.add('postContentContainer');
+    const postTextContent = document.createElement('h3');
+    postTextContent.classList.add('postTextContent');
+    postTextContent.innerHTML = postTxt;
+    const previousPostsLikes = document.createElement('div');
+    previousPostsLikes.classList.add('previousPostsLikes');
+    const postCountedLikes = document.createElement('h4');
+    postCountedLikes.classList.add('postCountedLikes');
+    postCountedLikes.innerHTML = `Likes: ${postLikes}`;
+    const postButtonsContainer = document.createElement('div');// donde se visualizaran los post los post
+    postButtonsContainer.classList.add('postButtonsContainer');
+    const likeBtnContainer = document.createElement('div');
+    likeBtnContainer.classList.add('likeBtnContainer');
+    const likesBtn = document.createElement('button');
+    likesBtn.classList.add('likeButton');
+    const editBtn = document.createElement('button');
+    editBtn.classList.add('editButton');
+    editBtn.textContent = 'Edit';
+    const deleteBtn = document.createElement('button');
+    deleteBtn.classList.add('deleteButton');
+    deleteBtn.textContent = 'Delete';
 
-  postMold.appendChild(usernameContainer);
-  postMold.appendChild(postContentContainer);
-  postMold.appendChild(previousPostsLikes);
-  document.getElementById("postsContainer").appendChild(postMold);
-  // doc.data() is never undefined for query doc snapshots
-  console.log(doc.id, " => ", doc.data());
-}) 
+    usernameContainer.appendChild(username);
+    postContentContainer.appendChild(postTextContent);
+    previousPostsLikes.appendChild(postCountedLikes);
+    likeBtnContainer.appendChild(likesBtn);
+    postButtonsContainer.appendChild(likeBtnContainer);
+    postButtonsContainer.appendChild(editBtn);
+    postButtonsContainer.appendChild(deleteBtn);
+
+    postMold.appendChild(usernameContainer);
+    postMold.appendChild(postContentContainer);
+    postMold.appendChild(previousPostsLikes);
+    postMold.appendChild(postButtonsContainer);
+    document.getElementById('postsContainer').appendChild(postMold);
+    // doc.data() is never undefined for query doc snapshots
+    console.log(doc.id, ' => ', doc.data());
+  });
 }
 
 // funcion editar texto publicacion
