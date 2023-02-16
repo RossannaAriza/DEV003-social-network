@@ -291,7 +291,32 @@ header label:hover{
 .postTextContent{
     margin: 6px;
 }
+#divModalEdit{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
 
+}
+#divModalEdit #divModalEditContent{
+    background-color: #282b29;
+    margin: auto;
+    padding: 25px;
+    border: 1px solid #6927a7;
+    width: 60%;
+    color: #FFFCFC;
+}
+#divModalEdit #spanCloseModal{
+    color: rgb(192, 40, 40);
+    float:right;
+    font-size: 26px;
+    font-weight: bold;
+}
 /*tablet*/
 @media (max-width: 916px){
     .mainLabel{
