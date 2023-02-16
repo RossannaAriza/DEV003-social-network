@@ -213,13 +213,17 @@ input{
 }
 
 .likeButton{
-    background-image: url(./img/like.png);
+    background-image: url(./img/newlike.png);
     background-color: white;
     background-size: cover;
+    width: 25px;
+    height: 25px;
+}
+.publishPostButton{
+    width: 35px;
+    height: 35px;
 }
 .publishPostButton, .likeButton{
-    width: 45px;
-    height: 40px;
     border: none;
     background-position: center center;
     background-size:cover;

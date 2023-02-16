@@ -8,7 +8,7 @@ import {
   getDatabase, set, ref, update,
 } from 'firebase/database';
 import {
-  getFirestore, collection, addDoc, getDocs, updateDoc, doc,
+  getFirestore, collection, addDoc, getDocs, updateDoc, doc, query, orderBy
 } from 'firebase/firestore';
 import { async } from 'regenerator-runtime';
 // eslint-disable-next-line import/no-cycle
@@ -48,9 +48,8 @@ function emailVerification() {
 export function createAccountFunction() {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
-  const username = document.getElementById('username').value;
 
-  createUserWithEmailAndPassword(auth, email, password, username)
+  createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       //   signed in
       const user = userCredential.user;
@@ -96,9 +95,8 @@ export function createAccountFunction() {
 export function loginAccountFunction() {
   const EmailLogin = document.getElementById('EmailLogin').value;
   const PasswordLogin = document.getElementById('PasswordLogIn').value;
-  const username = document.getElementById('username').value;
 
-  signInWithEmailAndPassword(auth, EmailLogin, PasswordLogin, username)
+  signInWithEmailAndPassword(auth, EmailLogin, PasswordLogin)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
@@ -226,7 +224,8 @@ export async function createPost(username, text) {
 
 // función regresar las publicaciones de firestore
 export async function recoverData() {
-  const querySnapshot = await getDocs(collection(dataBaseFirestore, 'publications'));
+  const querySnapshot = await getDocs(query(collection(dataBaseFirestore, 'publications'), orderBy('dateTime', 'desc')));
+  console.log(querySnapshot);
   querySnapshot.forEach((doc) => {
     muroStructure(doc);
   });

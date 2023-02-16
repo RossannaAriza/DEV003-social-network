@@ -1,4 +1,5 @@
 // import { doc } from 'firebase/firestore';
+import { doc } from 'firebase/firestore';
 import {
   logOut, createPost, editPost,
 } from '../firebase';
@@ -98,6 +99,7 @@ export const muroStructure = (doc) => {
   const postTxt = postObjects.text;
   const postLikes = postObjects.likes;
   const idPostObject = doc.id;
+  const postsDate = postObjects.dateTime;
 
   const postMold = document.createElement('div'); // Contenedor del post
   postMold.classList.add('postMold');
@@ -106,6 +108,11 @@ export const muroStructure = (doc) => {
   const username = document.createElement('h4');
   username.classList.add('username');
   username.innerHTML = postUsername;
+  const dateContainer = document.createElement('div');
+  dateContainer.classList.add('dateContainer');
+  const postDate = document.createElement('h5');
+  postDate.classList.add('postDate');
+  postDate.innerHTML = postsDate;
   const postContentContainer = document.createElement('div');
   postContentContainer.classList.add('postContentContainer');
   const postTextContent = document.createElement('h3');
@@ -120,8 +127,11 @@ export const muroStructure = (doc) => {
   postButtonsContainer.classList.add('postButtonsContainer');
   const likeBtnContainer = document.createElement('div');
   likeBtnContainer.classList.add('likeBtnContainer');
+  const likeCounterLabel = document.createElement('label');
+  likeCounterLabel.setAttribute('id', 'count');
   const likesBtn = document.createElement('button');
   likesBtn.classList.add('likeButton');
+  likesBtn.onclick = likeShowsPostId;
   const editBtn = document.createElement('button');
   editBtn.classList.add('editButton');
   editBtn.setAttribute('id', 'editButton');
@@ -153,7 +163,7 @@ export const muroStructure = (doc) => {
   modalEditContent.appendChild(newPost);
   modalEditContent.appendChild(modalEditBtn);
 
-  document.getElementById('postsContainer').appendChild(modalEditText);
+  postsContainer.appendChild(modalEditText);
 
   editBtn.addEventListener('click', () => {
     modalEditText.style.display = 'block';
@@ -170,6 +180,7 @@ export const muroStructure = (doc) => {
   deleteBtn.classList.add('deleteButton');
   deleteBtn.textContent = 'Delete';
   usernameContainer.appendChild(username);
+  dateContainer.appendChild(postDate);
   postContentContainer.appendChild(postTextContent);
   previousPostsLikes.appendChild(postCountedLikes);
   likeBtnContainer.appendChild(likesBtn);
@@ -178,43 +189,19 @@ export const muroStructure = (doc) => {
   postButtonsContainer.appendChild(deleteBtn);
 
   postMold.appendChild(usernameContainer);
+  postMold.appendChild(dateContainer);
   postMold.appendChild(postContentContainer);
   postMold.appendChild(previousPostsLikes);
   postMold.appendChild(postButtonsContainer);
-  document.getElementById('postsContainer').appendChild(postMold);
+  postsContainer.appendChild(postMold);
   // doc.data() is never undefined for query doc snapshots
   console.log(doc.id, ' => ', doc.data());
+
+  function likeShowsPostId (doc) {
+    console.log(idPostObject);
+    const likes = postLikes+1;
+    console.log(likes);
+  }
 };
-// export function showPreviousPosts() {
-//   const postObjects = doc.data();
-//   const postUsername = postObjects.username;
-//   const postTxt = postObjects.text;
-//   const postLikes = postObjects.likes;
 
-//   const postMold = document.createElement('div'); // Contenedor del post
-//   postMold.classList.add('postMold');
-//   const usernameContainer = document.createElement("div"); // Contenedor username
-//   usernameContainer.classList.add('usernameContainer'); // user's name
-//   const username = document.createElement ('h3');
-//   username.classList.add('username');
-//   username.innerHTML = postUsername;
-//   const postContentContainer = document.createElement("div");
-//   postContentContainer.classList.add('postContentContainer');
-//   const postTextContent = document.createElement('h4');
-//   postTextContent.classList.add('postTextContent');
-//   postTextContent.innerHTML = postTxt;
-//   const previousPostsLikes = document.createElement('div');
-//   previousPostsLikes.classList.add('previousPostsLikes');
-//   const postCountedLikes = document.createElement('h4');
-//   postCountedLikes.classList.add('postCountedLikes');
-//   postCountedLikes.innerHTML = postLikes;
 
-//   usernameContainer.appendChild(username);
-//   postContentContainer.appendChild(postTextContent);
-//   previousPostsLikes.appendChild(postCountedLikes);
-
-//   postMold.appendChild(usernameContainer);
-//   postMold.appendChild(postContentContainer);
-//   postMold.appendChild(previousPostsLikes);
-
-// }
