@@ -308,6 +308,7 @@ header label:hover{
     margin: auto;
     padding: 25px;
     border: 1px solid #6927a7;
+    border-radius: 20px;
     width: 60%;
     color: #FFFCFC;
 }
@@ -316,6 +317,10 @@ header label:hover{
     float:right;
     font-size: 26px;
     font-weight: bold;
+    padding-bottom: 20px;
+}
+#divModalEdit #newPostTextArea{
+    height: 5%;
 }
 /*tablet*/
 @media (max-width: 916px){
@@ -362,7 +367,6 @@ header label:hover{
     .postMold{
         width: 400px;
     }
-
 }
 /*Celulares*/
 @media (max-width: 415px){

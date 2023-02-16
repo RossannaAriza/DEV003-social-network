@@ -126,7 +126,7 @@ export const muroStructure = (doc) => {
   editBtn.classList.add('editButton');
   editBtn.setAttribute('id', 'editButton');
   editBtn.textContent = 'Edit';
-  //
+  //Estructura modal boton edit
   const modalEditText = document.createElement('div');
   modalEditText.setAttribute('id', 'divModalEdit');
   const modalEditContent = document.createElement('div');
@@ -140,7 +140,7 @@ export const muroStructure = (doc) => {
   const newPost = document.createElement('textarea');
   newPost.classList.add('usersPost');
   newPost.setAttribute('id', 'newPostTextArea');
-  newPost.setAttribute('rows', '4');
+  newPost.setAttribute('rows', '8');
   newPost.setAttribute('cols', '50');
   newPost.placeholder = postTxt;
   const modalEditBtn = document.createElement('button');
@@ -169,7 +169,6 @@ export const muroStructure = (doc) => {
   const deleteBtn = document.createElement('button');
   deleteBtn.classList.add('deleteButton');
   deleteBtn.textContent = 'Delete';
-
   usernameContainer.appendChild(username);
   postContentContainer.appendChild(postTextContent);
   previousPostsLikes.appendChild(postCountedLikes);
@@ -183,7 +182,6 @@ export const muroStructure = (doc) => {
   postMold.appendChild(previousPostsLikes);
   postMold.appendChild(postButtonsContainer);
   document.getElementById('postsContainer').appendChild(postMold);
-
   // doc.data() is never undefined for query doc snapshots
   console.log(doc.id, ' => ', doc.data());
 };

@@ -8,7 +8,7 @@ import {
   getDatabase, set, ref, update,
 } from 'firebase/database';
 import {
-  getFirestore, collection, addDoc, getDocs, updateDoc,
+  getFirestore, collection, addDoc, getDocs, updateDoc, doc,
 } from 'firebase/firestore';
 import { async } from 'regenerator-runtime';
 // eslint-disable-next-line import/no-cycle
@@ -235,7 +235,8 @@ recoverData();
 
 // funcion editar texto publicacion
 export async function editPost(idDoc, newText) {
-  await updateDoc(idDoc, {
+  const docRef = doc(dataBaseFirestore, 'publications', idDoc);
+  await updateDoc(docRef, {
     text: newText,
   });
 }
