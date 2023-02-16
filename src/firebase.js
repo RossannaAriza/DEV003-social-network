@@ -8,7 +8,7 @@ import {
   getDatabase, set, ref, update,
 } from 'firebase/database';
 import {
-  getFirestore, collection, addDoc, getDocs, updateDoc, doc,
+  getFirestore, collection, addDoc, getDocs, updateDoc, doc, deleteDoc,
 } from 'firebase/firestore';
 import { async } from 'regenerator-runtime';
 // eslint-disable-next-line import/no-cycle
@@ -241,3 +241,6 @@ export async function editPost(idDoc, newText) {
   });
 }
 // funcion eliminar texto publicacion
+export async function deletePost(idDoc) {
+  await deleteDoc(doc(dataBaseFirestore, 'publications', idDoc));
+}

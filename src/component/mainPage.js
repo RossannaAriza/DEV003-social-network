@@ -1,6 +1,6 @@
 // import { doc } from 'firebase/firestore';
 import {
-  logOut, createPost, editPost,
+  logOut, createPost, editPost, deletePost,
 } from '../firebase';
 // import { recoverData } from './firebase.js';
 
@@ -169,6 +169,39 @@ export const muroStructure = (doc) => {
   const deleteBtn = document.createElement('button');
   deleteBtn.classList.add('deleteButton');
   deleteBtn.textContent = 'Delete';
+  // Estructura modal boton delete
+  const modalDeleteText = document.createElement('div');
+  modalDeleteText.setAttribute('id', 'divModalDelete');
+  const modalDeleteContent = document.createElement('div');
+  modalDeleteContent.setAttribute('id', 'divModalDeleteContent');
+  const closeModalDelete = document.createElement('span');
+  closeModalDelete.setAttribute('id', 'spanCloseModalDelete');
+  closeModalDelete.textContent = 'X';
+  const detailDelete = document.createElement('h2');
+  detailDelete.setAttribute('id', 'h2DetailDelete');
+  detailDelete.textContent = 'Are you sure delete recipe?';
+  const modalDeleteBtn = document.createElement('button');
+  modalDeleteBtn.setAttribute('id', 'modalDeleteBtn');
+  modalDeleteBtn.textContent = 'Sure';
+
+  modalDeleteText.appendChild(modalDeleteContent);
+  modalDeleteContent.appendChild(closeModalDelete);
+  modalDeleteContent.appendChild(detailDelete);
+  modalDeleteContent.appendChild(modalDeleteBtn);
+
+  document.getElementById('postsContainer').appendChild(modalDeleteText);
+
+  deleteBtn.addEventListener('click', () => {
+    modalDeleteText.style.display = 'block';
+  });
+  closeModalDelete.addEventListener('click', () => {
+    modalDeleteText.style.display = 'none';
+  });
+  modalDeleteBtn.addEventListener('click', () => {
+    deletePost(idPostObject);
+    modalDeleteText.style.display = 'none';
+  });
+  //
   usernameContainer.appendChild(username);
   postContentContainer.appendChild(postTextContent);
   previousPostsLikes.appendChild(postCountedLikes);
