@@ -261,7 +261,7 @@ header label:hover{
 .menu li:hover{
     background-color: rgba(82, 163, 90, 0.2);
 }
-.deleteButton, .editButton{
+.deleteButton, .editButton, #modalEditBtn{
     background: rgba(103, 177, 110, 0.65);
     border: 3px solid #67B16E;
     border-radius: 10px;
@@ -273,7 +273,7 @@ header label:hover{
     text-align: center;
     color: #FFFCFC;
     height: 70%;
-    width: 100%;
+    width: 25%;
     margin-top: 5%;
     margin-right: 10px;
 }
@@ -291,7 +291,37 @@ header label:hover{
 .postTextContent{
     margin: 6px;
 }
+#divModalEdit{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
 
+}
+#divModalEdit #divModalEditContent{
+    background-color: #282b29;
+    margin: auto;
+    padding: 25px;
+    border: 1px solid #6927a7;
+    border-radius: 20px;
+    width: 60%;
+    color: #FFFCFC;
+}
+#divModalEdit #spanCloseModal{
+    color: rgb(192, 40, 40);
+    float:right;
+    font-size: 26px;
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+#divModalEdit #newPostTextArea{
+    height: 5%;
+}
 /*tablet*/
 @media (max-width: 916px){
     .mainLabel{
@@ -337,7 +367,6 @@ header label:hover{
     .postMold{
         width: 400px;
     }
-
 }
 /*Celulares*/
 @media (max-width: 415px){
@@ -430,7 +459,7 @@ header label:hover{
         width: 36px;
         height: 40px;
     }
-    .deleteButton, .editButton{
+    .deleteButton, .editButton, #modalEditBtn{
         width: 60px;
         height: 30px;
         font-size: 16px;
