@@ -98,6 +98,8 @@ export const muroStructure = (doc) => {
   const postTxt = postObjects.text;
   const postLikes = postObjects.likes;
   const idPostObject = doc.id;
+  const dateObj = postObjects.dateTime.toDate();
+  const postsDate = dateObj.getDate() + '/' +  (dateObj.getMonth() + 1) + '/' + dateObj.getFullYear();
 
   const postMold = document.createElement('div'); // Contenedor del post
   postMold.classList.add('postMold');
@@ -106,6 +108,11 @@ export const muroStructure = (doc) => {
   const username = document.createElement('h4');
   username.classList.add('username');
   username.innerHTML = postUsername;
+  const dateContainer = document.createElement('div');
+  dateContainer.classList.add('dateContainer');
+  const postDate = document.createElement('h5');
+  postDate.classList.add('postDate');
+  postDate.innerHTML = postsDate;
   const postContentContainer = document.createElement('div');
   postContentContainer.classList.add('postContentContainer');
   const postTextContent = document.createElement('h3');
@@ -120,8 +127,13 @@ export const muroStructure = (doc) => {
   postButtonsContainer.classList.add('postButtonsContainer');
   const likeBtnContainer = document.createElement('div');
   likeBtnContainer.classList.add('likeBtnContainer');
+  const counterContainer = document.createElement ('div'); // dentro de likeBtnContainer
+  counterContainer.classList.add('counterContainer');
+  const likeCounterSpan = document.createElement('span'); // detro de counterContainer
+  likeCounterSpan.setAttribute('id', 'valor');
   const likesBtn = document.createElement('button');
   likesBtn.classList.add('likeButton');
+  likesBtn.setAttribute('id', 'likesBtn');
   const editBtn = document.createElement('button');
   editBtn.classList.add('editButton');
   editBtn.setAttribute('id', 'editButton');
@@ -153,7 +165,7 @@ export const muroStructure = (doc) => {
   modalEditContent.appendChild(newPost);
   modalEditContent.appendChild(modalEditBtn);
 
-  document.getElementById('postsContainer').appendChild(modalEditText);
+  postsContainer.appendChild(modalEditText);
 
   editBtn.addEventListener('click', () => {
     modalEditText.style.display = 'block';
@@ -202,52 +214,43 @@ export const muroStructure = (doc) => {
     modalDeleteText.style.display = 'none';
   });
   //
+
   usernameContainer.appendChild(username);
+  dateContainer.appendChild(postDate);
   postContentContainer.appendChild(postTextContent);
   previousPostsLikes.appendChild(postCountedLikes);
+  counterContainer.appendChild(likeCounterSpan);
+  likeBtnContainer.appendChild(counterContainer);
   likeBtnContainer.appendChild(likesBtn);
   postButtonsContainer.appendChild(likeBtnContainer);
   postButtonsContainer.appendChild(editBtn);
   postButtonsContainer.appendChild(deleteBtn);
 
   postMold.appendChild(usernameContainer);
+  postMold.appendChild(dateContainer);
   postMold.appendChild(postContentContainer);
   postMold.appendChild(previousPostsLikes);
   postMold.appendChild(postButtonsContainer);
-  document.getElementById('postsContainer').appendChild(postMold);
+  postsContainer.appendChild(postMold);
   // doc.data() is never undefined for query doc snapshots
   console.log(doc.id, ' => ', doc.data());
+
+  // function likeShowsPostId (doc) {
+  //   console.log(idPostObject);
+  //   const likes = postLikes+1;
+  //   console.log(likes);
+  // }
+
+  let contador = 0;
+
+  const valor = document.getElementById('valor');
+  const likeBtn = document.getElementById ('likesBtn');
+
+  likeBtn.onclick = function counter() {
+    contador++;
+    valor.innerHTML = contador;
+  }
 };
-// export function showPreviousPosts() {
-//   const postObjects = doc.data();
-//   const postUsername = postObjects.username;
-//   const postTxt = postObjects.text;
-//   const postLikes = postObjects.likes;
 
-//   const postMold = document.createElement('div'); // Contenedor del post
-//   postMold.classList.add('postMold');
-//   const usernameContainer = document.createElement("div"); // Contenedor username
-//   usernameContainer.classList.add('usernameContainer'); // user's name
-//   const username = document.createElement ('h3');
-//   username.classList.add('username');
-//   username.innerHTML = postUsername;
-//   const postContentContainer = document.createElement("div");
-//   postContentContainer.classList.add('postContentContainer');
-//   const postTextContent = document.createElement('h4');
-//   postTextContent.classList.add('postTextContent');
-//   postTextContent.innerHTML = postTxt;
-//   const previousPostsLikes = document.createElement('div');
-//   previousPostsLikes.classList.add('previousPostsLikes');
-//   const postCountedLikes = document.createElement('h4');
-//   postCountedLikes.classList.add('postCountedLikes');
-//   postCountedLikes.innerHTML = postLikes;
 
-//   usernameContainer.appendChild(username);
-//   postContentContainer.appendChild(postTextContent);
-//   previousPostsLikes.appendChild(postCountedLikes);
 
-//   postMold.appendChild(usernameContainer);
-//   postMold.appendChild(postContentContainer);
-//   postMold.appendChild(previousPostsLikes);
-
-// }
