@@ -1,7 +1,6 @@
 // import { doc } from 'firebase/firestore';
-import { doc } from 'firebase/firestore';
 import {
-  logOut, createPost, editPost,
+  logOut, createPost, editPost, deletePost,
 } from '../firebase';
 // import { recoverData } from './firebase.js';
 
@@ -99,7 +98,8 @@ export const muroStructure = (doc) => {
   const postTxt = postObjects.text;
   const postLikes = postObjects.likes;
   const idPostObject = doc.id;
-  const postsDate = postObjects.dateTime;
+  const dateObj = postObjects.dateTime.toDate();
+  const postsDate = dateObj.getDate() + '/' +  (dateObj.getMonth() + 1) + '/' + dateObj.getFullYear();
 
   const postMold = document.createElement('div'); // Contenedor del post
   postMold.classList.add('postMold');
@@ -127,11 +127,13 @@ export const muroStructure = (doc) => {
   postButtonsContainer.classList.add('postButtonsContainer');
   const likeBtnContainer = document.createElement('div');
   likeBtnContainer.classList.add('likeBtnContainer');
-  const likeCounterLabel = document.createElement('label');
-  likeCounterLabel.setAttribute('id', 'count');
+  const counterContainer = document.createElement ('div'); // dentro de likeBtnContainer
+  counterContainer.classList.add('counterContainer');
+  const likeCounterSpan = document.createElement('span'); // detro de counterContainer
+  likeCounterSpan.setAttribute('id', 'valor');
   const likesBtn = document.createElement('button');
   likesBtn.classList.add('likeButton');
-  likesBtn.onclick = likeShowsPostId;
+  likesBtn.setAttribute('id', 'likesBtn');
   const editBtn = document.createElement('button');
   editBtn.classList.add('editButton');
   editBtn.setAttribute('id', 'editButton');
@@ -179,10 +181,46 @@ export const muroStructure = (doc) => {
   const deleteBtn = document.createElement('button');
   deleteBtn.classList.add('deleteButton');
   deleteBtn.textContent = 'Delete';
+  // Estructura modal boton delete
+  const modalDeleteText = document.createElement('div');
+  modalDeleteText.setAttribute('id', 'divModalDelete');
+  const modalDeleteContent = document.createElement('div');
+  modalDeleteContent.setAttribute('id', 'divModalDeleteContent');
+  const closeModalDelete = document.createElement('span');
+  closeModalDelete.setAttribute('id', 'spanCloseModalDelete');
+  closeModalDelete.textContent = 'X';
+  const detailDelete = document.createElement('h2');
+  detailDelete.setAttribute('id', 'h2DetailDelete');
+  detailDelete.textContent = 'Are you sure delete recipe?';
+  const modalDeleteBtn = document.createElement('button');
+  modalDeleteBtn.setAttribute('id', 'modalDeleteBtn');
+  modalDeleteBtn.textContent = 'Sure';
+
+  modalDeleteText.appendChild(modalDeleteContent);
+  modalDeleteContent.appendChild(closeModalDelete);
+  modalDeleteContent.appendChild(detailDelete);
+  modalDeleteContent.appendChild(modalDeleteBtn);
+
+  document.getElementById('postsContainer').appendChild(modalDeleteText);
+
+  deleteBtn.addEventListener('click', () => {
+    modalDeleteText.style.display = 'block';
+  });
+  closeModalDelete.addEventListener('click', () => {
+    modalDeleteText.style.display = 'none';
+  });
+  modalDeleteBtn.addEventListener('click', () => {
+    deletePost(idPostObject);
+    modalDeleteText.style.display = 'none';
+  });
+  //
+
   usernameContainer.appendChild(username);
   dateContainer.appendChild(postDate);
   postContentContainer.appendChild(postTextContent);
   previousPostsLikes.appendChild(postCountedLikes);
+  counterContainer.appendChild(likeCounterSpan);
+  likeBtnContainer.appendChild(counterContainer);
   likeBtnContainer.appendChild(likesBtn);
   postButtonsContainer.appendChild(likeBtnContainer);
   postButtonsContainer.appendChild(editBtn);
@@ -197,11 +235,22 @@ export const muroStructure = (doc) => {
   // doc.data() is never undefined for query doc snapshots
   console.log(doc.id, ' => ', doc.data());
 
-  function likeShowsPostId (doc) {
-    console.log(idPostObject);
-    const likes = postLikes+1;
-    console.log(likes);
+  // function likeShowsPostId (doc) {
+  //   console.log(idPostObject);
+  //   const likes = postLikes+1;
+  //   console.log(likes);
+  // }
+
+  let contador = 0;
+
+  const valor = document.getElementById('valor');
+  const likeBtn = document.getElementById ('likesBtn');
+
+  likeBtn.onclick = function counter() {
+    contador++;
+    valor.innerHTML = contador;
   }
 };
+
 
 
