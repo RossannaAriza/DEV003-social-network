@@ -57,10 +57,6 @@ export const Home = () => {
   email.placeholder = 'Your e-mail adress';
   email.classList.add('e-mail');
   email.setAttribute('id', 'email');
-  const username = document.createElement('input');
-  username.placeholder = 'Username';
-  username.classList.add('username');
-  username.setAttribute('id', 'username');
   const password = document.createElement('input');
   password.type = 'password';
   password.placeholder = 'Password';
@@ -75,7 +71,6 @@ export const Home = () => {
   googleBtnn.setAttribute('id', 'googleButtonn');
 
   mainSignUp.appendChild(email);
-  mainSignUp.appendChild(username);
   mainSignUp.appendChild(password);
   mainSignUp.appendChild(createAccount);
   mainSignUp.appendChild(googleBtnn);

@@ -2,7 +2,6 @@
 import { Home } from './component/home.js';
 import { MainPage } from './component/mainPage.js';
 import { createAccountFunction, loginAccountFunction, loginWithGoogle } from './firebase.js';
-
 const rootDiv = document.getElementById('root');
 
 const routes = {
@@ -26,8 +25,11 @@ rootDiv.appendChild(component());*/
 
 // firebase
 document.getElementById('createAccount')?.addEventListener('click', createAccountFunction);
+document.getElementById('googleButton')?.addEventListener('click', createAccountFunction);
 // document.getElementById('createAccount').addEventListener('click', validateForm);
 
 document.getElementById('LogInAccount')?.addEventListener('click', loginAccountFunction);
+document.getElementById('googleButton')?.addEventListener('click', loginAccountFunction);
 /*const linkForgotPassword = document.getElementById('forgotPassword');
 linkForgotPassword.onclick = passwordResetEmail;*/
+
