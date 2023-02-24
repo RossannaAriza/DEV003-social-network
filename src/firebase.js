@@ -243,3 +243,8 @@ export async function editPost(idDoc, newText) {
 export async function deletePost(idDoc) {
   await deleteDoc(doc(dataBaseFirestore, 'publications', idDoc));
 }
+// función likear posts
+// export async function restrictLikes(uid) {
+//   const postLikes = doc(dataBaseFirestore, 'publications', uid);
+
+// }

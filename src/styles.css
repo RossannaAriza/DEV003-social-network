@@ -200,12 +200,16 @@ input{
     width: 100%;
     height: 45px;
     background: rgba(82, 163, 90, 0.2);
-    border: 1px solid #000000;
     border-radius: 5px;
     font-family:math;
+    
+}
+.postMold{
+    box-shadow: 12px 12px 10px rgb(171, 172, 170);
 }
 .usersPost{
     font-size: 25px;
+    border: 1px solid #ffff;
 }
 .publishPostButton{
     background-image: url(./img/post.png);
@@ -214,14 +218,15 @@ input{
 
 .likeButton{
     background-image: url(./img/newlike.png);
-    background-color: white;
+    background-color: transparent;
     background-size: cover;
     width: 25px;
     height: 25px;
 }
 .publishPostButton{
-    width: 35px;
-    height: 35px;
+    width: 50px;
+    height: 45px;
+    margin-left: 10px;
 }
 .publishPostButton, .likeButton{
     border: none;
@@ -267,7 +272,7 @@ header label:hover{
 }
 .deleteButton, .editButton, #modalEditBtn, #modalDeleteBtn{
     background: rgba(103, 177, 110, 0.65);
-    border: 3px solid #67B16E;
+    border: 1.5px solid #5a8d6d;
     border-radius: 10px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-style: italic;
@@ -277,9 +282,9 @@ header label:hover{
     text-align: center;
     color: #FFFCFC;
     height: 70%;
-    width: 25%;
+    width: 65px;
     margin-top: 5%;
-    margin-right: 10px;
+    margin-right: 6px;
 }
 .postButtonsContainer{
     display: flex;
@@ -288,9 +293,10 @@ header label:hover{
 .postMold{
     width: 860px;
     height: fit-content;
-    padding: 5px;
+    padding: 12px;
     align-self: center;
-    margin: 10px;
+    margin: 18px;
+    border: 2px  solid gray;
 }
 .postTextContent{
     margin: 6px;
@@ -491,14 +497,22 @@ header label:hover{
         width: 36px;
         height: 40px;
     }
+
+    .publishPostButton{
+        margin-left: 10px;
+        width: 50px;
+    }
+
     .deleteButton, .editButton, #modalEditBtn{
-        width: 60px;
+        width: auto;
+        padding: 6px;
         height: 30px;
         font-size: 16px;
 
     }
     .likeButton{
         margin: 6px 10px 10px 10px;
+        background-size: 80%;
     }
 
     .postMold{

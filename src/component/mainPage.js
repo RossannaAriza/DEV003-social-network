@@ -98,6 +98,7 @@ export const muroStructure = (doc) => {
   const postTxt = postObjects.text;
   const postLikes = postObjects.likes;
   const idPostObject = doc.id;
+
   const dateObj = postObjects.dateTime.toDate();
   const postsDate = dateObj.getDate() + '/' +  (dateObj.getMonth() + 1) + '/' + dateObj.getFullYear();
 
@@ -134,6 +135,8 @@ export const muroStructure = (doc) => {
   const likesBtn = document.createElement('button');
   likesBtn.classList.add('likeButton');
   likesBtn.setAttribute('id', 'likesBtn');
+  const editDeletContainer = document.createElement('div');
+  editDeletContainer.classList.add('editDeletContainer');
   const editBtn = document.createElement('button');
   editBtn.classList.add('editButton');
   editBtn.setAttribute('id', 'editButton');
@@ -183,6 +186,7 @@ export const muroStructure = (doc) => {
   deleteBtn.textContent = 'Delete';
   // Estructura modal boton delete
   const modalDeleteText = document.createElement('div');
+  modalDeleteText.classList.add('modalDeleteText');
   modalDeleteText.setAttribute('id', 'divModalDelete');
   const modalDeleteContent = document.createElement('div');
   modalDeleteContent.setAttribute('id', 'divModalDeleteContent');
@@ -201,7 +205,7 @@ export const muroStructure = (doc) => {
   modalDeleteContent.appendChild(detailDelete);
   modalDeleteContent.appendChild(modalDeleteBtn);
 
-  document.getElementById('postsContainer').appendChild(modalDeleteText);
+ postsContainer.appendChild(modalDeleteText);
 
   deleteBtn.addEventListener('click', () => {
     modalDeleteText.style.display = 'block';
@@ -223,8 +227,10 @@ export const muroStructure = (doc) => {
   likeBtnContainer.appendChild(counterContainer);
   likeBtnContainer.appendChild(likesBtn);
   postButtonsContainer.appendChild(likeBtnContainer);
-  postButtonsContainer.appendChild(editBtn);
-  postButtonsContainer.appendChild(deleteBtn);
+  editDeletContainer.appendChild(editBtn);
+  editDeletContainer.appendChild(deleteBtn);
+  postButtonsContainer.appendChild(editDeletContainer);
+  
 
   postMold.appendChild(usernameContainer);
   postMold.appendChild(dateContainer);
@@ -246,11 +252,23 @@ export const muroStructure = (doc) => {
   const valor = document.getElementById('valor');
   const likeBtn = document.getElementById ('likesBtn');
 
-  likeBtn.onclick = function counter() {
+  likeBtn.onclick = function counter(doc) {
+    console.log(idPostObject);
     contador++;
     valor.innerHTML = contador;
   }
+
+  // likeBtn.onclick = function recoverUID(user1) {
+  //   const uid = user1.uid;
+  //   console.log(uid);
+  // }
 };
+
+
+
+// if (user.uid === user.uid) {
+  
+// }
 
 
 
