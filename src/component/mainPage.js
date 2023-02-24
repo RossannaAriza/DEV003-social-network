@@ -259,14 +259,23 @@ export const muroStructure = (doc) => {
 
   likeBtn.onclick = function counter(doc) {
     console.log(idPostObject);
-    contador++;
-    valor.innerHTML = contador;
-  };
+    // contador++;
+    // valor.innerHTML = contador;
 
-  // likeBtn.onclick = function recoverUID(user1) {
-  //   const uid = user1.uid;
-  //   console.log(uid);
-  // }
+    if (uid===uid) {
+      console.log("Son iguales");
+      contador++;
+      valor.innerHTML = contador;
+
+    } else{
+      console.log("Son diferentes");
+      contador--;
+      valor.innerHTML = contador;
+    }
+  };
+  // función likear posts
+
+
 
   /* Restriccion button delete y edit
   if (postUid === userUid) {
