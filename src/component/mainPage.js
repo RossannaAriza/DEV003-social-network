@@ -10,7 +10,8 @@ postsContainer.setAttribute('id', 'postsContainer');
 const handleCreatePost = () => {
   const postContent = document.getElementById('postTextArea');
   const getUsername = localStorage.getItem('username');
-  createPost(getUsername, postContent.value);
+  const uid = localStorage.getItem('uid');
+  createPost(getUsername, postContent.value, uid);
   postContent.value = '';
   // mandar llamar textarea con id
   // guardar en var localStorage.getitem
@@ -95,12 +96,14 @@ export const MainPage = () => {
 export const muroStructure = (doc) => {
   const postObjects = doc.data();
   const postUsername = postObjects.username;
+  const postUid = postObjects.uid;
   const postTxt = postObjects.text;
   const postLikes = postObjects.likes;
   const idPostObject = doc.id;
-
+  const userUid = localStorage.getItem('uid'); // usuario conectado
+  console.log(userUid);
   const dateObj = postObjects.dateTime.toDate();
-  const postsDate = dateObj.getDate() + '/' +  (dateObj.getMonth() + 1) + '/' + dateObj.getFullYear();
+  const postsDate = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${dateObj.getFullYear()}`;
 
   const postMold = document.createElement('div'); // Contenedor del post
   postMold.classList.add('postMold');
@@ -109,6 +112,9 @@ export const muroStructure = (doc) => {
   const username = document.createElement('h4');
   username.classList.add('username');
   username.innerHTML = postUsername;
+  const uid = document.createElement('h4');
+  uid.classList.add('uid');
+  uid.innerHTML = postUid;
   const dateContainer = document.createElement('div');
   dateContainer.classList.add('dateContainer');
   const postDate = document.createElement('h5');
@@ -128,7 +134,7 @@ export const muroStructure = (doc) => {
   postButtonsContainer.classList.add('postButtonsContainer');
   const likeBtnContainer = document.createElement('div');
   likeBtnContainer.classList.add('likeBtnContainer');
-  const counterContainer = document.createElement ('div'); // dentro de likeBtnContainer
+  const counterContainer = document.createElement('div'); // dentro de likeBtnContainer
   counterContainer.classList.add('counterContainer');
   const likeCounterSpan = document.createElement('span'); // detro de counterContainer
   likeCounterSpan.setAttribute('id', 'valor');
@@ -141,7 +147,7 @@ export const muroStructure = (doc) => {
   editBtn.classList.add('editButton');
   editBtn.setAttribute('id', 'editButton');
   editBtn.textContent = 'Edit';
-  //Estructura modal boton edit
+  // Estructura modal boton edit
   const modalEditText = document.createElement('div');
   modalEditText.setAttribute('id', 'divModalEdit');
   const modalEditContent = document.createElement('div');
@@ -205,7 +211,7 @@ export const muroStructure = (doc) => {
   modalDeleteContent.appendChild(detailDelete);
   modalDeleteContent.appendChild(modalDeleteBtn);
 
- postsContainer.appendChild(modalDeleteText);
+  postsContainer.appendChild(modalDeleteText);
 
   deleteBtn.addEventListener('click', () => {
     modalDeleteText.style.display = 'block';
@@ -230,7 +236,6 @@ export const muroStructure = (doc) => {
   editDeletContainer.appendChild(editBtn);
   editDeletContainer.appendChild(deleteBtn);
   postButtonsContainer.appendChild(editDeletContainer);
-  
 
   postMold.appendChild(usernameContainer);
   postMold.appendChild(dateContainer);
@@ -250,25 +255,27 @@ export const muroStructure = (doc) => {
   let contador = 0;
 
   const valor = document.getElementById('valor');
-  const likeBtn = document.getElementById ('likesBtn');
+  const likeBtn = document.getElementById('likesBtn');
 
   likeBtn.onclick = function counter(doc) {
     console.log(idPostObject);
     contador++;
     valor.innerHTML = contador;
-  }
+  };
 
   // likeBtn.onclick = function recoverUID(user1) {
   //   const uid = user1.uid;
   //   console.log(uid);
   // }
+
+  /* Restriccion button delete y edit
+  if (postUid === userUid) {
+    const buttonsAdmin = document.getElementById('postButtonsChanges');
+    buttonsAdmin.style.display = 'block';
+  } else {
+    const buttonsAdmin = document.getElementById('postButtonsChanges');
+    buttonsAdmin.style.display = 'none';
+  } */
 };
 
-
-
-// if (user.uid === user.uid) {
-  
-// }
-
-
-
+//
