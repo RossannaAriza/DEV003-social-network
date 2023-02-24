@@ -264,16 +264,16 @@ export const muroStructure = (doc) => {
 
     if (uid===uid) {
       console.log("Son iguales");
-      contador++;
+      contador--;
       valor.innerHTML = contador;
 
     } else{
       console.log("Son diferentes");
-      contador--;
+      contador++;
       valor.innerHTML = contador;
     }
   };
-  // función likear posts
+  
 
 
 
