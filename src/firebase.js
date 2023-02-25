@@ -2,7 +2,7 @@
 import { initializeApp } from 'firebase/app';
 import {
   getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged,
-  signInWithPopup, GoogleAuthProvider, /* signInWithRedirect, */ sendEmailVerification, /* sendPasswordResetEmail, */
+  signInWithPopup, GoogleAuthProvider, sendEmailVerification,
 } from 'firebase/auth';
 import {
   getDatabase, set, ref, update,
@@ -10,7 +10,6 @@ import {
 import {
   getFirestore, collection, addDoc, getDocs, updateDoc, doc, query, orderBy, deleteDoc,
 } from 'firebase/firestore';
-import { async } from 'regenerator-runtime';
 // eslint-disable-next-line import/no-cycle
 import { onNavigate } from './lib/index';
 import { muroStructure } from './component/mainPage';
@@ -237,4 +236,3 @@ export async function editPost(idDoc, newText) {
 export async function deletePost(idDoc) {
   await deleteDoc(doc(dataBaseFirestore, 'publications', idDoc));
 }
-

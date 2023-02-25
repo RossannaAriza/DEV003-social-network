@@ -1,7 +1,5 @@
 // import { doc } from 'firebase/firestore';
-import {
-  logOut, createPost, editPost, deletePost,
-} from '../firebase';
+import { logOut, createPost, editPost, deletePost } from '../firebase';
 // import { recoverData } from './firebase.js';
 
 const postsContainer = document.createElement('div');
@@ -262,21 +260,16 @@ export const muroStructure = (doc) => {
     // contador++;
     // valor.innerHTML = contador;
 
-    if (uid===uid) {
-      console.log("Son iguales");
+    if (postUid === userUid) {
+      console.log('Son iguales');
       contador--;
       valor.innerHTML = contador;
-
-    } else{
-      console.log("Son diferentes");
+    } else {
+      console.log('Son diferentes');
       contador++;
       valor.innerHTML = contador;
     }
   };
-  
-
-
-
   /* Restriccion button delete y edit
   if (postUid === userUid) {
     const buttonsAdmin = document.getElementById('postButtonsChanges');
@@ -286,5 +279,3 @@ export const muroStructure = (doc) => {
     buttonsAdmin.style.display = 'none';
   } */
 };
-
-//
