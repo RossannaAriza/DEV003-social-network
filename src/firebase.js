@@ -185,7 +185,6 @@ export async function recoverData() {
   });
 }
 recoverData();
-
 // funcion editar texto publicacion
 export async function editPost(idDoc, newText) {
   const docRef = doc(dataBaseFirestore, 'publications', idDoc);
@@ -197,12 +196,14 @@ export async function editPost(idDoc, newText) {
 export async function deletePost(idDoc) {
   await deleteDoc(doc(dataBaseFirestore, 'publications', idDoc));
 }
+// Funcion botones de menu de navegacion
 export const passProfile = () => {
   onNavigate('/profile');
 };
 export const backMenu = () => {
   onNavigate('/mainPage');
 };
+// Funcion mostrar post en profile
 async function recoverDataProfile() {
   const userUid = localStorage.getItem('uid');
   const querySnapshot = await getDocs(query(collection(dataBaseFirestore, 'publications'), where('uid', '==', userUid)));
@@ -211,7 +212,7 @@ async function recoverDataProfile() {
   });
 }
 recoverDataProfile();
-
+// Funcion para el buscador
 export async function recoverDataSearch() {
   const nameSearch = document.getElementById('inputSearchProfile').value;
   const querySnapshot = await getDocs(query(collection(dataBaseFirestore, 'publications'), where('username', '==', nameSearch), orderBy("username")));
@@ -220,9 +221,10 @@ export async function recoverDataSearch() {
     muroStructureProfile(doc);
   });
 }
-
-// función likear posts
-// export async function restrictLikes(uid) {
-//   const postLikes = doc(dataBaseFirestore, 'publications', uid);
-
-// }
+// función likear post
+export async function changeLikes(idDoc, newLike) {
+  const docRef = doc(dataBaseFirestore, 'publications', idDoc);
+  await updateDoc(docRef, {
+    likes: newLike,
+  });
+}
