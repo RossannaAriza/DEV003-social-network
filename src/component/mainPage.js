@@ -1,6 +1,5 @@
 // import { doc } from 'firebase/firestore';
 import { logOut, createPost, editPost, deletePost } from '../firebase';
-// import { recoverData } from './firebase.js';
 
 const postsContainer = document.createElement('div');
 postsContainer.classList.add('postsContainer');
