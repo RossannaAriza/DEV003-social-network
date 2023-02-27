@@ -1,5 +1,5 @@
 // import { doc } from 'firebase/firestore';
-import { logOut, createPost, passProfile, recoverDataSearch } from '../firebase';
+import { logOut, createPost, passProfile, recoverDataSearch, changeLikes } from '../firebase';
 // import { recoverData } from './firebase.js';
 
 const postsContainer = document.createElement('div');
@@ -161,38 +161,22 @@ export const muroStructure = (doc) => {
   // doc.data() is never undefined for query doc snapshots
   console.log(doc.id, ' => ', doc.data());
 
-  // function likeShowsPostId (doc) {
-  //   console.log(idPostObject);
-  //   const likes = postLikes+1;
-  //   console.log(likes);
-  // }
+  // Function dar like
 
-  let contador = 0;
+  likesBtn.onclick = function counter(doc) {
+    const newPostLikes = postLikes+1;
+    changeLikes(idPostObject, newPostLikes);
 
-  const valor = document.getElementById('valor');
-  const likeBtn = document.getElementById('likesBtn');
-
-  likeBtn.onclick = function counter(doc) {
-    console.log(idPostObject);
-    // contador++;
-    // valor.innerHTML = contador;
-
-    if (postUid === userUid) {
+    /*if (postUid === userUid) {
       console.log('Son iguales');
       contador--;
       valor.innerHTML = contador;
     } else {
       console.log('Son diferentes');
-      contador++;
+      postLikes++;
       valor.innerHTML = contador;
-    }
+    }*/
+
+    
   };
-  /* Restriccion button delete y edit
-  if (postUid === userUid) {
-    const buttonsAdmin = document.getElementById('postButtonsChanges');
-    buttonsAdmin.style.display = 'block';
-  } else {
-    const buttonsAdmin = document.getElementById('postButtonsChanges');
-    buttonsAdmin.style.display = 'none';
-  } */
 };
