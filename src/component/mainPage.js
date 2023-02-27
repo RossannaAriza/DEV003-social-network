@@ -1,5 +1,5 @@
 // import { doc } from 'firebase/firestore';
-import { logOut, createPost, editPost, deletePost } from '../firebase';
+import { logOut, createPost, passProfile, recoverDataSearch } from '../firebase';
 // import { recoverData } from './firebase.js';
 
 const postsContainer = document.createElement('div');
@@ -25,11 +25,14 @@ export const MainPage = () => {
   // Todo esto dentro de headerPrincipalPage
   const inputSearchProfile = document.createElement('input');
   inputSearchProfile.classList.add('inputSearchProfile');
+  inputSearchProfile.setAttribute('id', 'inputSearchProfile');
   inputSearchProfile.placeholder = 'Search User';
   const searchButton = document.createElement('button');
   searchButton.classList.add('searchButton');
+  searchButton.addEventListener('click', recoverDataSearch);
   const profileButton = document.createElement('button');
   profileButton.classList.add('profileButton');
+  profileButton.onclick = passProfile;
   const LineLogOut = document.createElement('li');
   LineLogOut.classList.add('logOutContainer');
   const logOutButton = document.createElement('button');
@@ -139,89 +142,6 @@ export const muroStructure = (doc) => {
   const likesBtn = document.createElement('button');
   likesBtn.classList.add('likeButton');
   likesBtn.setAttribute('id', 'likesBtn');
-  const editDeletContainer = document.createElement('div');
-  editDeletContainer.classList.add('editDeletContainer');
-  const editBtn = document.createElement('button');
-  editBtn.classList.add('editButton');
-  editBtn.setAttribute('id', 'editButton');
-  editBtn.textContent = 'Edit';
-  // Estructura modal boton edit
-  const modalEditText = document.createElement('div');
-  modalEditText.setAttribute('id', 'divModalEdit');
-  const modalEditContent = document.createElement('div');
-  modalEditContent.setAttribute('id', 'divModalEditContent');
-  const closeModal = document.createElement('span');
-  closeModal.setAttribute('id', 'spanCloseModal');
-  closeModal.textContent = 'X';
-  const detail = document.createElement('h2');
-  detail.setAttribute('id', 'h2Detail');
-  detail.textContent = 'Edit the recipe';
-  const newPost = document.createElement('textarea');
-  newPost.classList.add('usersPost');
-  newPost.setAttribute('id', 'newPostTextArea');
-  newPost.setAttribute('rows', '8');
-  newPost.setAttribute('cols', '50');
-  newPost.placeholder = postTxt;
-  const modalEditBtn = document.createElement('button');
-  modalEditBtn.setAttribute('id', 'modalEditBtn');
-  modalEditBtn.textContent = 'Edit';
-
-  modalEditText.appendChild(modalEditContent);
-  modalEditContent.appendChild(closeModal);
-  modalEditContent.appendChild(detail);
-  modalEditContent.appendChild(newPost);
-  modalEditContent.appendChild(modalEditBtn);
-
-  postsContainer.appendChild(modalEditText);
-
-  editBtn.addEventListener('click', () => {
-    modalEditText.style.display = 'block';
-  });
-  closeModal.addEventListener('click', () => {
-    modalEditText.style.display = 'none';
-  });
-  modalEditBtn.addEventListener('click', () => {
-    editPost(idPostObject, newPost.value);
-    modalEditText.style.display = 'none';
-  });
-  //
-  const deleteBtn = document.createElement('button');
-  deleteBtn.classList.add('deleteButton');
-  deleteBtn.textContent = 'Delete';
-  // Estructura modal boton delete
-  const modalDeleteText = document.createElement('div');
-  modalDeleteText.classList.add('modalDeleteText');
-  modalDeleteText.setAttribute('id', 'divModalDelete');
-  const modalDeleteContent = document.createElement('div');
-  modalDeleteContent.setAttribute('id', 'divModalDeleteContent');
-  const closeModalDelete = document.createElement('span');
-  closeModalDelete.setAttribute('id', 'spanCloseModalDelete');
-  closeModalDelete.textContent = 'X';
-  const detailDelete = document.createElement('h2');
-  detailDelete.setAttribute('id', 'h2DetailDelete');
-  detailDelete.textContent = 'Are you sure delete recipe?';
-  const modalDeleteBtn = document.createElement('button');
-  modalDeleteBtn.setAttribute('id', 'modalDeleteBtn');
-  modalDeleteBtn.textContent = 'Sure';
-
-  modalDeleteText.appendChild(modalDeleteContent);
-  modalDeleteContent.appendChild(closeModalDelete);
-  modalDeleteContent.appendChild(detailDelete);
-  modalDeleteContent.appendChild(modalDeleteBtn);
-
-  postsContainer.appendChild(modalDeleteText);
-
-  deleteBtn.addEventListener('click', () => {
-    modalDeleteText.style.display = 'block';
-  });
-  closeModalDelete.addEventListener('click', () => {
-    modalDeleteText.style.display = 'none';
-  });
-  modalDeleteBtn.addEventListener('click', () => {
-    deletePost(idPostObject);
-    modalDeleteText.style.display = 'none';
-  });
-  //
 
   usernameContainer.appendChild(username);
   dateContainer.appendChild(postDate);
@@ -231,9 +151,6 @@ export const muroStructure = (doc) => {
   likeBtnContainer.appendChild(counterContainer);
   likeBtnContainer.appendChild(likesBtn);
   postButtonsContainer.appendChild(likeBtnContainer);
-  editDeletContainer.appendChild(editBtn);
-  editDeletContainer.appendChild(deleteBtn);
-  postButtonsContainer.appendChild(editDeletContainer);
 
   postMold.appendChild(usernameContainer);
   postMold.appendChild(dateContainer);

@@ -2,20 +2,19 @@
 import { initializeApp } from 'firebase/app';
 import {
   getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged,
-  signInWithPopup, GoogleAuthProvider, sendEmailVerification,
+  signInWithPopup, GoogleAuthProvider, /* signInWithRedirect, */ sendEmailVerification, /* sendPasswordResetEmail, */
 } from 'firebase/auth';
 import {
   getDatabase, set, ref, update,
 } from 'firebase/database';
 import {
-  getFirestore, collection, addDoc, getDocs, updateDoc, doc, query, orderBy, deleteDoc,
+  where, getFirestore, collection, addDoc, getDocs, updateDoc, doc, query, orderBy, deleteDoc,
 } from 'firebase/firestore';
+import { async } from 'regenerator-runtime';
 // eslint-disable-next-line import/no-cycle
 import { onNavigate } from './lib/index';
 import { muroStructure } from './component/mainPage';
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { muroStructureProfile } from './component/profile';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -32,7 +31,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth();
-const dataBaseFirestore = getFirestore();
 //  const analytics = getAnalytics(app);
 // Initialize Cloud Firestore and get a reference to the service
 const dataBaseFirestore = getFirestore();
@@ -58,35 +56,23 @@ export function createAccountFunction() {
     });
     alert('user created');
 
-    const gettingemail = document.getElementById('email').value;
-    const separatingEmail = gettingemail.split('@');
-    console.log(separatingEmail);
-    const settingUsername = separatingEmail[0];
-    console.log(settingUsername);
+    const settingUsername = document.getElementById('email').value.split('@')[0];
     localStorage.setItem('username', settingUsername);
-
     onNavigate('/mainPage');
     emailVerification();
     onAuthStateChanged(auth, (user1) => {
       if (user1) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
         const uid = user1.uid;
         localStorage.setItem('uid', uid);
-        // ...
       } else {
         // User is signed out
-        // ...
       }
     });
-    // ..
-  })
-    .catch((error) => {
-      // const errorCode = error.code;
-      const errorMessage = error.message;
-
-      alert('Something went wrong with your e-mail or password');
-    });
+  }).catch((error) => {
+    // const errorCode = error.code;
+    const errorMessage = error.message;
+    alert('Something went wrong with your e-mail or password');
+  });
 }
 // ingreso a interfaz
 export function loginAccountFunction() {
@@ -95,38 +81,25 @@ export function loginAccountFunction() {
   return signInWithEmailAndPassword(auth, EmailLogin, PasswordLogin).then((userCredential) => {
     // Signed in
     const user = userCredential.user;
-
     const dt = new Date();
     update(ref(database, `users/${user.uid}`), {
       last_login: dt,
     });
-    //
-    const gettingemail = document.getElementById('EmailLogin').value;
-    const separatingEmail = gettingemail.split('@');
-    console.log(separatingEmail);
-    const settingUsername = separatingEmail[0];
-    console.log(settingUsername);
+    const settingUsername = document.getElementById('EmailLogin').value.split('@')[0];
     localStorage.setItem('username', settingUsername);
-
     alert('User loged in!');
     onNavigate('/mainPage');
     onAuthStateChanged(auth, (user1) => {
       if (user1) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
         const uid = user1.uid;
         localStorage.setItem('uid', uid);
-        // ...
       } else {
         // User is signed out
-        // ...
       }
     });
-    // ...
   }).catch((error) => {
     // const errorCode = error.code;
     const errorMessage = error.message;
-
     alert(errorMessage);
   });
 }
@@ -134,26 +107,17 @@ export function loginAccountFunction() {
 export function loginWithGoogle() {
   const provider = new GoogleAuthProvider();
   return signInWithPopup(auth, provider).then((result) => {
-    const user = result.user.email;
-    const separatingEmail = user.split('@');
-    console.log(separatingEmail);
-    const settingUsername = separatingEmail[0];
-    console.log(settingUsername);
+    const settingUsername = result.user.email.split('@')[0];
     localStorage.setItem('username', settingUsername);
-
     onNavigate('/mainPage');
     console.log('Usuario se loggeo correctamente');
     console.log(result);
     onAuthStateChanged(auth, (user1) => {
       if (user1) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
         const uid = user1.uid;
         localStorage.setItem('uid', uid);
-        // ...
       } else {
         // User is signed out
-        // ...
       }
     });
 
@@ -173,17 +137,13 @@ export function loginWithGoogle() {
 // cerrar session
 export function logOut() {
   return signOut(auth).then(() => {
-    // Sign-out successful.
     alert('You are loggin out');
     // Modificar para que username sea el correo del usuario
     localStorage.removeItem('username');
-
     onNavigate('/');
   }).catch((error) => {
-    // An error happened.
     const errorCode = error.code;
     const errorMessage = error.message;
-
     alert(errorMessage);
   });
 }
@@ -237,3 +197,32 @@ export async function editPost(idDoc, newText) {
 export async function deletePost(idDoc) {
   await deleteDoc(doc(dataBaseFirestore, 'publications', idDoc));
 }
+export const passProfile = () => {
+  onNavigate('/profile');
+};
+export const backMenu = () => {
+  onNavigate('/mainPage');
+};
+async function recoverDataProfile() {
+  const userUid = localStorage.getItem('uid');
+  const querySnapshot = await getDocs(query(collection(dataBaseFirestore, 'publications'), where('uid', '==', userUid)));
+  querySnapshot.forEach((doc) => {
+    muroStructureProfile(doc);
+  });
+}
+recoverDataProfile();
+
+export async function recoverDataSearch() {
+  const nameSearch = document.getElementById('inputSearchProfile').value;
+  const querySnapshot = await getDocs(query(collection(dataBaseFirestore, 'publications'), where('username', '==', nameSearch), orderBy("username")));
+  document.getElementById('postsContainer').innerHTML = '';
+  querySnapshot.forEach((doc) => {
+    muroStructureProfile(doc);
+  });
+}
+
+// función likear posts
+// export async function restrictLikes(uid) {
+//   const postLikes = doc(dataBaseFirestore, 'publications', uid);
+
+// }

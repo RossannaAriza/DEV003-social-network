@@ -1,12 +1,14 @@
 // Este es el punto de entrada de tu aplicacion
 import { Home } from './component/home.js';
 import { MainPage } from './component/mainPage.js';
+import { profile } from './component/profile';
 import { createAccountFunction, loginAccountFunction, loginWithGoogle } from './firebase.js';
 const rootDiv = document.getElementById('root');
 
 const routes = {
   '/': Home,
   '/mainPage': MainPage,
+  '/profile': profile,
 };
 
 const component = routes[window.location.pathname];
@@ -32,4 +34,3 @@ document.getElementById('LogInAccount')?.addEventListener('click', loginAccountF
 document.getElementById('googleButton')?.addEventListener('click', loginAccountFunction);
 /*const linkForgotPassword = document.getElementById('forgotPassword');
 linkForgotPassword.onclick = passwordResetEmail;*/
-
