@@ -124,7 +124,7 @@ input{
 }
 /* Estilos mainPage */
 /* menu de navegacion */
-.headerPrincipalPage{
+.headerPrincipalPage, .headerPrincPageProfile{
     width: 100%; /*ocupar el ancho de la pagina*/
     background: rgba(119, 186, 125, 0.8);
 }
@@ -150,7 +150,7 @@ input{
     display: block;
     text-decoration: none;
 }
-.searchButton, .profileButton, .logOutButton{
+.searchButton, .profileButton, .logOutButton, .logOutButton2, .backButton{
     width: 50px;
     height: 40px;
     background-position: center center;
@@ -160,36 +160,38 @@ input{
     display: block;
     text-decoration: none;
 }
-.searchButton:hover, .profileButton:hover, .likeButton:hover, .publishPostButton:hover{
+.searchButton:hover, .profileButton:hover, .likeButton:hover, .publishPostButton:hover, .backButton:hover, .logOutButton:hover, .logOutButton2:hover{
     background-color: rgba(140, 188, 142, 0.73);
 }
-.logOutContainer{
+.logOutContainer, .logOutContainer2{
     display: flex;
     max-height: 55px;
 }
 /* .logOutContainer:hover{
     background-color: rgba(14, 169, 19, 0.73);
 } */
-.logOutButton:hover{
-    background-color: rgba(14, 169, 19, 0.73);
-}
 .searchButton{
-    background-image: url(./img/search.png);
+    background-image: url(./img/newSearch.png);
     background-color: white;
     margin: 10px 0px 0px 0px;
 }
 .profileButton{
-    background-image: url(./img/profile.png);
+    background-image: url(./img/newProfile.png);
     border-radius:0px 10px 10px 0px;
     margin: 10px 10px 0px -1px;  
 }
-.logOutButton{
-    background-image: url(./img/out.png);
+.backButton{
+    background-image: url(./img/newBack.png);
+    border-radius:10px 10px 10px 10px;
+    margin: 10px 10px 0px -1px;   
+}
+.logOutButton, .logOutButton2{
+    background-image: url(./img/newLogout.png);
     border: none;
     background-color: transparent;
     margin: 10px 10px 10px 5px;
 }
-.postMain{
+.postMain, .perfilMain{
     margin-top: 30px;
     display: flex;
     flex-direction: column;
@@ -204,6 +206,9 @@ input{
     font-family:math;
     
 }
+.usersPost{
+    font-size: 25px;
+}
 .postMold{
     box-shadow: 12px 12px 10px rgb(171, 172, 170);
 }
@@ -215,7 +220,6 @@ input{
     background-image: url(./img/post.png);
     background-color: #c9fbc070;
 }
-
 .likeButton{
     background-image: url(./img/newlike.png);
     background-color: transparent;
@@ -234,6 +238,12 @@ input{
     background-size:cover;
     background-repeat: no-repeat;
 }
+.infProfile{
+    margin: 5%;
+}
+.imageProfileMuro{
+    background-image: url(./img/profileMuro.png);
+}
 
 footer{
     position: absolute;
@@ -245,10 +255,10 @@ footer{
     left: 25%;
 }
 /*cambios menu hamburguesa */
-#check{
+#check, #check2{
     display: none; /*ocultar input check*/
 }
-#menuImg{
+#menuImg, #menuImg2{
     width: 5%;
     display: none;
 }
@@ -260,7 +270,7 @@ header label:hover{
     background-color: rgba(82, 163, 90, 0.2);
 }
 /*menu - letras - diseño de la lista*/
-.menuNav ul{
+.menuNav ul, .menuNav2 ul{
     margin: 0;
     list-style: none;
     padding: 0;
@@ -295,16 +305,15 @@ header label:hover{
     font-weight: 500;
     font-size: 120%;
     line-height: 100%;
-    text-align: center;
     color: #FFFCFC;
     height: 70%;
-    width: 65px;
+    width: 15%;
     margin-top: 5%;
     margin-right: 6px;
 }
 .postButtonsContainer{
     display: flex;
-    justify-content: space-between;
+    justify-content:flex-start;
 }
 .postMold{
     width: 860px;
@@ -375,6 +384,9 @@ header label:hover{
     font-size: 26px;
     font-weight: bold;
     padding-bottom: 20px;
+}
+.editDeletContainer{
+    display: none;
 }
 /*tablet*/
 @media (max-width: 916px){
@@ -459,7 +471,7 @@ header label:hover{
     .inputSearchProfile{
         height: 40px;
     }
-    .searchButton, .profileButton, .logOutButton{
+    .searchButton, .profileButton, .logOutButton, .logOutButton2, .backButton{
         border-radius: 5px;
         width: 40px;
         height: 40px;
@@ -471,7 +483,7 @@ header label:hover{
     .profileButton{
         margin: 9px 5px 0px -1px;
     }
-    .logOutButton{
+    .logOutButton, .logOutButton2{
         margin: 12px 0px 0px 0px;
     }
     .publishPostButton, .likeButton{
@@ -482,14 +494,14 @@ header label:hover{
         background-size:cover;
         background-repeat: no-repeat;
     }
-    #menuImg{
+    #menuImg, #menuImg2{
         width: 20%;
         display: block;
     }
-    div.headerPrincipalPage label{ 
+    div.headerPrincipalPage label, div.headerPrincPageProfile label{ 
         display: block; 
     }
-    .menuNav{  /*menu de opciones*/
+    .menuNav, .menuNav2{  /*menu de opciones*/
         position: absolute;
         background-color: rgba(119, 186, 125, 0.8);
         width: 40%;
@@ -497,7 +509,7 @@ header label:hover{
         margin-left: -75%;
         transition: all 0.5s;
     }
-    .menuNav ul{ 
+    .menuNav ul, .menuNav2 ul{ 
         flex-direction: column;
         padding-left: 1em;
     }
@@ -507,6 +519,9 @@ header label:hover{
         width:95%;
     }
     #check:checked ~ .menuNav{ 
+        margin: 0; 
+    }
+    #check2:checked ~ .menuNav2{ 
         margin: 0; 
     }
     .publishPostButton, .likeButton{
@@ -523,6 +538,7 @@ header label:hover{
         width: auto;
         padding: 6px;
         height: 30px;
+        width: 50%;
         font-size: 16px;
 
     }
