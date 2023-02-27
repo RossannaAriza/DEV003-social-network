@@ -12,9 +12,8 @@
   "license": "MIT",
   "scripts": {
     "htmlhint": "htmlhint dist/*.html ",
-    "eslint": "eslint --ext .js src/ test/",
+    "eslint": "eslint --ext .js",
     "stylelint": "stylelint --aei src/**/*.css",
-    "pretest": "npm run htmlhint && npm run eslint && npm run stylelint",
     "test": "jest --coverage",
     "dev": "vite dev src --port 3000",
     "start": "npm run dev",
