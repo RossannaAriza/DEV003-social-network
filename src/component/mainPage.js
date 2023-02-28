@@ -1,5 +1,5 @@
 // import { doc } from 'firebase/firestore';
-import { logOut, createPost, passProfile, recoverDataSearch, changeLikes } from '../firebase';
+import { logOut, createPost, passProfile, recoverDataSearch, changeLikes/*, addUidLikes*/ } from '../firebase';
 // import { recoverData } from './firebase.js';
 
 const postsContainer = document.createElement('div');
@@ -166,7 +166,7 @@ export const muroStructure = (doc) => {
   likesBtn.onclick = function counter(doc) {
     const newPostLikes = postLikes+1;
     changeLikes(idPostObject, newPostLikes);
-
+   // addUidLikes(idPostObject, postUid);
     /*if (postUid === userUid) {
       console.log('Son iguales');
       contador--;
