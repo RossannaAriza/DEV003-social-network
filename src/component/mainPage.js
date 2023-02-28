@@ -1,5 +1,5 @@
 // import { doc } from 'firebase/firestore';
-import { logOut, createPost, passProfile, recoverDataSearch, changeLikes, addUidLikes } from '../firebase';
+import { logOut, createPost, passProfile, recoverDataSearch, changeLikes, addUidLikes, removeUidLikes } from '../firebase';
 // import { recoverData } from './firebase.js';
 
 const postsContainer = document.createElement('div');
@@ -165,18 +165,18 @@ export const muroStructure = (doc) => {
   // Function dar like
 
   likesBtn.onclick = function counter(doc) {
-    const newPostLikes = postLikes+1;
-    changeLikes(idPostObject, newPostLikes);
-    addUidLikes(idPostObject, userUid);
-    /*if (usersUidPost === userUid) {
+    usersUidPost.forEach(element => {
+    if (element === userUid) {
       console.log('Son iguales');
-      const newPostLikes = postLikes--;
+      const newPostLikes = postLikes-1;
       changeLikes(idPostObject, newPostLikes);
+      removeUidLikes(idPostObject, userUid)
     } else {
       console.log('Son diferentes');
       const newPostLikes = postLikes+1;
       changeLikes(idPostObject, newPostLikes);
       addUidLikes(idPostObject, userUid);
-    }*/ 
+    }
+  })
   };
 };

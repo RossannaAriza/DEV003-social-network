@@ -1,14 +1,14 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import {
-  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged,
+  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, 
   signInWithPopup, GoogleAuthProvider, /* signInWithRedirect, */ sendEmailVerification, /* sendPasswordResetEmail, */
 } from 'firebase/auth';
 import {
   getDatabase, set, ref, update,
 } from 'firebase/database';
 import {
-  where, getFirestore, collection, addDoc, getDocs, updateDoc, doc, query, orderBy, deleteDoc, arrayUnion,
+  where, getFirestore, collection, addDoc, getDocs, updateDoc, doc, query, orderBy, deleteDoc, arrayUnion, arrayRemove,
 } from 'firebase/firestore';
 import { async } from 'regenerator-runtime';
 // eslint-disable-next-line import/no-cycle
@@ -204,7 +204,7 @@ export const passProfile = () => {
 export const backMenu = () => {
   onNavigate('/mainPage');
 };
-// Funcion mostrar post en profile
+// Funcion mostrar post en profile filtrados
 async function recoverDataProfile() {
   const userUid = localStorage.getItem('uid');
   const querySnapshot = await getDocs(query(collection(dataBaseFirestore, 'publications'), where('uid', '==', userUid)));
@@ -216,22 +216,29 @@ recoverDataProfile();
 // Funcion para el buscador
 export async function recoverDataSearch() {
   const nameSearch = document.getElementById('inputSearchProfile').value;
-  const querySnapshot = await getDocs(query(collection(dataBaseFirestore, 'publications'), where('username', '==', nameSearch), orderBy("username")));
+  const querySnapshot = await getDocs(query(collection(dataBaseFirestore, 'publications'), where('username', '==', nameSearch)));
   document.getElementById('postsContainer').innerHTML = '';
   querySnapshot.forEach((doc) => {
-    muroStructureProfile(doc);
+    muroStructure(doc);
   });
 }
-// función likear post
+// función agregar likes en firestore
 export async function changeLikes(idDoc, newLike) {
   const docRef = doc(dataBaseFirestore, 'publications', idDoc);
   await updateDoc(docRef, {
     likes: newLike,
   });
 }
-export async function addUidLikes(idDoc, newUidLike) {
+// función agregar usuarios que dan likes en firestore
+export async function addUidLikes(idDoc, newUidLike, newLike) {
   const docRef = doc(dataBaseFirestore, 'publications', idDoc);
   await updateDoc(docRef, {
-    uidLikes: arrayUnion(newUidLike)
+    uidLikes: arrayUnion(newUidLike), likes: newLike,
+  });
+}
+export async function removeUidLikes(idDoc, newUidLike, newLike) {
+  const docRef = doc(dataBaseFirestore, 'publications', idDoc);
+  await updateDoc(docRef, {
+    uidLikes: arrayRemove(newUidLike), likes: newLike,
   });
 }
