@@ -1,5 +1,5 @@
 // import { doc } from 'firebase/firestore';
-import { logOut, createPost, passProfile, recoverDataSearch, changeLikes } from '../firebase';
+import { logOut, createPost, passProfile, recoverDataSearch, changeLikes, addUidLikes } from '../firebase';
 // import { recoverData } from './firebase.js';
 
 const postsContainer = document.createElement('div');
@@ -9,7 +9,8 @@ const handleCreatePost = () => {
   const postContent = document.getElementById('postTextArea');
   const getUsername = localStorage.getItem('username');
   const uid = localStorage.getItem('uid');
-  createPost(getUsername, postContent.value, uid);
+  const uidLike = [];
+  createPost(getUsername, postContent.value, uid, uidLike);
   postContent.value = '';
   // mandar llamar textarea con id
   // guardar en var localStorage.getitem
@@ -102,7 +103,7 @@ export const muroStructure = (doc) => {
   const postLikes = postObjects.likes;
   const idPostObject = doc.id;
   const userUid = localStorage.getItem('uid'); // usuario conectado
-  console.log(userUid);
+  const usersUidPost = postObjects.uidLikes;
   const dateObj = postObjects.dateTime.toDate();
   const postsDate = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${dateObj.getFullYear()}`;
 
@@ -166,17 +167,16 @@ export const muroStructure = (doc) => {
   likesBtn.onclick = function counter(doc) {
     const newPostLikes = postLikes+1;
     changeLikes(idPostObject, newPostLikes);
-
-    /*if (postUid === userUid) {
+    addUidLikes(idPostObject, userUid);
+    /*if (usersUidPost === userUid) {
       console.log('Son iguales');
-      contador--;
-      valor.innerHTML = contador;
+      const newPostLikes = postLikes--;
+      changeLikes(idPostObject, newPostLikes);
     } else {
       console.log('Son diferentes');
-      postLikes++;
-      valor.innerHTML = contador;
-    }*/
-
-    
+      const newPostLikes = postLikes+1;
+      changeLikes(idPostObject, newPostLikes);
+      addUidLikes(idPostObject, userUid);
+    }*/ 
   };
 };

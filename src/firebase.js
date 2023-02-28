@@ -8,7 +8,7 @@ import {
   getDatabase, set, ref, update,
 } from 'firebase/database';
 import {
-  where, getFirestore, collection, addDoc, getDocs, updateDoc, doc, query, orderBy, deleteDoc,
+  where, getFirestore, collection, addDoc, getDocs, updateDoc, doc, query, orderBy, deleteDoc, arrayUnion,
 } from 'firebase/firestore';
 import { async } from 'regenerator-runtime';
 // eslint-disable-next-line import/no-cycle
@@ -163,13 +163,14 @@ export function passwordResetEmail() {
 } */
 // funcion agregar datos en firestore
 const publicationsAll = collection(dataBaseFirestore, 'publications');
-export async function createPost(username, text, uid) {
+export async function createPost(username, text, uid, uidLikes) {
   const postData = {
     dateTime: new Date(),
     likes: 0,
     username, // cuando key y value tengan el mismo valor puedes poner el nombre y ,
     text,
     uid,
+    uidLikes,
   };
   await addDoc(publicationsAll, postData);
   console.log('This value has been written to the database');
@@ -226,5 +227,11 @@ export async function changeLikes(idDoc, newLike) {
   const docRef = doc(dataBaseFirestore, 'publications', idDoc);
   await updateDoc(docRef, {
     likes: newLike,
+  });
+}
+export async function addUidLikes(idDoc, newUidLike) {
+  const docRef = doc(dataBaseFirestore, 'publications', idDoc);
+  await updateDoc(docRef, {
+    uidLikes: arrayUnion(newUidLike)
   });
 }
