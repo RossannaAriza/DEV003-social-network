@@ -15,7 +15,6 @@ import { async } from 'regenerator-runtime';
 import { onNavigate } from './lib/index';
 import { muroStructure } from './component/mainPage';
 import { muroStructureProfile } from './component/profile';
-import { array } from 'yargs';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
