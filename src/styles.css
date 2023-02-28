@@ -150,7 +150,7 @@ input{
     display: block;
     text-decoration: none;
 }
-.searchButton, .profileButton, .logOutButton, .logOutButton2, .backButton{
+.searchButton, .profileButton, .logOutButton, .logOutButton2, .backButton, .updateButton{
     width: 50px;
     height: 40px;
     background-position: center center;
@@ -160,7 +160,7 @@ input{
     display: block;
     text-decoration: none;
 }
-.searchButton:hover, .profileButton:hover, .likeButton:hover, .publishPostButton:hover, .backButton:hover, .logOutButton:hover, .logOutButton2:hover{
+.searchButton:hover, .profileButton:hover, .likeButton:hover, .publishPostButton:hover, .backButton:hover, .logOutButton:hover, .logOutButton2:hover, .updateButton:hover{
     background-color: rgba(140, 188, 142, 0.73);
 }
 .logOutContainer, .logOutContainer2{
@@ -179,6 +179,10 @@ input{
     background-image: url(./img/newProfile.png);
     border-radius:0px 10px 10px 0px;
     margin: 10px 10px 0px -1px;  
+}
+.updateButton{
+    background-image: url(./img/newProfile.png);
+    margin: 10px 10px 0px -1px; 
 }
 .backButton{
     background-image: url(./img/newBack.png);
@@ -420,7 +424,7 @@ header label:hover{
         height: 80px;
     }
     
-    .searchButton, .profileButton{
+    .searchButton, .profileButton, .updateButton{
         width: 50px;
         height: 40px;
         background-position: center;
@@ -471,7 +475,7 @@ header label:hover{
     .inputSearchProfile{
         height: 40px;
     }
-    .searchButton, .profileButton, .logOutButton, .logOutButton2, .backButton{
+    .searchButton, .profileButton, .logOutButton, .logOutButton2, .backButton, .updateButton{
         border-radius: 5px;
         width: 40px;
         height: 40px;

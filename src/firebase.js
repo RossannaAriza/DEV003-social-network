@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import {
-  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, 
+  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged,
   signInWithPopup, GoogleAuthProvider, /* signInWithRedirect, */ sendEmailVerification, /* sendPasswordResetEmail, */
 } from 'firebase/auth';
 import {
@@ -166,7 +166,7 @@ const publicationsAll = collection(dataBaseFirestore, 'publications');
 export async function createPost(username, text, uid, uidLikes) {
   const postData = {
     dateTime: new Date(),
-    likes: 0,
+    likes: [],
     username, // cuando key y value tengan el mismo valor puedes poner el nombre y ,
     text,
     uid,
@@ -230,15 +230,15 @@ export async function changeLikes(idDoc, newLike) {
   });
 }
 // función agregar usuarios que dan likes en firestore
-export async function addUidLikes(idDoc, newUidLike, newLike) {
+export async function addUidLikes(idDoc, newUidLike) {
   const docRef = doc(dataBaseFirestore, 'publications', idDoc);
   await updateDoc(docRef, {
-    uidLikes: arrayUnion(newUidLike), likes: newLike,
+    uidLikes: arrayUnion(newUidLike),
   });
 }
-export async function removeUidLikes(idDoc, newUidLike, newLike) {
+export async function removeUidLikes(idDoc, newUidLike) {
   const docRef = doc(dataBaseFirestore, 'publications', idDoc);
   await updateDoc(docRef, {
-    uidLikes: arrayRemove(newUidLike), likes: newLike,
+    uidLikes: arrayRemove(newUidLike)
   });
 }

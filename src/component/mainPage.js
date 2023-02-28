@@ -170,7 +170,7 @@ export const muroStructure = (doc) => {
       console.log('Son iguales');
       const newPostLikes = postLikes-1;
       changeLikes(idPostObject, newPostLikes);
-      removeUidLikes(idPostObject, userUid)
+      removeUidLikes(idPostObject, userUid);
     } else {
       console.log('Son diferentes');
       const newPostLikes = postLikes+1;
