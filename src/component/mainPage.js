@@ -90,7 +90,6 @@ export const MainPage = () => {
   publishPostBtnContainer.appendChild(publish);
   postMain.appendChild(publishPostBtnContainer);
   postMain.appendChild(postsContainer);
-
   principalPage.appendChild(postMain);
   return principalPage;
 };
@@ -166,7 +165,7 @@ export const muroStructure = (doc) => {
   likesBtn.onclick = function likeCounter(doc) {
     if (usersUidPost.includes(userUid)) {
         const index = usersUidPost.indexOf(userUid);
-        usersUidPost.splice(index, 1); 
+        usersUidPost.splice(index, 1);
         const likesLength = usersUidPost.length;
         console.log(likesLength);
         console.log(usersUidPost);
@@ -181,4 +180,5 @@ export const muroStructure = (doc) => {
         changeLikes(idPostObject, usersUidPost);
     }
   };
+  muroStructure.reload(true);
 }

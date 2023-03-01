@@ -1,4 +1,4 @@
-import {
+import { /*background: linear-gradient( #c8ebf5 , #77fef3);*/
   logOut, editPost, deletePost, backMenu,
 } from '../firebase';
 // import { onNavigate } from './lib/index';
@@ -62,7 +62,7 @@ export const profile = () => {
   nameProfile.innerHTML = localStorage.getItem('username');
   const descriptionProfile = document.createElement('p');
   descriptionProfile.classList.add('descriptionProfile');
-  descriptionProfile.innerHTML = 'Hello! How are you?, Remember that Healthy Sweet allows you to share and learn healthy pastry recipes.';
+  descriptionProfile.innerHTML = 'Hello! How are you?, Remember that Healthy Sweet allows you to share and learn healthy dessert recipes.';
 
   infProfile.appendChild(nameProfile);
   infProfile.appendChild(descriptionProfile);
