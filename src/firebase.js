@@ -223,10 +223,10 @@ export async function recoverDataSearch() {
   });
 }
 // función agregar likes en firestore
-export async function changeLikes(idDoc, newLike) {
+export async function changeLikes(idDoc, likesLength) {
   const docRef = doc(dataBaseFirestore, 'publications', idDoc);
   await updateDoc(docRef, {
-    likes: newLike,
+    likes: likesLength,
   });
 }
 // función agregar usuarios que dan likes en firestore
