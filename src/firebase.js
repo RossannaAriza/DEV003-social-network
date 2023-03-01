@@ -62,8 +62,10 @@ export function createAccountFunction() {
     emailVerification();
     onAuthStateChanged(auth, (user1) => {
       if (user1) {
+        // User is signed in, see docs for a list of available properties
         const uid = user1.uid;
         localStorage.setItem('uid', uid);
+        console.log('Validación de log in: ' + uid);
       } else {
         // User is signed out
       }
@@ -112,6 +114,7 @@ export function loginWithGoogle() {
     onNavigate('/mainPage');
     console.log('Usuario se loggeo correctamente');
     console.log(result);
+    alert('User loged in!');
     onAuthStateChanged(auth, (user1) => {
       if (user1) {
         const uid = user1.uid;
@@ -188,7 +191,7 @@ recoverData();
 
 async function recoverDataProfile() {
   const userUid = localStorage.getItem('uid');
-  const querySnapshot = await getDocs(query(collection(dataBaseFirestore, 'publications'), where('uid', '==', userUid)));
+  const querySnapshot = await getDocs(query(collection(dataBaseFirestore, 'publications'), where('uid', '==', userUid, orderBy('dateTime', 'desc'))));
   querySnapshot.forEach((doc) => {
     muroStructureProfile(doc);
   });

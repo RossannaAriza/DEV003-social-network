@@ -85,6 +85,7 @@ export const muroStructureProfile = (doc) => {
   const postsDate = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${dateObj.getFullYear()}`;
   const userUid = localStorage.getItem('uid'); // usuario conectado
   console.log(userUid);
+  const usersUidPost = postObjects.likes;
   const postUid = postObjects.uid;
 
   const postMold = document.createElement('div'); // Contenedor del post
@@ -111,7 +112,7 @@ export const muroStructureProfile = (doc) => {
   previousPostsLikes.classList.add('previousPostsLikes');
   const postCountedLikes = document.createElement('h4');
   postCountedLikes.classList.add('postCountedLikes');
-  postCountedLikes.innerHTML = `Likes: ${postLikes}`;
+  postCountedLikes.innerHTML = `Likes: ${usersUidPost.length}`;
   const postButtonsContainer = document.createElement('div');// donde se visualizaran los post los post
   postButtonsContainer.classList.add('postButtonsContainer');
   const editBtn = document.createElement('button');
