@@ -167,12 +167,23 @@ export const muroStructure = (doc) => {
   likesBtn.onclick = function likeCounter(doc) {
 
   //   for (let index = 0; index < usersUidPost.length; index++) {
-    usersUidPost.push(userUid);
+    // usersUidPost.push(userUid);
       const likesLength = usersUidPost.length;
-      console.log(likesLength);
-      console.log(usersUidPost);
+      // console.log(likesLength);
+      // console.log(usersUidPost);
 
-    
+      if (usersUidPost.includes(userUid)) {
+        const index = usersUidPost.indexOf(userUid);
+        usersUidPost.splice(index, 1); 
+        console.log(usersUidPost);
+        console.log("quita");
+      } else{
+        usersUidPost.push(userUid);
+        console.log(usersUidPost);
+        console.log("agrega");
+      }
+
+
 
   //   //   console.log(usersUidPost);
   //   //   console.log(userUid);
