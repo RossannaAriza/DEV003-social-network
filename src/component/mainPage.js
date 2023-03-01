@@ -1,5 +1,5 @@
 // import { doc } from 'firebase/firestore';
-import { logOut, createPost, passProfile, recoverDataSearch, /*changeLikes,*/ addUidLikes, removeUidLikes } from '../firebase';
+import { logOut, createPost, passProfile, recoverDataSearch, changeLikes } from '../firebase';
 // import { recoverData } from './firebase.js';
 
 const postsContainer = document.createElement('div');
@@ -103,7 +103,7 @@ export const muroStructure = (doc) => {
   const postLikes = postObjects.likes;
   const idPostObject = doc.id;
   const userUid = localStorage.getItem('uid'); // usuario conectado
-  const usersUidPost = postObjects.uidLikes;
+  const usersUidPost = postObjects.likes;
   const dateObj = postObjects.dateTime.toDate();
   const postsDate = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${dateObj.getFullYear()}`;
 
@@ -164,30 +164,30 @@ export const muroStructure = (doc) => {
 
   // Function dar like
 
-  likesBtn.onclick = function counter(doc) {
-    for (let index = 0; index < usersUidPost.length; index++) {
+  likesBtn.onclick = function likeCounter(doc) {
+
+  //   for (let index = 0; index < usersUidPost.length; index++) {
+    usersUidPost.push(userUid);
       const likesLength = usersUidPost.length;
-    //   console.log(likesLength);
-    //   console.log(usersUidPost);
-    //   console.log(userUid);
-    //   console.log(typeof removeUidLikes);
-    if (usersUidPost === userUid) {
-      removeUidLikes(idPostObject, userUid);
-         console.log('Son iguales');
-    //   const newPostLikes = postLikes-1;
-    //   changeLikes(idPostObject, newPostLikes);
-    //   removeUidLikes(idPostObject, userUid);
-    } else {
-      // addUidLikes(idPostObject, userUid, likesLength+1);
-      console.log('Son diferentes');
-      }
-      // changeLikes(idPostObject, likesLength);
-    };
+      console.log(likesLength);
+      console.log(usersUidPost);
+
+    
+
+  //   //   console.log(usersUidPost);
+  //   //   console.log(userUid);
+  //   //   console.log(typeof removeUidLikes);
+  //   if (usersUidPost === userUid) {
+  //     removeUidLikes(idPostObject, userUid);
+  //        console.log('Son iguales');
+  //   //   const newPostLikes = postLikes-1;
+  //   //   changeLikes(idPostObject, newPostLikes);
+  //   //   removeUidLikes(idPostObject, userUid);
+  //   } else {
+  //     // addUidLikes(idPostObject, userUid, likesLength+1);
+  //     console.log('Son diferentes');
+  //     }
+  //     // changeLikes(idPostObject, likesLength);
+  //   };
   };
 }
-
-  // Recorrer array
-  // Buscar UID no exista
-  // Si no existe agregarlo
-  // Si existe quitarlo
-  // Actualizar contador
