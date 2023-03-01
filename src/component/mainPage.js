@@ -131,7 +131,7 @@ export const muroStructure = (doc) => {
   previousPostsLikes.classList.add('previousPostsLikes');
   const postCountedLikes = document.createElement('h4');
   postCountedLikes.classList.add('postCountedLikes');
-  postCountedLikes.innerHTML = `Likes: ${postLikes}`;
+  postCountedLikes.innerHTML = `Likes: ${usersUidPost.length}`;
   const postButtonsContainer = document.createElement('div');// donde se visualizaran los post los post
   postButtonsContainer.classList.add('postButtonsContainer');
   const likeBtnContainer = document.createElement('div');
@@ -167,20 +167,25 @@ export const muroStructure = (doc) => {
   likesBtn.onclick = function likeCounter(doc) {
 
   //   for (let index = 0; index < usersUidPost.length; index++) {
-    // usersUidPost.push(userUid);
-      const likesLength = usersUidPost.length;
+      // const likesLength = usersUidPost.length;
       // console.log(likesLength);
       // console.log(usersUidPost);
 
       if (usersUidPost.includes(userUid)) {
         const index = usersUidPost.indexOf(userUid);
         usersUidPost.splice(index, 1); 
+        const likesLength = usersUidPost.length;
+        console.log(likesLength);
         console.log(usersUidPost);
         console.log("quita");
+        changeLikes(idPostObject, usersUidPost);
       } else{
         usersUidPost.push(userUid);
+        const likesLength = usersUidPost.length;
+        console.log(likesLength);
         console.log(usersUidPost);
         console.log("agrega");
+        changeLikes(idPostObject, usersUidPost);
       }
 
 
