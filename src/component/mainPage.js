@@ -1,5 +1,5 @@
 // import { doc } from 'firebase/firestore';
-import { logOut, createPost, passProfile, recoverDataSearch, changeLikes, addUidLikes, removeUidLikes } from '../firebase';
+import { logOut, createPost, passProfile, recoverDataSearch, /*changeLikes,*/ addUidLikes, removeUidLikes } from '../firebase';
 // import { recoverData } from './firebase.js';
 
 const postsContainer = document.createElement('div');
@@ -165,18 +165,29 @@ export const muroStructure = (doc) => {
   // Function dar like
 
   likesBtn.onclick = function counter(doc) {
-    usersUidPost.forEach(element => {
-    if (element === userUid) {
-      console.log('Son iguales');
-      const newPostLikes = postLikes-1;
-      changeLikes(idPostObject, newPostLikes);
+    for (let index = 0; index < usersUidPost.length; index++) {
+      const likesLength = usersUidPost.length;
+    //   console.log(likesLength);
+    //   console.log(usersUidPost);
+    //   console.log(userUid);
+    //   console.log(typeof removeUidLikes);
+    if (usersUidPost === userUid) {
       removeUidLikes(idPostObject, userUid);
+         console.log('Son iguales');
+    //   const newPostLikes = postLikes-1;
+    //   changeLikes(idPostObject, newPostLikes);
+    //   removeUidLikes(idPostObject, userUid);
     } else {
+      // addUidLikes(idPostObject, userUid, likesLength+1);
       console.log('Son diferentes');
-      const newPostLikes = postLikes+1;
-      changeLikes(idPostObject, newPostLikes);
-      addUidLikes(idPostObject, userUid);
-    }
-  })
+      }
+      // changeLikes(idPostObject, likesLength);
+    };
   };
-};
+}
+
+  // Recorrer array
+  // Buscar UID no exista
+  // Si no existe agregarlo
+  // Si existe quitarlo
+  // Actualizar contador
