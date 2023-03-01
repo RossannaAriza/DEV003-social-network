@@ -92,6 +92,7 @@ export const MainPage = () => {
   postMain.appendChild(postsContainer);
   principalPage.appendChild(postMain);
   return principalPage;
+
 };
 
 export const muroStructure = (doc) => {
@@ -180,5 +181,5 @@ export const muroStructure = (doc) => {
         changeLikes(idPostObject, usersUidPost);
     }
   };
-  muroStructure.reload(true);
+  muroStructure.reload();
 }
