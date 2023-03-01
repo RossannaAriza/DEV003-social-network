@@ -163,14 +163,13 @@ export function passwordResetEmail() {
 } */
 // funcion agregar datos en firestore
 const publicationsAll = collection(dataBaseFirestore, 'publications');
-export async function createPost(username, text, uid, uidLikes) {
+export async function createPost(username, text, uid, likes) {
   const postData = {
     dateTime: new Date(),
-    likes: [],
+    likes: [], // uidLikes.length
     username, // cuando key y value tengan el mismo valor puedes poner el nombre y ,
     text,
-    uid,
-    uidLikes,
+    uid, // uid de quién hizo el post
   };
   await addDoc(publicationsAll, postData);
   console.log('This value has been written to the database');
@@ -224,12 +223,12 @@ export async function recoverDataSearch() {
   });
 }
 // función agregar likes en firestore
-// export async function changeLikes(idDoc, newLike) {
-//   const docRef = doc(dataBaseFirestore, 'publications', idDoc);
-//   await updateDoc(docRef, {
-//     likes: newLike,
-//   });
-// }
+export async function changeLikes(idDoc, newLike) {
+  const docRef = doc(dataBaseFirestore, 'publications', idDoc);
+  await updateDoc(docRef, {
+    likes: newLike,
+  });
+}
 // función agregar usuarios que dan likes en firestore
 export async function addUidLikes(idDoc, newUidLike) {
   const docRef = doc(dataBaseFirestore, 'publications', idDoc);
