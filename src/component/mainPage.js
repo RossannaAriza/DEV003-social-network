@@ -162,16 +162,9 @@ export const muroStructure = (doc) => {
   // doc.data() is never undefined for query doc snapshots
   console.log(doc.id, ' => ', doc.data());
 
-  // Function dar like
-
+  // Function likeCounter
   likesBtn.onclick = function likeCounter(doc) {
-
-  //   for (let index = 0; index < usersUidPost.length; index++) {
-      // const likesLength = usersUidPost.length;
-      // console.log(likesLength);
-      // console.log(usersUidPost);
-
-      if (usersUidPost.includes(userUid)) {
+    if (usersUidPost.includes(userUid)) {
         const index = usersUidPost.indexOf(userUid);
         usersUidPost.splice(index, 1); 
         const likesLength = usersUidPost.length;
@@ -186,24 +179,6 @@ export const muroStructure = (doc) => {
         console.log(usersUidPost);
         console.log("agrega");
         changeLikes(idPostObject, usersUidPost);
-      }
-
-
-
-  //   //   console.log(usersUidPost);
-  //   //   console.log(userUid);
-  //   //   console.log(typeof removeUidLikes);
-  //   if (usersUidPost === userUid) {
-  //     removeUidLikes(idPostObject, userUid);
-  //        console.log('Son iguales');
-  //   //   const newPostLikes = postLikes-1;
-  //   //   changeLikes(idPostObject, newPostLikes);
-  //   //   removeUidLikes(idPostObject, userUid);
-  //   } else {
-  //     // addUidLikes(idPostObject, userUid, likesLength+1);
-  //     console.log('Son diferentes');
-  //     }
-  //     // changeLikes(idPostObject, likesLength);
-  //   };
+    }
   };
 }
