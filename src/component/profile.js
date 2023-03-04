@@ -1,5 +1,5 @@
-import { /*background: linear-gradient( #c8ebf5 , #77fef3);*/
-  logOut, editPost, deletePost, backMenu,
+import {
+  logOut, editPost, deletePost, backMenu, onGetRecoverDataProfile,
 } from '../firebase';
 // import { onNavigate } from './lib/index';
 
@@ -62,7 +62,7 @@ export const profile = () => {
   nameProfile.innerHTML = localStorage.getItem('username');
   const descriptionProfile = document.createElement('p');
   descriptionProfile.classList.add('descriptionProfile');
-  descriptionProfile.innerHTML = 'Hello! How are you?, Remember that Healthy Sweet allows you to share and learn healthy dessert recipes.';
+  descriptionProfile.innerHTML = 'Hello! How are you?, Remember that Healthy Sweet allows you to share and learn healthy pastry recipes.';
 
   infProfile.appendChild(nameProfile);
   infProfile.appendChild(descriptionProfile);
@@ -75,7 +75,11 @@ export const profile = () => {
   return principalPageProfile;
 };
 
-export const muroStructureProfile = (doc) => {
+window.addEventListener('DOMContentLoaded', async() => {
+
+onGetRecoverDataProfile((querySnapshot) => {
+querySnapshot.forEach((doc) => {
+  
   const postObjects = doc.data();
   const postUsername = postObjects.username;
   const postTxt = postObjects.text;
@@ -211,4 +215,7 @@ export const muroStructureProfile = (doc) => {
   document.getElementById('postsContainerProfile').appendChild(postMold);
   // doc.data() is never undefined for query doc snapshots
   console.log(doc.id, ' => ', doc.data());
-};
+
+});
+});
+});
