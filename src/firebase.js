@@ -1,31 +1,46 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from 'firebase/app';
+import { initializeApp } from "firebase/app";
 import {
-  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged,
-  signInWithPopup, GoogleAuthProvider, /* signInWithRedirect, */ sendEmailVerification, /* sendPasswordResetEmail, */
-} from 'firebase/auth';
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  signInWithPopup,
+  GoogleAuthProvider,
+  /* signInWithRedirect, */ sendEmailVerification /* sendPasswordResetEmail, */,
+} from "firebase/auth";
+import { getDatabase, set, ref, update } from "firebase/database";
 import {
-  getDatabase, set, ref, update,
-} from 'firebase/database';
-import {
-  where, getFirestore, collection, addDoc, getDocs, updateDoc, doc, query, orderBy, deleteDoc, arrayUnion, arrayRemove,
-} from 'firebase/firestore';
-import { async } from 'regenerator-runtime';
+  where,
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  updateDoc,
+  doc,
+  query,
+  orderBy,
+  deleteDoc,
+  arrayUnion,
+  arrayRemove,
+} from "firebase/firestore";
+import { async } from "regenerator-runtime";
 // eslint-disable-next-line import/no-cycle
-import { onNavigate } from './lib/index';
-import { muroStructure } from './component/mainPage';
-import { muroStructureProfile } from './component/profile';
+import { onNavigate } from "./lib/index";
+import { muroStructure } from "./component/mainPage";
+import { muroStructureProfile } from "./component/profile";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyB1J92DpSTCq8e615N8wr3-BchbG76QyUc',
-  authDomain: 'social-network-41ddd.firebaseapp.com',
-  databaseURL: 'https://social-network-41ddd-default-rtdb.firebaseio.com',
-  projectId: 'social-network-41ddd',
-  storageBucket: 'social-network-41ddd.appspot.com',
-  messagingSenderId: '948862973616',
-  appId: '1:948862973616:web:74ff33512154d5ff9b2d75',
-  measurementId: 'G-ENM9G4585Z',
+  apiKey: "AIzaSyB1J92DpSTCq8e615N8wr3-BchbG76QyUc",
+  authDomain: "social-network-41ddd.firebaseapp.com",
+  databaseURL: "https://social-network-41ddd-default-rtdb.firebaseio.com",
+  projectId: "social-network-41ddd",
+  storageBucket: "social-network-41ddd.appspot.com",
+  messagingSenderId: "948862973616",
+  appId: "1:948862973616:web:74ff33512154d5ff9b2d75",
+  measurementId: "G-ENM9G4585Z",
 };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -36,119 +51,130 @@ const auth = getAuth();
 const dataBaseFirestore = getFirestore();
 // verificacion de correo con email
 function emailVerification() {
-  sendEmailVerification(auth.currentUser)
-    .then(() => {
+  sendEmailVerification(auth.currentUser).then(() => {
     // Email verification sent!
     // ...
-    });
+  });
 }
 // creacion de usuario
 export function createAccountFunction() {
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-  return createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
-    //   signed in
-    const user = userCredential.user;
-    // valida que el correo sea valido de lo contrario da error de autenticacion.
-    set(ref(database, `users/${user.uid}`), {
-      username,
-      email,
-    });
-    alert('user created');
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  return createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      //   signed in
+      const user = userCredential.user;
+      // valida que el correo sea valido de lo contrario da error de autenticacion.
+      set(ref(database, `users/${user.uid}`), {
+        username,
+        email,
+      });
+      alert("user created");
 
-    const settingUsername = document.getElementById('email').value.split('@')[0];
-    localStorage.setItem('username', settingUsername);
-    onNavigate('/mainPage');
-    emailVerification();
-    onAuthStateChanged(auth, (user1) => {
-      if (user1) {
-        // User is signed in, see docs for a list of available properties
-        const uid = user1.uid;
-        localStorage.setItem('uid', uid);
-        console.log('Validación de log in: ' + uid);
-      } else {
-        // User is signed out
-      }
+      const settingUsername = document
+        .getElementById("email")
+        .value.split("@")[0];
+      localStorage.setItem("username", settingUsername);
+      onNavigate("/mainPage");
+      emailVerification();
+      onAuthStateChanged(auth, (user1) => {
+        if (user1) {
+          // User is signed in, see docs for a list of available properties
+          const uid = user1.uid;
+          localStorage.setItem("uid", uid);
+          console.log("Validación de log in: " + uid);
+        } else {
+          // User is signed out
+        }
+      });
+    })
+    .catch((error) => {
+      // const errorCode = error.code;
+      const errorMessage = error.message;
+      alert("Something went wrong with your e-mail or password");
     });
-  }).catch((error) => {
-    // const errorCode = error.code;
-    const errorMessage = error.message;
-    alert('Something went wrong with your e-mail or password');
-  });
 }
 // ingreso a interfaz
 export function loginAccountFunction() {
-  const EmailLogin = document.getElementById('EmailLogin').value;
-  const PasswordLogin = document.getElementById('PasswordLogIn').value;
-  return signInWithEmailAndPassword(auth, EmailLogin, PasswordLogin).then((userCredential) => {
-    // Signed in
-    const user = userCredential.user;
-    const dt = new Date();
-    update(ref(database, `users/${user.uid}`), {
-      last_login: dt,
+  const EmailLogin = document.getElementById("EmailLogin").value;
+  const PasswordLogin = document.getElementById("PasswordLogIn").value;
+  return signInWithEmailAndPassword(auth, EmailLogin, PasswordLogin)
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      const dt = new Date();
+      update(ref(database, `users/${user.uid}`), {
+        last_login: dt,
+      });
+      const settingUsername = document
+        .getElementById("EmailLogin")
+        .value.split("@")[0];
+      localStorage.setItem("username", settingUsername);
+      alert("User loged in!");
+      onNavigate("/mainPage");
+      onAuthStateChanged(auth, (user1) => {
+        if (user1) {
+          const uid = user1.uid;
+          localStorage.setItem("uid", uid);
+        } else {
+          // User is signed out
+        }
+      });
+    })
+    .catch((error) => {
+      // const errorCode = error.code;
+      const errorMessage = error.message;
+      alert(errorMessage);
     });
-    const settingUsername = document.getElementById('EmailLogin').value.split('@')[0];
-    localStorage.setItem('username', settingUsername);
-    alert('User loged in!');
-    onNavigate('/mainPage');
-    onAuthStateChanged(auth, (user1) => {
-      if (user1) {
-        const uid = user1.uid;
-        localStorage.setItem('uid', uid);
-      } else {
-        // User is signed out
-      }
-    });
-  }).catch((error) => {
-    // const errorCode = error.code;
-    const errorMessage = error.message;
-    alert(errorMessage);
-  });
 }
 // ingreso con google
 export function loginWithGoogle() {
   const provider = new GoogleAuthProvider();
-  return signInWithPopup(auth, provider).then((result) => {
-    const settingUsername = result.user.email.split('@')[0];
-    localStorage.setItem('username', settingUsername);
-    onNavigate('/mainPage');
-    console.log('Usuario se loggeo correctamente');
-    console.log(result);
-    alert('User loged in!');
-    onAuthStateChanged(auth, (user1) => {
-      if (user1) {
-        const uid = user1.uid;
-        localStorage.setItem('uid', uid);
-      } else {
-        // User is signed out
-      }
-    });
+  return signInWithPopup(auth, provider)
+    .then((result) => {
+      const settingUsername = result.user.email.split("@")[0];
+      localStorage.setItem("username", settingUsername);
+      onNavigate("/mainPage");
+      console.log("Usuario se loggeo correctamente");
+      console.log(result);
+      alert("User loged in!");
+      onAuthStateChanged(auth, (user1) => {
+        if (user1) {
+          const uid = user1.uid;
+          localStorage.setItem("uid", uid);
+        } else {
+          // User is signed out
+        }
+      });
 
-    // ...
-  }).catch((error) => {
-    alert(errorMessage);
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // The email of the user's account used.
-    const email = error.customData.email;
-    // The AuthCredential type that was used.
-    const credential = GoogleAuthProvider.credentialFromError(error);
-    // ...
-  });
+      // ...
+    })
+    .catch((error) => {
+      alert(errorMessage);
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      // ...
+    });
 }
 // cerrar session
 export function logOut() {
-  return signOut(auth).then(() => {
-    alert('You are loggin out');
-    // Modificar para que username sea el correo del usuario
-    localStorage.removeItem('username');
-    onNavigate('/');
-  }).catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    alert(errorMessage);
-  });
+  return signOut(auth)
+    .then(() => {
+      alert("You are loggin out");
+      // Modificar para que username sea el correo del usuario
+      localStorage.removeItem("username");
+      onNavigate("/");
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert(errorMessage);
+    });
 }
 /* //funcion recuperar contraseña
 export function passwordResetEmail() {
@@ -165,7 +191,7 @@ export function passwordResetEmail() {
     });
 } */
 // funcion agregar datos en firestore
-const publicationsAll = collection(dataBaseFirestore, 'publications');
+const publicationsAll = collection(dataBaseFirestore, "publications");
 export async function createPost(username, text, uid, likes) {
   const postData = {
     dateTime: new Date(),
@@ -175,13 +201,18 @@ export async function createPost(username, text, uid, likes) {
     uid, // uid de quién hizo el post
   };
   await addDoc(publicationsAll, postData);
-  console.log('This value has been written to the database');
+  console.log("This value has been written to the database");
   console.log(postData);
 }
 
 // función regresar las publicaciones de firestore
 export async function recoverData() {
-  const querySnapshot = await getDocs(query(collection(dataBaseFirestore, 'publications'), orderBy('dateTime', 'desc')));
+  const querySnapshot = await getDocs(
+    query(
+      collection(dataBaseFirestore, "publications"),
+      orderBy("dateTime", "desc")
+    )
+  );
   console.log(querySnapshot);
   querySnapshot.forEach((doc) => {
     muroStructure(doc);
@@ -190,58 +221,68 @@ export async function recoverData() {
 recoverData();
 
 async function recoverDataProfile() {
-  const userUid = localStorage.getItem('uid');
-  const querySnapshot = await getDocs(query(collection(dataBaseFirestore, 'publications'), where('uid', '==', userUid, orderBy('dateTime', 'desc'))));
-  querySnapshot.forEach((doc) => {
+  const userUid = localStorage.getItem("uid");
+  const onSnapshot = await getDocs(
+    query(
+      collection(dataBaseFirestore, "publications"),
+      where("uid", "==", userUid, orderBy("dateTime", "desc"))
+    )
+  );
+  onSnapshot.forEach((doc) => {
     muroStructureProfile(doc);
   });
 }
 
 // funcion editar texto publicacion
 export async function editPost(idDoc, newText) {
-  const docRef = doc(dataBaseFirestore, 'publications', idDoc);
+  const docRef = doc(dataBaseFirestore, "publications", idDoc);
   await updateDoc(docRef, {
     text: newText,
   });
 }
 // funcion eliminar texto publicacion
 export async function deletePost(idDoc) {
-  await deleteDoc(doc(dataBaseFirestore, 'publications', idDoc));
+  await deleteDoc(doc(dataBaseFirestore, "publications", idDoc));
 }
 // Funcion botones de menu de navegacion
 export const passProfile = () => {
-  onNavigate('/profile');
+  onNavigate("/profile");
   recoverDataProfile();
 };
 export const backMenu = () => {
-  onNavigate('/mainPage');
+  onNavigate("/mainPage");
 };
 // Funcion para el buscador
 export async function recoverDataSearch() {
-  const nameSearch = document.getElementById('inputSearchProfile').value;
-  const querySnapshot = await getDocs(query(collection(dataBaseFirestore, 'publications'), where('username', '==', nameSearch)));
-  document.getElementById('postsContainer').innerHTML = '';
+  const nameSearch = document.getElementById("inputSearchProfile").value;
+  const querySnapshot = await getDocs(
+    query(
+      collection(dataBaseFirestore, "publications"),
+      where("username", "==", nameSearch)
+    )
+  );
+  document.getElementById("postsContainer").innerHTML = "";
   querySnapshot.forEach((doc) => {
     muroStructure(doc);
   });
 }
 // función agregar likes en firestore
 export async function changeLikes(idDoc, likesLength) {
-  const docRef = doc(dataBaseFirestore, 'publications', idDoc);
+  const docRef = doc(dataBaseFirestore, "publications", idDoc);
   await updateDoc(docRef, {
     likes: likesLength,
   });
 }
 // función agregar usuarios que dan likes en firestore
 export async function addUidLikes(idDoc, newUidLike) {
-  const docRef = doc(dataBaseFirestore, 'publications', idDoc);
+  const docRef = doc(dataBaseFirestore, "publications", idDoc);
   await updateDoc(docRef, {
     uidLikes: arrayUnion(newUidLike),
   });
 }
 export async function removeUidLikes(idDoc, newUidLike) {
-  const docRef = doc(dataBaseFirestore, 'publications', idDoc);
+  const docRef = doc(dataBaseFirestore, "publications", idDoc);
   await updateDoc(docRef, {
-    uidLikes: arrayRemove(newUidLike)
+    uidLikes: arrayRemove(newUidLike),
   });
 }
