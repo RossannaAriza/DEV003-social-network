@@ -1,79 +1,45 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from 'firebase/app';
 import {
-  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged,
+  createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged,
   signInWithPopup, GoogleAuthProvider, /* signInWithRedirect, */ sendEmailVerification, /* sendPasswordResetEmail, */
 } from 'firebase/auth';
+import { set, ref, update } from 'firebase/database';
 import {
-  getDatabase, set, ref, update,
-} from 'firebase/database';
-import {
-  where, getFirestore, collection, addDoc, getDocs, updateDoc, doc, query, orderBy, deleteDoc, arrayUnion, arrayRemove,
+  where, collection, addDoc, getDocs, updateDoc, doc, query, orderBy, deleteDoc, arrayUnion, arrayRemove, onSnapshot,
 } from 'firebase/firestore';
-import { async } from 'regenerator-runtime';
 // eslint-disable-next-line import/no-cycle
 import { onNavigate } from './lib/index';
-import { muroStructure } from './component/mainPage';
-import { muroStructureProfile } from './component/profile';
+import { database, auth, dataBaseFirestore } from './firebaseInit';
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: 'AIzaSyB1J92DpSTCq8e615N8wr3-BchbG76QyUc',
-  authDomain: 'social-network-41ddd.firebaseapp.com',
-  databaseURL: 'https://social-network-41ddd-default-rtdb.firebaseio.com',
-  projectId: 'social-network-41ddd',
-  storageBucket: 'social-network-41ddd.appspot.com',
-  messagingSenderId: '948862973616',
-  appId: '1:948862973616:web:74ff33512154d5ff9b2d75',
-  measurementId: 'G-ENM9G4585Z',
-};
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
-const auth = getAuth();
-//  const analytics = getAnalytics(app);
-// Initialize Cloud Firestore and get a reference to the service
-const dataBaseFirestore = getFirestore();
+
 // verificacion de correo con email
 function emailVerification() {
-  sendEmailVerification(auth.currentUser)
-    .then(() => {
-    // Email verification sent!
-    // ...
-    });
+  sendEmailVerification(auth.currentUser);
 }
 // creacion de usuario
 export function createAccountFunction() {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
   return createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
-    //   signed in
     const user = userCredential.user;
-    // valida que el correo sea valido de lo contrario da error de autenticacion.
     set(ref(database, `users/${user.uid}`), {
       username,
       email,
     });
-    alert('user created');
-
+    window.alert('user created');
     const settingUsername = document.getElementById('email').value.split('@')[0];
     localStorage.setItem('username', settingUsername);
     onNavigate('/mainPage');
     emailVerification();
+    location.reload();
     onAuthStateChanged(auth, (user1) => {
       if (user1) {
-        // User is signed in, see docs for a list of available properties
         const uid = user1.uid;
         localStorage.setItem('uid', uid);
-        console.log('Validación de log in: ' + uid);
       } else {
         // User is signed out
-      }
-    });
-  }).catch((error) => {
-    // const errorCode = error.code;
-    const errorMessage = error.message;
-    alert('Something went wrong with your e-mail or password');
+      }})}).catch((error) => {
+    window.alert('Something went wrong with your e-mail or password');
   });
 }
 // ingreso a interfaz
@@ -81,7 +47,6 @@ export function loginAccountFunction() {
   const EmailLogin = document.getElementById('EmailLogin').value;
   const PasswordLogin = document.getElementById('PasswordLogIn').value;
   return signInWithEmailAndPassword(auth, EmailLogin, PasswordLogin).then((userCredential) => {
-    // Signed in
     const user = userCredential.user;
     const dt = new Date();
     update(ref(database, `users/${user.uid}`), {
@@ -89,20 +54,17 @@ export function loginAccountFunction() {
     });
     const settingUsername = document.getElementById('EmailLogin').value.split('@')[0];
     localStorage.setItem('username', settingUsername);
-    alert('User loged in!');
+    window.alert('User loged in!');
     onNavigate('/mainPage');
+    location.reload();
     onAuthStateChanged(auth, (user1) => {
       if (user1) {
         const uid = user1.uid;
         localStorage.setItem('uid', uid);
       } else {
         // User is signed out
-      }
-    });
-  }).catch((error) => {
-    // const errorCode = error.code;
-    const errorMessage = error.message;
-    alert(errorMessage);
+      }})}).catch((error) => {
+    window.alert('Something went wrong with your e-mail or password');
   });
 }
 // ingreso con google
@@ -115,18 +77,15 @@ export function loginWithGoogle() {
     console.log('Usuario se loggeo correctamente');
     console.log(result);
     alert('User loged in!');
+    location.reload();
     onAuthStateChanged(auth, (user1) => {
       if (user1) {
         const uid = user1.uid;
         localStorage.setItem('uid', uid);
       } else {
         // User is signed out
-      }
-    });
-
-    // ...
-  }).catch((error) => {
-    alert(errorMessage);
+      }})}).catch((error) => {
+    window.alert(errorMessage);
     // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
@@ -144,10 +103,9 @@ export function logOut() {
     // Modificar para que username sea el correo del usuario
     localStorage.removeItem('username');
     onNavigate('/');
+    location.reload();
   }).catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    alert(errorMessage);
+    window.alert('Something is wrong');
   });
 }
 /* //funcion recuperar contraseña
@@ -164,84 +122,82 @@ export function passwordResetEmail() {
     // ..
     });
 } */
+// Funcion botones de menu de navegacion
+export const passProfile = () => {
+  onNavigate('/profile');
+  location.reload();
+};
+export const backMenu = () => {
+  onNavigate('/mainPage');
+  location.reload();
+};
 // funcion agregar datos en firestore
-const publicationsAll = collection(dataBaseFirestore, 'publications');
-export async function createPost(username, text, uid, likes) {
-  const postData = {
+export const createPost = (username, text, uid) => {
+  addDoc(collection(dataBaseFirestore, 'publications'), {
     dateTime: new Date(),
-    likes: [], // uidLikes.length
-    username, // cuando key y value tengan el mismo valor puedes poner el nombre y ,
+    likes: [],
+    username,
     text,
-    uid, // uid de quién hizo el post
-  };
-  await addDoc(publicationsAll, postData);
-  console.log('This value has been written to the database');
-  console.log(postData);
-}
+    uid, 
+  })};
 
 // función regresar las publicaciones de firestore
-export async function recoverData() {
-  const querySnapshot = await getDocs(query(collection(dataBaseFirestore, 'publications'), orderBy('dateTime', 'desc')));
-  console.log(querySnapshot);
-  querySnapshot.forEach((doc) => {
-    muroStructure(doc);
-  });
+export const recoverData = async (callback) => {
+  const querySnapshot = await getDoc(query(collection(dataBaseFirestore, 'publications'), orderBy('dateTime', 'desc')), callback, {});
+  return querySnapshot;
+};
+// función regresar las publicaciones de firestore en profile
+export const recoverDataProfile = async() => {
+  const querySnapshot = await getDocs(query(collection(dataBaseFirestore, 'publications'), where('uid', '==', localStorage.getItem('uid'))));
+  return querySnapshot;
 }
-recoverData();
-
-async function recoverDataProfile() {
-  const userUid = localStorage.getItem('uid');
-  const querySnapshot = await getDocs(query(collection(dataBaseFirestore, 'publications'), where('uid', '==', userUid, orderBy('dateTime', 'desc'))));
-  querySnapshot.forEach((doc) => {
-    muroStructureProfile(doc);
-  });
-}
-
+// funcion cargar datos actualizados
+export const onGetRecoverData = async (callback) => {
+  const getPots = await onSnapshot(query(collection(dataBaseFirestore, 'publications'), orderBy('dateTime', 'desc')), callback, {});
+  return getPots;
+};
+// funcion cargar datos actualizados
+export const onGetRecoverDataProfile = async (callback) => {
+  const getPots = await onSnapshot(query(collection(dataBaseFirestore, 'publications'), where('uid', '==', localStorage.getItem('uid'))), callback, {});
+  return getPots;
+};
 // funcion editar texto publicacion
-export async function editPost(idDoc, newText) {
+export const editPost = async(idDoc, newText) => {
   const docRef = doc(dataBaseFirestore, 'publications', idDoc);
   await updateDoc(docRef, {
     text: newText,
   });
 }
 // funcion eliminar texto publicacion
-export async function deletePost(idDoc) {
+export  const deletePost = async(idDoc) => {
   await deleteDoc(doc(dataBaseFirestore, 'publications', idDoc));
 }
-// Funcion botones de menu de navegacion
-export const passProfile = () => {
-  onNavigate('/profile');
-  recoverDataProfile();
-};
-export const backMenu = () => {
-  onNavigate('/mainPage');
-};
-// Funcion para el buscador
-export async function recoverDataSearch() {
-  const nameSearch = document.getElementById('inputSearchProfile').value;
-  const querySnapshot = await getDocs(query(collection(dataBaseFirestore, 'publications'), where('username', '==', nameSearch)));
-  document.getElementById('postsContainer').innerHTML = '';
-  querySnapshot.forEach((doc) => {
-    muroStructure(doc);
-  });
-}
 // función agregar likes en firestore
-export async function changeLikes(idDoc, likesLength) {
+export const changeLikes = async(idDoc, likesLength) => {
   const docRef = doc(dataBaseFirestore, 'publications', idDoc);
   await updateDoc(docRef, {
     likes: likesLength,
   });
 }
 // función agregar usuarios que dan likes en firestore
-export async function addUidLikes(idDoc, newUidLike) {
+export const addUidLikes = async(idDoc, newUidLike) => {
   const docRef = doc(dataBaseFirestore, 'publications', idDoc);
   await updateDoc(docRef, {
     uidLikes: arrayUnion(newUidLike),
   });
 }
-export async function removeUidLikes(idDoc, newUidLike) {
+export const removeUidLikes = async(idDoc, newUidLike) => {
   const docRef = doc(dataBaseFirestore, 'publications', idDoc);
   await updateDoc(docRef, {
     uidLikes: arrayRemove(newUidLike)
+  });
+}
+// Funcion para el buscador
+export const recoverDataSearch = async() => {
+  const nameSearch = document.getElementById('inputSearchProfile').value;
+  const querySnapshot = await getDocs(query(collection(dataBaseFirestore, 'publications'), where('username', '==', nameSearch)));
+  document.getElementById('postsContainer').innerHTML = '';
+  querySnapshot.forEach((doc) => {
+    muroStructure(doc);
   });
 }
