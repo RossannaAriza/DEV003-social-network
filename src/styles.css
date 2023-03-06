@@ -96,17 +96,17 @@ input{
     margin-top: 30px;
 }
 .googleBtn{
-    border-radius: 100%;
-    background-image: url(./img/google.png);
+    background-image: url(./img/googlesignin.png);
     background-position: center center;
     background-size:cover;
     background-repeat: no-repeat;
-    width: 80px;
-    height: 80px;
+    width: 80%;
+    height: 50px;
     background-color: transparent;
     align-items: center;
     align-self: center;
     text-align: center;
+    border: none;
 }
 .forgotUsernameOpt{
     display: flex;
@@ -425,24 +425,23 @@ header label:hover{
         margin-top: 20px;
     }
     .googleBtn{
-        border-radius: 100%;
-        background-image: url(./img/google.png);
+        
+        background-image: url(./img/googlesignin.png);
         background-position: center center;
         background-size:cover;
         background-repeat: no-repeat;
-        width: 80px;
+        width: 60%;
         height: 80px;
     }
 
     .searchButton, .profileButton{
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
         background-position: center;
         background-size:cover;
         background-repeat: no-repeat;
         border: solid #10701a 1px;
         margin: 10px 0px 10px 0px;
-        border-radius:0px 10px 10px 0px;
     }
     .postMold{
         width: 400px;
@@ -474,11 +473,11 @@ header label:hover{
         font-size: 15px;
     }
     .googleBtn{
-        background-image: url(./img/google.png);
+        background-image: url(./img/googlesignin.png);
         background-position: center center;
         background-size:cover;
         background-repeat: no-repeat;
-        width: 80px;
+        width: 80%;
         height: 80px;
     }
     .inputSearchProfile{

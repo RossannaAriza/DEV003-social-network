@@ -1,22 +1,9 @@
-// import { doc } from 'firebase/firestore';
-import { logOut, createPost, passProfile, recoverDataSearch, changeLikes } from '../firebase';
+import { logOut, createPost, passProfile, recoverDataSearch, changeLikes, onGetRecoverData } from '../firebase';
 // import { recoverData } from './firebase.js';
 
 const postsContainer = document.createElement('div');
 postsContainer.classList.add('postsContainer');
 postsContainer.setAttribute('id', 'postsContainer');
-const handleCreatePost = () => {
-  const postContent = document.getElementById('postTextArea');
-  const getUsername = localStorage.getItem('username');
-  const uid = localStorage.getItem('uid');
-  const uidLike = [];
-  createPost(getUsername, postContent.value, uid, uidLike);
-  postContent.value = '';
-  // mandar llamar textarea con id
-  // guardar en var localStorage.getitem
-  // llamar createPost(y pasar parámetros)
-  // ligar handleCP al boton
-};
 
 export const MainPage = () => {
   const principalPage = document.createElement('div'); // contiene toda la segunda vista
@@ -84,7 +71,15 @@ export const MainPage = () => {
   post.setAttribute('rows', '4');
   post.setAttribute('cols', '50');
   const publish = document.createElement('button');
-  publish.addEventListener('click', handleCreatePost);
+  publish.addEventListener('click', () => {
+    const uidLike = [];
+    createPost(localStorage.getItem('username'), document.getElementById('postTextArea').value, localStorage.getItem('uid'), uidLike);
+    document.getElementById('postTextArea').value = '';
+    // mandar llamar textarea con id
+    // guardar en var localStorage.getitem
+    // llamar createPost(y pasar parámetros)
+    // ligar handleCP al boton
+  });
   publish.classList.add('publishPostButton');
   publishPostBtnContainer.appendChild(post);
   publishPostBtnContainer.appendChild(publish);
@@ -95,7 +90,12 @@ export const MainPage = () => {
 
 };
 
-export const muroStructure = (doc) => {
+window.addEventListener('DOMContentLoaded', async() => {
+  
+  onGetRecoverData((querySnapshot) => {
+  
+  querySnapshot.forEach((doc) => {
+  
   const postObjects = doc.data();
   const postUsername = postObjects.username;
   const postUid = postObjects.uid;
@@ -143,6 +143,7 @@ export const muroStructure = (doc) => {
   const likesBtn = document.createElement('button');
   likesBtn.classList.add('likeButton');
   likesBtn.setAttribute('id', 'likesBtn');
+  
 
   usernameContainer.appendChild(username);
   dateContainer.appendChild(postDate);
@@ -181,5 +182,9 @@ export const muroStructure = (doc) => {
         changeLikes(idPostObject, usersUidPost);
     }
   };
-  muroStructure.reload();
-}
+
+});
+})});
+
+
+  
