@@ -143,7 +143,7 @@ export const createPost = (username, text, uid) => {
 
 // función regresar las publicaciones de firestore
 export const recoverData = async (callback) => {
-  const querySnapshot = await onSnapshot(query(collection(dataBaseFirestore, 'publications'), orderBy('dateTime', 'desc')), callback, {});
+  const querySnapshot = await getDoc(query(collection(dataBaseFirestore, 'publications'), orderBy('dateTime', 'desc')), callback, {});
   return querySnapshot;
 };
 // función regresar las publicaciones de firestore en profile
