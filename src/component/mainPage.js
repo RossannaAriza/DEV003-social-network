@@ -168,7 +168,7 @@ export const muroStructure = (doc) => {
         const index = usersUidPost.indexOf(userUid);
         usersUidPost.splice(index, 1);
         const likesLength = usersUidPost.length;
-        console.log(likesLength);
+       // console.log(likesLength);
         console.log(usersUidPost);
         console.log("quita");
         changeLikes(idPostObject, usersUidPost);
