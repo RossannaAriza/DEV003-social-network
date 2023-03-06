@@ -10,6 +10,7 @@ import {
 // eslint-disable-next-line import/no-cycle
 import { onNavigate } from './lib/index';
 import { database, auth, dataBaseFirestore } from './firebaseInit';
+import { murostructure } from './component/mainPage';
 
 
 // verificacion de correo con email
@@ -198,6 +199,6 @@ export const recoverDataSearch = async() => {
   const querySnapshot = await getDocs(query(collection(dataBaseFirestore, 'publications'), where('username', '==', nameSearch)));
   document.getElementById('postsContainer').innerHTML = '';
   querySnapshot.forEach((doc) => {
-    muroStructure(doc);
+    murostructure(doc);
   });
 }
