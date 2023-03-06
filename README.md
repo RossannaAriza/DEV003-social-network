@@ -2,6 +2,136 @@
 
 ## Índice
 
+* [1. Definición del producto](#1-definición-del-producto)
+* [2. Historias de usuario](#2-historias-de-usuario)
+* [3. Diseño de la Interfaz de Usuario](#3-diseño-de-la-Interfaz-de-Usuario)
+* [4. Test de usabilidad](#4-test-de-usabilidad)
+
+## 1. Definición del producto
+
+Escoger Tema: Alimentación/ Repostería saludable
+Nombre app: Healthy taste
+
+*¿Quiénes son los principales usuarios del producto?
+Todo aquel que esté interesado en cambiar su alimentación orientada a la comida saludable y deliciosa en cuanto a la repostería
+
+*¿Cuáles son los objetivos de estos usuarios en relación con el producto?
+Intercambia conocimiento de recetas con otros usuarios para ampliar el conocimiento de la repostería saludable 
+
+*¿Cuáles son los datos más relevantes que quieren ver en la interfaz y por qué?
+Receta: ingredientes e instrucciones.
+Información del usuario que comparte la receta.
+Poder dar like.
+
+*¿Cuándo utilizan o utilizarían el producto?
+En cualquier momento, cuando tengan la necesidad de consumir algo rico y saludable y poder interactuar con otras personas sobre el tema.
+
+
+## 2. Historias de usuario
+
+![Historia de usuario No.1](/src/img/HU1.jpg)
+
+![Historia de usuario No.2](/src/img/HU2.jpg)
+
+
+## 3. Diseño de la Interfaz de Usuario
+
+### PROTOTIPO DE BAJA FIDELIDAD:
+
+![Prototipo desktop](/src/img/Prototipo%20desktop.jpg)
+
+![Prototipo tablet](/src/img/Prototipo%20tablet.jpg)
+
+![Prototipo mobile](/src/img/Prototipo%20mobile.jpg)
+
+### PROTOTIPO DE ALTA FIDELIDAD:
+
+[Prototipo de alta fidelidad](https://www.figma.com/proto/2MNedqIKQhLBLHi3Ck7nqe/Untitled?node-id=1%3A7&scaling=min-zoom&page-id=1%3A2&starting-point-node-id=1%3A7&show-proto-sidebar=1)
+
+## 4. Test de usabilidad
+
+Primera historia de usuario:
+- Desktop
+
+![Interfaz Desktop](/src/img/Desktop.jpg)
+
+- Mobile 
+
+![Interfaz Mobile1](/src/img/Mobile1.jpg)
+![Interfaz Mobile2](/src/img/Mobile2.jpg)
+
+
+### Testear/ Usuario 1
+ 
+Nombre: Ludys Luna 
+Fecha: 03/02/2023 
+ 
+ 
+1 Naming:  
+¿Los nombres en las secciones y botones se entienden fácilmente? 
+Comentarios: 
+Los botones se comprenden al igual que los nombres 
+ 
+2 Organización:  
+¿La información está agrupada en categorías que hacen sentido? 
+¿Los elementos de la web están situados en lugares en los que el usuario busca por ellos? 
+Comentarios: 
+Está organizado correctamente, con un sentido. 
+El fondo en mobile no tiene sentido con la app no se muestra relación con la comida 
+ 
+3 Facilidad de ubicar elementos para First time users:  
+¿Los elementos más comunes son fáciles de encontrar por los usuarios? 
+¿Las instrucciones son claras? 
+¿Las instrucciones son necesarias? 
+Comentarios: 
+No necesita instrucciones de uso, es muy intuitiva 
+ 
+4 Efectividad:  
+¿Los usuarios pueden completar las tareas? 
+¿Cometen errores? ¿Dónde? 
+Comentarios: 
+Si, son muy intuitivas 
+
+
+### Testear/ Usuario 2 
+ 
+ 
+Nombre: Alejandro Maldonado 
+Fecha: 02/02/2023 
+ 
+1 Naming:  
+¿Los nombres en las secciones y botones se entienden fácilmente? 
+Comentarios: 
+Los nombres e iconos de los botones son entendibles. 
+ 
+2 Organización:  
+¿La información está agrupada en categorías que hacen sentido? 
+¿Los elementos de la web están situados en lugares en los que el usuario busca por ellos? 
+Comentarios: 
+La fuente de la letra no es llamativa, recomienda No usar cursiva o un poco menos cursiva, el botón de SignUp y LogIn disminuir tamaño en ambas pantallas. El botón de create Account separa las palabras. 
+En el footer cambiar letra por una más light 
+En mobile en logIn centrar casillas de email y password 
+ 
+3 Facilidad de ubicar elementos para First time users:  
+¿Los elementos más comunes son fáciles de encontrar por los usuarios? 
+¿Las instrucciones son claras? 
+¿Las instrucciones son necesarias? 
+Comentarios: 
+Manejar en signup el ingreso con google también 
+ 
+4 Efectividad:  
+¿Los usuarios pueden completar las tareas? 
+¿Cometen errores? ¿Dónde? 
+Comentarios: 
+Si, las funciones que se encuentran habilitadas son muy intuitivas. 
+
+
+
+***************************************************************************************************************************************
+# Creando una Red Social
+
+## Índice
+
 * [1. Preámbulo](#1-preámbulo)
 * [2. Resumen del proyecto](#2-resumen-del-proyecto)
 * [3. Objetivos de aprendizaje](#3-objetivos-de-aprendizaje)
