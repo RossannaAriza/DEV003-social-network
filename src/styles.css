@@ -29,8 +29,8 @@
     font-weight: 600;
     font-size: 55px;
     line-height: 24px;
-    border-color: white;
-    background: #99cad7;
+    border-color: #10701a;
+    background: rgba(186, 236, 188, 0.722);
     border: none;
     padding: 8px;
     width: 50%;
@@ -45,14 +45,15 @@
     border-radius: 0px 10px 0px 0px;
 }
 .LogIn:hover,  .SignUp:hover{
-    background-color: rgba(62, 174, 196, 0.756);
+    background-color:rgba(98, 133, 99, 0.756);
+    border: #10701aa0;
 }
 .btnSelected{
-    background-color:#316998db !important;
-    border:#48acff;
+    background-color: rgba(98, 133, 99, 0.756) !important;
+    border: #10701aa0;
 }
 .mainSignUp, .mainLogIn{
-    background: rgba(118, 219, 233, 0.844);
+    background: rgba(169, 219, 171, 0.844);
     border-radius: 0px 0px 10px 10px;
     display: flex;
     flex-wrap: wrap;
@@ -66,7 +67,7 @@
 }
 input{
     background: rgba(254, 253, 253, 0.44);
-    border: 3px solid #4183aa;
+    border: 3px solid #76C67E;
     border-radius: 70px;
     text-align: center;
     font-family: 'Inter';
@@ -78,8 +79,8 @@ input{
 }
 
 .LogInBtn, .createAccount{
-    background: rgb(3 87 152 / 0.65);
-    border: 3px solid #48acff;
+    background: rgba(103, 177, 110, 0.65);
+    border: 3px solid #67B16E;
     border-radius: 10px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-style: italic;
@@ -130,7 +131,7 @@ input{
 .headerPrincipalPage, .headerPrincPageProfile{
     width: 100%; /*ocupar el ancho de la pagina*/
    /* background: rgba(119, 186, 125, 0.8);*/
-   background: linear-gradient( #c8ebf5 , #77fef3);
+   background: rgba(119, 186, 125, 0.8);
 }
 .publishPostBtnContainer{
     display: flex;
@@ -165,10 +166,10 @@ input{
     text-decoration: none;
 }
 .searchButton:hover, .profileButton:hover, .likeButton:hover, .backButton:hover, .logOutButton:hover, .logOutButton2:hover{
-    background-color:  rgba(62, 174, 196, 0.756);
+    background-color:  rgba(140, 188, 142, 0.73);
 }
 .publishPostButton:hover{
-    background-color:  rgba(119, 219, 239, 0.756);
+    background-color:  rgba(140, 188, 142, 0.73);
 
 }
 .logOutContainer, .logOutContainer2{
@@ -209,8 +210,8 @@ input{
     resize: none;
     width: 100%;
     height: 45px;
-    background: #c8ebf5 ;
-   /* background: rgba(82, 163, 90, 0.2);*/
+    background: rgba(82, 163, 90, 0.2) ;
+    border: 1px solid #000000;
     border-radius: 5px;
     font-family:math;
 }
@@ -255,7 +256,7 @@ input{
     background-image: url(./img/profileMuro.png);
 }
 .imageProfile{
-    background-image: url(./img/profile.png);
+    background-image: url(./img/newProfile.png);
     margin-top: 55px;
     margin-left: 300px;
     width: 100px;
@@ -314,8 +315,8 @@ header label:hover{
     margin-right: 6px;
 }
 .deleteButton, .editButton{
-    background: rgb(3 87 152 / 0.65);
-    border: 1.5px solid #48acff;
+    background: rgba(103, 177, 110, 0.65);
+    border: 1.5px solid #67B16E;
     border-radius: 10px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-style: italic;
@@ -452,6 +453,14 @@ header label:hover{
 }
 /*Celulares*/
 @media (max-width: 415px){
+    .imageProfile{
+        margin-left: 150px;
+        width: 100px;
+        height: 100px;
+    }
+    .descriptionProfile{
+    padding: 5%;
+    }
     .mainLabel{
         justify-content:center;
         align-items:center;
