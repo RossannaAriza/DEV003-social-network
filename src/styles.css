@@ -207,19 +207,26 @@ input{
     margin: 10px 10px 10px 5px;
 }
 .postMain, .perfilMain{
-    margin-top: 30px;
+    margin-top: 3px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+.perfilMain{
+    background-image: url(./img/profileBckg2\ -\ Editado.png);
+}
 .postMain{
     background-image: url(./img/mainFruits\ -\ Editado.png);
+}
+.username{
+    background-color: rgb(114 207 107 / 94%);
+    font-size: 20px;
 }
 .usersPost, .postMold {
     resize: none;
     width: 100%;
     height: 45px;
-    background: rgb(125 190 121 / 97%);
+    background: rgb(168 233 184);
     border: 1px solid #000000;
     border-radius: 5px;
     font-family:math;
@@ -260,6 +267,11 @@ input{
     margin: 5%;
     justify-content: center;
     text-align: center;
+}
+.descriptionProfile{
+    background: rgb(107 247 142 / 70%);
+    font-size: 20px;
+    margin-top: 15px;   
 }
 .imageProfileMuro{
     background-image: url(./img/newProfileImg.png);
@@ -308,6 +320,7 @@ header label:hover{
     padding: 0;
     display: flex;
     justify-content: flex-end; /*alineará todos los elementos flexibles con el extremo derecho del contenedor */
+    background-image: linear-gradient(45deg, #46cd4b,#ded5d5);
 }
 .menu li:hover{
     background-color: rgba(82, 163, 90, 0.2);
@@ -343,6 +356,9 @@ header label:hover{
     margin-top: 5%;
     margin-right: 6px;
 }
+.editButton:hover, .deleteButton:hover{
+    background-color:rgba(24, 163, 29, 0.882);
+}
 .postButtonsContainer{
     display: flex;
     justify-content:flex-start;
@@ -357,6 +373,7 @@ header label:hover{
 }
 .postTextContent{
     margin: 6px;
+    font-style: oblique;
 }
 #divModalEdit{
     display: none;
