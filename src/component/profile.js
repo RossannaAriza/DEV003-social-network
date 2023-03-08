@@ -133,7 +133,7 @@ querySnapshot.forEach((doc) => {
   closeModal.textContent = 'X';
   const detail = document.createElement('h2');
   detail.setAttribute('id', 'h2Detail');
-  detail.textContent = 'Edit the recipe';
+  detail.textContent = 'Edit your recipe';
   const newPost = document.createElement('textarea');
   newPost.classList.add('usersPost');
   newPost.setAttribute('id', 'newPostTextArea');
@@ -177,7 +177,7 @@ querySnapshot.forEach((doc) => {
   closeModalDelete.textContent = 'X';
   const detailDelete = document.createElement('h2');
   detailDelete.setAttribute('id', 'h2DetailDelete');
-  detailDelete.textContent = 'Are you sure delete recipe?';
+  detailDelete.textContent = 'Are you sure you want to delete your recipe?';
   const modalDeleteBtn = document.createElement('button');
   modalDeleteBtn.setAttribute('id', 'modalDeleteBtn');
   modalDeleteBtn.textContent = 'Sure';

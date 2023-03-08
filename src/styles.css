@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 .mainLabel{
-    background-image: url("img/bread.jpg");
+    background-image: url("img/bckg.avif");
     width: 100vw;
     height: 100vh;
     background-position: center center;
@@ -30,7 +30,7 @@
     font-size: 55px;
     line-height: 24px;
     border-color: #10701a;
-    background: rgba(186, 236, 188, 0.722);
+    background:rgba(83, 149, 78, 0.935);
     border: none;
     padding: 8px;
     width: 50%;
@@ -45,15 +45,15 @@
     border-radius: 0px 10px 0px 0px;
 }
 .LogIn:hover,  .SignUp:hover{
-    background-color:rgba(98, 133, 99, 0.756);
+    background-color:rgba(24, 163, 29, 0.882);
     border: #10701aa0;
 }
 .btnSelected{
-    background-color: rgba(98, 133, 99, 0.756) !important;
+    background-color: rgba(106, 164, 103, 0.958) !important;
     border: #10701aa0;
 }
 .mainSignUp, .mainLogIn{
-    background: rgba(169, 219, 171, 0.844);
+    background: rgba(124, 190, 121, 0.958);
     border-radius: 0px 0px 10px 10px;
     display: flex;
     flex-wrap: wrap;
@@ -67,7 +67,7 @@
 }
 input{
     background: rgba(254, 253, 253, 0.44);
-    border: 3px solid #76C67E;
+    border: 3px solid rgb(125 190 121 / 97%);
     border-radius: 70px;
     text-align: center;
     font-family: 'Inter';
@@ -79,8 +79,8 @@ input{
 }
 
 .LogInBtn, .createAccount{
-    background: rgba(103, 177, 110, 0.65);
-    border: 3px solid #67B16E;
+    background:rgb(65 122 61 / 97%);
+    border: 3px solid rgb(125 190 121 / 97%);
     border-radius: 10px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-style: italic;
@@ -149,21 +149,25 @@ input{
     font-weight: 300;
     font-size: 20px;
     line-height: 20px;
-    height: 40px;
+    height: 50px;
     margin: 10px 0px 0px 0px;
     flex-direction: row-reverse;
     display: block;
     text-decoration: none;
 }
 .searchButton, .profileButton, .logOutButton, .logOutButton2, .backButton, .inputLogo, .imageProfile{
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     background-position: center center;
     background-size: contain;
     background-repeat: no-repeat;
     border: solid #10701a 1px;
     display: block;
     text-decoration: none;
+}
+.logOutButton2, .backButton{
+    width: 55px;
+    height: 55px;
 }
 .searchButton:hover, .profileButton:hover, .likeButton:hover, .backButton:hover, .logOutButton:hover, .logOutButton2:hover{
     background-color:  rgba(140, 188, 142, 0.73);
@@ -180,37 +184,49 @@ input{
     background-color: rgba(14, 169, 19, 0.73);
 } */
 .searchButton{
-    background-image: url(./img/loupe-removebg-preview.png);
+    background-image: url(./img/searchSuggestion1.png);
     /*background-color: white;*/
     margin: 10px 0px 0px 0px;
 }
 .profileButton{
-    background-image: url(./img/user-removebg-preview.png);
+    background-image: url(./img/newProfileImg.png);
     border-radius:0px 10px 10px 0px;
     margin: 10px 10px 0px -1px;
 }
 .backButton{
-    background-image: url(./img/undo.png);
+    background-image: url(./img/backBtnLogo.png);
     border-radius:10px 10px 10px 10px;
-    margin: 10px 10px 0px -1px;
+    margin: 10px 10px 10px 0px;
+    background-color: transparent;
+    border: none;
 }
 .logOutButton, .logOutButton2{
-    background-image: url(./img/switch.png);
+    background-image: url(./img/powerOff.png);
     border: none;
     background-color: transparent;
     margin: 10px 10px 10px 5px;
 }
 .postMain, .perfilMain{
-    margin-top: 30px;
+    margin-top: 3px;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.perfilMain{
+    background-image: url(./img/profileBckg2\ -\ Editado.png);
+}
+.postMain{
+    background-image: url(./img/mainFruits\ -\ Editado.png);
+}
+.username{
+    background-color: rgb(114 207 107 / 94%);
+    font-size: 20px;
 }
 .usersPost, .postMold {
     resize: none;
     width: 100%;
     height: 45px;
-    background: rgba(82, 163, 90, 0.2) ;
+    background: rgb(168 233 184);
     border: 1px solid #000000;
     border-radius: 5px;
     font-family:math;
@@ -234,7 +250,7 @@ input{
     height: 25px;
 }
 .publishPostButton{
-    background-image: url(./img/button.png);
+    background-image: url(./img/sendPost2.png);
     width: 50px;
     height: 45px;
     margin-left: 10px;
@@ -252,15 +268,25 @@ input{
     justify-content: center;
     text-align: center;
 }
+.descriptionProfile{
+    background: rgb(107 247 142 / 70%);
+    font-size: 20px;
+    margin-top: 15px;   
+}
 .imageProfileMuro{
-    background-image: url(./img/profileMuro.png);
+    background-image: url(./img/newProfileImg.png);
 }
 .imageProfile{
-    background-image: url(./img/newProfile.png);
-    margin-top: 55px;
-    margin-left: 300px;
+    background-image: url(./img/newProfileImg.png);
+    margin: auto;
     width: 100px;
     height: 100px;
+    border-radius: 100%;
+}
+.nameProfile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 footer{
@@ -294,6 +320,7 @@ header label:hover{
     padding: 0;
     display: flex;
     justify-content: flex-end; /*alineará todos los elementos flexibles con el extremo derecho del contenedor */
+    background-image: linear-gradient(45deg, #46cd4b,#ded5d5);
 }
 .menu li:hover{
     background-color: rgba(82, 163, 90, 0.2);
@@ -329,6 +356,9 @@ header label:hover{
     margin-top: 5%;
     margin-right: 6px;
 }
+.editButton:hover, .deleteButton:hover{
+    background-color:rgba(24, 163, 29, 0.882);
+}
 .postButtonsContainer{
     display: flex;
     justify-content:flex-start;
@@ -343,6 +373,7 @@ header label:hover{
 }
 .postTextContent{
     margin: 6px;
+    font-style: oblique;
 }
 #divModalEdit{
     display: none;
