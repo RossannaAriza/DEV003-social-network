@@ -96,6 +96,11 @@ window.addEventListener('DOMContentLoaded', async() => {
   
   querySnapshot.forEach((doc) => {
   
+    murostructure(doc);
+});
+})});
+
+export const murostructure = (doc) => {
   const postObjects = doc.data();
   const postUsername = postObjects.username;
   const postUid = postObjects.uid;
@@ -182,9 +187,6 @@ window.addEventListener('DOMContentLoaded', async() => {
         changeLikes(idPostObject, usersUidPost);
     }
   };
-
-});
-})});
-
-
+  
+}
   
